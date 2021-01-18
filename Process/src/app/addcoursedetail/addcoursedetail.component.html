@@ -1,0 +1,192 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-2">
+      <div class="button button-primary" (click)="openTopicDialog()">Add topic</div>
+    </div>
+    <div class="col-lg-2">
+  <div class="button button-primary" (click)="openSubtopicDialog()">Add subtopic</div>
+  </div>
+  <div class="col-lg-2">
+  <div class="button button-primary" (click)="openLessonDialog()">Add lesson</div>
+  </div>
+  <div class="col-lg-2">
+    <div class="button button-primary" (click)="publish()">publish</div>
+  </div>
+  <div class="col-lg-2">
+    <div class="button button-primary" (click)="cancel()">Cancel</div>
+  </div>
+  </div>
+  </div>
+  
+  <div class="container">
+    <h2 class="tdtopic">Preview Course Detail (Before Recharge)</h2>
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="tdchinh">{{CourseName}}  <i class="fa fa-edit edit" (click)="pushData(); openDialog()"></i></h2>
+            <h2 class="tdtopic">Start Date: {{StartDate}}</h2>
+            <div class="row" *ngIf="Description.length == 0">
+              <div class="col-md-6">
+                <div class="row">
+                <i class="fa fa-check"></i>
+                <h4 class="muctieu">
+                  Understand the basics of the course in detail</h4>
+              </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                <i class="fa fa-check"></i>
+                <h4 class="muctieu">Realistic 90%</h4>
+              </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                <i class="fa fa-check"></i>
+                <h4 class="muctieu">After finishing course, I can do it immediately</h4>
+              </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                <i class="fa fa-check"></i>
+                <h4 class="muctieu">
+                  Confidence in interviews with solid knowledge</h4>
+              </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                <i class="fa fa-check"></i>
+                <h4 class="muctieu">
+                  Improve thinking with tests with testcases</h4>
+              </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                <i class="fa fa-check"></i>
+                <h4 class="muctieu">
+                  Has a foundation for learning libraries and frameworks</h4>
+              </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="Description.length > 0">
+              <div class="col-md-6" *ngFor="let description of Description">
+                <div class="row">
+                <i class="fa fa-check"></i>
+                <h4 class="muctieu">{{description}}</h4>
+                </div>
+              </div>
+            </div>
+            <h2 class="tdtopic">Main Topic</h2>
+            <div id="accordion" class="panel panel-group" role="tablist" *ngFor="let topic of topicdataset; let i = index">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="collapseListGroupHeading{{topic.topicId}}">
+                  <h4 class="panel-title">
+                    <a class="topictittle" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseListGroup{{i}}" aria-expanded="true" aria-controls="collapseListGroup{{i}}" (click)="getsubtopics(topic.topicId)" ng-repeat-start="topic in topicdataset | unique:'description'"> {{topic.topicTitle}}</a>
+                    <i class="fa fa-edit edittopic" (click)="pushData(); openTopicDialog1(topic)"></i>
+                    <i class="fa fa-trash deletetopic" (click)="deleteTopic(topic.topicId)"></i>
+                  </h4>
+                </div>
+                <div id="collapseListGroup{{i}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading{{topic.topicId}}" aria-expanded="true" ng-repeat-end>
+                  <ul class="list-group" *ngFor="let subtopic of subtopicdataset">
+                    <li class="list-group-item" ng-repeat="topic in topicdataset" *ngIf="subtopic.topicId == topic.topicId">
+                      {{subtopic.subTopicTitle}}
+                      <i class="fa fa-edit edittopic"></i>
+                      <i class="fa fa-trash deletetopic"></i>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+              
+              <div class="col-md-12">
+                <div class="row">
+                <i class="fa fa-check"></i>
+                <h4 class="muctieu">
+                  Internet-connected computer (Windows, Ubuntu or MacOS)</h4>
+              </div>
+              <div class="row">
+                <i class="fa fa-check"></i>
+                <h4 class="muctieu">
+                  High sense of self-study, high responsibility, persistence, not afraid of difficulties</h4>
+              </div>
+              <div class="row">
+                <i class="fa fa-check"></i>
+                <h4 class="muctieu">
+                  Do not rush, calmly study, do homework after each lesson</h4>
+              </div>
+              <div class="row">
+                <i class="fa fa-check"></i>
+                <h4 class="muctieu">
+                  You don't need to know anything more, in the course I'll show you what you need to know</h4>
+              </div>
+              </div>
+    
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+          <img class="card-img-top" src="https://images.unsplash.com/photo-1445452916036-9022dfd33aa8?auto=format&fit=crop&w=1053&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D">
+          <p class="card-top-text">Capitalize on low hanging fruit to indentify a ballpark value.</p>
+          <div class="card-block">
+            <p class="card-text">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
+          </div>
+          <div class="card-block course-info">
+            <div class="card-course-info">
+              <figure *ngIf="!avatarPath">
+                <img src="assets/img/userplaceholder.png">
+              </figure>
+              <figure *ngIf="avatarPath" >
+                <img [src]="getImageSource(avatarPath)" style="width:50px;height:50px;">
+              </figure>
+            <p class="card-text tutor-name">{{InstructorName}}</p>
+              <span class="tutor-description">INSTRUCTOR</span>
+        </div>
+              <div class="card-course-info">
+                <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{CourseDuration}}</span>
+                        <span><i class="fa fa-book" aria-hidden="true"></i>
+                      {{count}} lessons</span>
+            </div>
+          </div>
+          <div class="card-block">
+          <div class="price"><i class="fa fa-money"></i><span style="padding-left: 15px;padding-right: 5px;">{{Price}}</span>USD</div>
+        </div>
+          <div class="card-bottom card-block">
+            <a class="btn" style="border-radius: 30px;">Enroll</a>
+        </div>
+        </div>
+        </div>
+        </div>
+    </div>
+  
+  
+    <div class="container" *ngIf ="count != 0">
+      <h2 class="tdtopic">Preview Lesson Detail (After Recharge)</h2>
+      <div class="row">
+        <div class ="col-md-4 mb-20">
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false" *ngFor="let topic of topicdataset; let i = index">
+        <mat-expansion-panel-header (click)="getsubtopics(topic.topicId)">
+          <mat-panel-title >
+            Topic{{i+1}}:  {{topic.topicTitle}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p *ngFor="let subtopic of subtopicdataset" (click)="showdetail(subtopic.subTopicId)">{{subtopic.subTopicTitle}}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class ="col-md-8">
+    <div class="container-fluid" *ngIf="!show">
+    <div class="resize-container" #container *ngFor="let video of videoUrls,let i=index">
+      <ngx-y2-player #video
+        [videoUrl]="video"
+        [playerOptions]="playerOptions"
+        [container]="container"
+        (ready)="onReady($event)"
+        (stateChange)="onStateChange($event)">
+      </ngx-y2-player>
+    </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <app-footer></app-footer>
+  

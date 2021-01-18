@@ -1,0 +1,69 @@
+<ng-template [ngIf]="!flag" [ngIfElse]="loading">
+<header>
+  <div class="wrapper">
+            <nav>
+                  <div class="menu-icon">
+                        <i class="fa fa-bars fa-2x"></i>
+                  </div>
+
+                  <div class="logo">
+                    <a routerLink=""><img src="assets/img/logo/logo.png" alt=""></a>
+                  </div>
+                  <div class="menu">
+                        <ul >
+                          <li ><a routerLink="">Home</a></li>
+                          <li ><a routerLink="category">Category</a></li>
+                          <li ><a routerLink="about">About</a></li>
+                          <li ><a routerLink="contact">Contact</a></li>
+                          <li  class="button-header"><a routerLink="login" class="btn btn3">Log in</a></li>
+                          <li  class="button-header"><a routerLink="register" class="btn btn3">Register</a></li>
+                        </ul>
+                  </div>
+            </nav>
+    </div>
+</header>
+</ng-template>
+<ng-template  #loading>
+  <header>
+    <div class="wrapper">
+              <nav>
+                    <div class="menu-icon">
+                          <i class="fa fa-bars fa-2x"></i>
+                    </div>
+                    <div class="logo">
+                      <a routerLink=""><img src="assets/img/logo/logo.png" alt=""></a>
+                    </div>
+                    <div class="menu">
+                          <ul >
+                              <li ><a routerLink="category">Category</a></li>
+                              <li>
+                                    <div class="header-cart-wrapper">
+                                          <div class="header-cart" (click)="toggleCartPopup($event)">
+                                              <div class="mobil-shopping-cart">
+                                                  <span><i class="fa fa-shopping-cart fa-2x"></i> <span *ngIf="cart_num">( {{cart_num}} )</span></span>
+                                              </div>
+                                              <div class="header-cart-item">
+                                                  <a>My Cart <span *ngIf="cart_num">( {{cart_num}} )</span><span class="fa fa-caret-down"></span></a>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    </li>
+                            <li class="nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello,{{username}}! </a>
+                                  <div class="dropdown-menu">
+                                      <a class="dropdown-item" routerLink="blog"> My Blog</a>
+                                      <a class="dropdown-item" routerLink="mycourse">My Course</a>
+                                      <a class="dropdown-item" routerLink="profile">My Profile</a>
+                                      <a (click)='onLogout()' class="dropdown-item">Sign out</a> 
+                                  </div>
+                            </li>
+                              <li *ngIf ="isInstructor"  class="button-header"><a routerLink="meet" class="btn btn3">Create a meeting</a></li>  
+                              <li *ngIf ="isNormalUser"  class="button-header"><a routerLink="becomeinstructor" class="btn btn3">Up to Instructor</a></li>   
+                              <li *ngIf ="isInstructor"  class="button-header"><a routerLink="publishcourse" class="btn btn3">Publish Course</a></li>
+                          </ul>
+                    </div>
+                  <cart-popup></cart-popup>
+              </nav>
+      </div>
+  </header>
+  </ng-template>
