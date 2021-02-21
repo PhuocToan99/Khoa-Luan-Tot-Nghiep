@@ -1,0 +1,73 @@
+<main>
+    <section class="slider-area slider-area2">
+        <div class="slider-active">
+            <!-- Single Slider -->
+            <div class="single-slider slider-height2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-11 col-md-12">
+                            <div class="hero__caption hero__caption2">
+                                <h1 data-animation="bounceIn" data-delay="0.2s">My Publish Course</h1>
+                                <!-- breadcrumb Start-->
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+                                        <li class="breadcrumb-item"><a routerLink="/mycourse">My Publish Course</a></li>
+                                    </ol>
+                                <!-- breadcrumb End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="courses-area section-padding40 fix">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle text-center mb-55">
+                        <h2>My Publish Course</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4" *ngFor="let course of dataset | paginate: { itemsPerPage: 9, currentPage: p }">
+                    <div class="properties properties2 mb-30">
+                        <div class="properties__card">
+                            <div class="properties__img overlay1" *ngIf="!course.thumbnailImage">
+                                <a href="#"><img src="assets/img/productplaceholder.jpg" alt=""></a>
+                            </div>
+                            <div class="properties__img overlay1" *ngIf="course.thumbnailImage">
+                                <a href="#"><img [src]="loadimage(course.thumbnailImage)" alt=""></a>
+                            </div>
+                            <div class="properties__caption">
+                                <p>{{course.hastag}}</p>
+                                <h3><a href="#">{{course.courseName}}</a></h3>
+                                <p>{{course.description}}</p>
+                                <div class="properties__footer d-flex justify-content-between align-items-center">
+                                    <div class="restaurant-name">
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half"></i>
+                                        </div>
+                                        <p><span>(4.5)</span> based on 120</p>
+                                    </div>
+                                    <div class="price">
+                                        <span>${{course.price}}</span>
+                                    </div>
+                                </div>
+                                <a class="border-btn border-btn2" (click)="viewdetail(course.courseId)">Find out more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>
+    <div class="center" >
+        <pagination-controls (click)="gotoTop()" (pageChange)="p = $event"></pagination-controls>
+    </div>
+    </main>
