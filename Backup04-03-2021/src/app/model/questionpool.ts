@@ -8,5 +8,6 @@ export class Questionpool {
     quizCode:string;
     questionCode:string;
     quizId: string;
-    topicId: Int32Array;
+    //topicId: Int32Array;
+    topicId: number;
 }

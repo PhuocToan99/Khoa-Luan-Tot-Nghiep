@@ -23,7 +23,7 @@
       </option>
     </select>
     <label class="col-12" name="file" for="file">Avatar</label>
-    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+    <input type="file" id="file" accept="image/*" (change)="handleFileInput($event.target.files)">
     <label class="col-12" for="email">Email:</label>
     <input name="email" type="email" class="required email" [(ngModel)]="Email" [ngModelOptions]="{standalone: true}" (change)="checkEmail()"/>
     <p class ="warning" *ngIf ="emailInvalid == false">*Invalid email.Email can not be empty and end with @gmail.com</p>

@@ -392,6 +392,7 @@ export class AddcoursedetailComponent implements OnInit {
     var description;
     description = savedCourse.description;
     this.Description = description.split(".");
+    this.Description = this.Description.filter(x => x !== "");
     this.CourseHastag = savedCourse.hastag;
     this.CourseLevel = savedCourse.level;
     this.LessonNumbers = savedCourse.lessonNumbers;

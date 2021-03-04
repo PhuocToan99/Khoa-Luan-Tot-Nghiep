@@ -14,7 +14,6 @@ namespace API.Models
     public string QuestionType { get; set; }
     public Byte[] Image { get; set; }
     public Topic Topic { get; set; }
-    [Required]
     public int TopicId { get; set; }
     public int Time { get; set; }
     public string Description { get; set; }

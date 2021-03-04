@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { cssNumber } from 'jquery';
 import * as XLSX from 'xlsx';
+import { Questionpool } from '../model/questionpool';
 import { Quiz } from '../model/quiz';
 import {ExcelService} from '../services/excel.service';
+import { QuestionpoolService} from '../services/questionpool.service';
 @Component({
   selector: 'app-excelreader',
   templateUrl: './excelreader.component.html',
   styleUrls: ['./excelreader.component.css']
 })
 export class ExcelreaderComponent implements OnInit {
-  public quizlist : Quiz[] = [];
+  public questionlist : Questionpool[] = [];
   data: [][];
   data1: [][];
   data2: any = [
@@ -38,7 +40,7 @@ export class ExcelreaderComponent implements OnInit {
         "STATUS": "TRUE"
     }
   ]
-  constructor(private excelService:ExcelService) { }
+  constructor(private excelService:ExcelService,private questionpoolService:QuestionpoolService) { }
 
   ngOnInit(): void {
   }
@@ -82,25 +84,28 @@ export class ExcelreaderComponent implements OnInit {
       }*/
 
       //Chay duoc 
-      /*console.log(this.data);
+      console.log(this.data);
       let x = this.data.slice(1);
       console.log(x);
       for(var k = 1;k < this.data.length;k++){
         console.log(this.data[k]);
         var quiz1 = this.data[k] as any;
         console.log(quiz1);
-        var quiz:Quiz = new Quiz;
+        var question:Questionpool = new Questionpool;
         var temp = quiz1[0] as string;
         var temp1 = quiz1[1] as number;
         var temp2 = quiz1[2] as number;
+        question.topicId = 1;
+        question.quizId = "1";
         console.log(temp +" "+temp1+" "+temp2);
-        quiz.question = temp;
-        quiz.point = temp1;
-        quiz.time = temp2;
-        this.quizlist.push(quiz);
-      }*/
+        question.question = temp;
+        // quiz.point = temp1;
+        question.time = temp2;
+        this.questionpoolService.postquestionpool(question);
+        this.questionlist.push(question);
+      }
       
-      console.log(this.quizlist);
+      console.log(this.questionlist);
     };
 
     reader.readAsBinaryString(target.files[0]);

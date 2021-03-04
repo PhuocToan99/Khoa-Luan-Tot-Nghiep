@@ -1,4 +1,4 @@
-<input id="quiz" type="file" (change)="onFileChangeQuiz($event)" multiple="false" />
+<input id="quiz" type="file" (change)="onFileChangeQuiz($event)" accept=".xlsx" multiple="false" />
 <table>
     <tbody>
         <tr *ngFor="let row of data">
@@ -8,7 +8,7 @@
         </tr>
     </tbody>
 </table>
-<input id="answer" type="file" (change)="onFileChangeAnswer($event)" multiple="false" />
+<input id="answer" type="file" (change)="onFileChangeAnswer($event)" accept=".xlsx" multiple="false" />
 <table>
     <tbody>
         <tr *ngFor="let row of data1">

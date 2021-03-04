@@ -18,6 +18,7 @@ export class QuestionpoolService {
   postquestionpool = async (questionpool: Questionpool) => {
     try 
     { 
+      console.log(questionpool);
       var formData = new FormData();
       formData.append('questionType',questionpool.questionType);
       formData.append('question',questionpool.question);

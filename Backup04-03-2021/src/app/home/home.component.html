@@ -78,7 +78,112 @@
     </div>
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="login">
+        <div class="col-lg-4" *ngFor="let course of courses">
+            <div class="properties properties2 mb-30" *ngIf="coursealreadybought(course.courseId)">
+                <div class="properties__card">
+                    <div class="properties__img overlay1" *ngIf="!course.thumbnailImage">
+                        <a href="#"><img src="assets/img/productplaceholder.jpg" alt=""></a>
+                    </div>
+                    <div class="properties__img overlay1" *ngIf="course.thumbnailImage">
+                        <a href="#"><img [src]="loadimage(course.thumbnailImage)" alt=""></a>
+                    </div>
+                    <div class="properties__caption">
+                        <p>{{course.hastag}}</p>
+                        <h3><a href="#">{{course.courseName}}</a></h3>
+                        <p class="description">{{course.description}}</p>
+                        <div class="properties__footer d-flex justify-content-between align-items-center">
+                            <div class="restaurant-name">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half"></i>
+                                </div>
+                                <p><span>(4.5)</span> based on 120</p>
+                            </div>
+                            <div class="price">
+                                <span>${{course.price}}</span>
+                            </div>
+                        </div>
+                        <a class="button button-success" (click)="viewdetail(course.courseId)">Find out more</a>
+                        <div class="button button-primary" (click)="addToCart(course)">Add To Cart</div>
+                    </div>
+                </div>
+            </div>
+            <div class="properties properties2 mb-30" *ngIf="!coursealreadybought(course.courseId)">
+                <div class="properties__card">
+                    <div class="properties__img overlay1" *ngIf="!course.thumbnailImage">
+                        <a href="#"><img src="assets/img/productplaceholder.jpg" alt=""></a>
+                    </div>
+                    <div class="properties__img overlay1" *ngIf="course.thumbnailImage">
+                        <a href="#"><img [src]="loadimage(course.thumbnailImage)" alt=""></a>
+                    </div>
+                    <div class="properties__caption">
+                        <p>{{course.hastag}}</p>
+                        <h3><a href="#">{{course.courseName}}</a></h3>
+                        <p>{{course.description}}</p>
+                        <div class="properties__footer d-flex justify-content-between align-items-center">
+                            <div class="restaurant-name">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half"></i>
+                                </div>
+                                <p><span>(4.5)</span> based on 120</p>
+                            </div>
+                            <div class="price">
+                                <span>${{course.price}}</span>
+                            </div>
+                        </div>
+                        <a class="button button-success" (click)="viewdetail(course.courseId)">Find out more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="!login">
+        <div class="col-lg-4" *ngFor="let course of dataset | paginate: { itemsPerPage: 9, currentPage: p }">
+            <div class="properties properties2 mb-30">
+                <div class="properties__card">
+                    <div class="properties__img overlay1" *ngIf="!course.thumbnailImage">
+                        <a href="#"><img src="assets/img/productplaceholder.jpg" alt=""></a>
+                    </div>
+                    <div class="properties__img overlay1" *ngIf="course.thumbnailImage">
+                        <a href="#"><img style="height: 200px;" [src]="loadimage(course.thumbnailImage)" alt=""></a>
+                    </div>
+                    <div class="properties__caption">
+                        <p>{{course.hastag}}</p>
+                        <h3><a href="#">{{course.courseName}}</a></h3>
+                        <p>{{course.description}}</p>
+                        <div class="properties__footer d-flex justify-content-between align-items-center">
+                            <div class="restaurant-name">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half"></i>
+                                </div>
+                                <p><span>(4.5)</span> based on 120</p>
+                            </div>
+                            <div class="price">
+                                <span>${{course.price}}</span>
+                            </div>
+                        </div>
+                        <a class="button button-success" (click)="viewdetail(course.courseId)">Find out more</a>
+                        <div class="button button-primary" routerLink="/login">Add To Cart</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="row">
         <div class="row" *ngIf="login">
             <div class="col-lg-4" *ngFor="let course of courses">
                 <div class="properties properties2 mb-30" *ngIf="coursealreadybought(course.courseId)">
@@ -182,8 +287,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
+
+    
       <!--Carousel Wrapper-->
       <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
         <!--Slides-->

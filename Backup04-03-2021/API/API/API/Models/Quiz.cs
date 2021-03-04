@@ -20,7 +20,6 @@ namespace API.Models
     public Byte[] ThumbnailImage { get; set; }
     //public string QuizCode { get; set; }
     public Lesson Lesson { get; set; }
-    [Required]
     public int LessonId { get; set; }
     public Course Course { get; set; }
     [Required]
