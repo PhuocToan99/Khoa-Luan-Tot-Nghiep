@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>{{mess}}</h1>
+<div mat-dialog-content>
+    <mat-form-field style="width: 100%;">
+        <mat-label >Lesson Title</mat-label>
+        <input  matInput [(ngModel)]="data.lessonTitle"> 
+    </mat-form-field>
+    <mat-form-field style="width: 100%;">
+        <mat-label>Lesson Video URL</mat-label>
+        <input matInput [(ngModel)]="data.lessonContent"> 
+    </mat-form-field>
+    <mat-form-field style="width: 100%;" >
+        <mat-select  class="form-control" [(ngModel)]="data.subTopicId">
+            <mat-option  *ngFor="let subtopic of subtopics" [value]="subtopic.subTopicId">
+                {{subtopic.subTopicTitle}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>    
+
+</div>
+<div mat-dialog-actions>
+    <button class="button button-success" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+</div>
+
