@@ -1,0 +1,653 @@
+<main>
+    <!--? slider Area Start-->
+    <section class="slider-area ">
+        <div class="slider-active">
+            <!-- Single Slider -->
+            <div class="single-slider slider-height d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-7 col-md-12">
+                            <div class="hero__caption">
+                                <h1 class="animated slideInLeft" data-animation="fadeInLeft" data-delay="0.2s">Online learning<br> platform</h1>
+                                <p class="animated slideInLeft pb-5" data-animation="fadeInLeft" data-delay="0.4s">Build skills with courses, certificates, and degrees online from world-class universities and companies</p>
+                                <a *ngIf="!login" routerLink="/register" class="btn hero-btn animated slideInLeft" data-animation="fadeInLeft" data-delay="0.7s">Join for Free</a>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ? services-area -->
+    <div class="services-area">
+        <div class="container">
+            <div class="row justify-content-sm-center">
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="single-services mb-30">
+                        <div class="features-icon">
+                            <img src="assets/img/icon/icon1.svg" alt="">
+                        </div>
+                        <div class="features-caption">
+                            <h3>60+ UX courses</h3>
+                            <p>The automated process all your website tasks.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="single-services mb-30">
+                        <div class="features-icon">
+                            <img src="assets/img/icon/icon2.svg" alt="">
+                        </div>
+                        <div class="features-caption">
+                            <h3>Expert instructors</h3>
+                            <p>The automated process all your website tasks.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="single-services mb-30">
+                        <div class="features-icon">
+                            <img src="assets/img/icon/icon3.svg" alt="">
+                        </div>
+                        <div class="features-caption">
+                            <h3>Life time access</h3>
+                            <p>The automated process all your website tasks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <!-- Courses area start -->
+    <div class="container my-4">
+      <div class="row justify-content-center">
+        <div class="col-xl-7 col-lg-8">
+            <div class="section-tittle text-center">
+              <h2>Our featured courses</h2>
+            </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+      <div class="col-lg-8 mb-20 ">
+        <div class="input-group">                                                                       
+            <input [(ngModel)]="namesearch" name= "search" class="form-control" placeholder="Search" type="text" style="font-size: 20px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i (click)='onSearch()' class="fa fa-search"></i></span>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="row" *ngIf="login">
+        <div class="col-lg-4" *ngFor="let course of courses">
+            <div class="properties properties2 mb-30" *ngIf="coursealreadybought(course.courseId)">
+                <div class="properties__card">
+                    <div class="properties__img overlay1" *ngIf="!course.thumbnailImage">
+                        <a href="#"><img src="assets/img/productplaceholder.jpg" alt=""></a>
+                    </div>
+                    <div class="properties__img overlay1" *ngIf="course.thumbnailImage">
+                        <a href="#"><img [src]="loadimage(course.thumbnailImage)" alt=""></a>
+                    </div>
+                    <div class="properties__caption">
+                        <p>{{course.hastag}}</p>
+                        <h3><a href="#">{{course.courseName}}</a></h3>
+                        <p class="description">{{course.description}}</p>
+                        <div class="properties__footer d-flex justify-content-between align-items-center">
+                            <div class="restaurant-name">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half"></i>
+                                </div>
+                                <p><span>(4.5)</span> based on 120</p>
+                            </div>
+                            <div class="price">
+                                <span>${{course.price}}</span>
+                            </div>
+                        </div>
+                        <a class="button button-success" (click)="viewdetail(course.courseId)">Find out more</a>
+                        <div class="button button-primary" (click)="addToCart(course)">Add To Cart</div>
+                    </div>
+                </div>
+            </div>
+            <div class="properties properties2 mb-30" *ngIf="!coursealreadybought(course.courseId)">
+                <div class="properties__card">
+                    <div class="properties__img overlay1" *ngIf="!course.thumbnailImage">
+                        <a href="#"><img src="assets/img/productplaceholder.jpg" alt=""></a>
+                    </div>
+                    <div class="properties__img overlay1" *ngIf="course.thumbnailImage">
+                        <a href="#"><img [src]="loadimage(course.thumbnailImage)" alt=""></a>
+                    </div>
+                    <div class="properties__caption">
+                        <p>{{course.hastag}}</p>
+                        <h3><a href="#">{{course.courseName}}</a></h3>
+                        <p>{{course.description}}</p>
+                        <div class="properties__footer d-flex justify-content-between align-items-center">
+                            <div class="restaurant-name">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half"></i>
+                                </div>
+                                <p><span>(4.5)</span> based on 120</p>
+                            </div>
+                            <div class="price">
+                                <span>${{course.price}}</span>
+                            </div>
+                        </div>
+                        <a class="button button-success" (click)="viewdetail(course.courseId)">Find out more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="!login">
+        <div class="col-lg-4" *ngFor="let course of dataset | paginate: { itemsPerPage: 9, currentPage: p }">
+            <div class="properties properties2 mb-30">
+                <div class="properties__card">
+                    <div class="properties__img overlay1" *ngIf="!course.thumbnailImage">
+                        <a href="#"><img src="assets/img/productplaceholder.jpg" alt=""></a>
+                    </div>
+                    <div class="properties__img overlay1" *ngIf="course.thumbnailImage">
+                        <a href="#"><img style="height: 200px;" [src]="loadimage(course.thumbnailImage)" alt=""></a>
+                    </div>
+                    <div class="properties__caption">
+                        <p>{{course.hastag}}</p>
+                        <h3><a href="#">{{course.courseName}}</a></h3>
+                        <p>{{course.description}}</p>
+                        <div class="properties__footer d-flex justify-content-between align-items-center">
+                            <div class="restaurant-name">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half"></i>
+                                </div>
+                                <p><span>(4.5)</span> based on 120</p>
+                            </div>
+                            <div class="price">
+                                <span>${{course.price}}</span>
+                            </div>
+                        </div>
+                        <a class="button button-success" (click)="viewdetail(course.courseId)">Find out more</a>
+                        <div class="button button-primary" routerLink="/login">Add To Cart</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="row">
+        <div class="row" *ngIf="login">
+            <div class="col-lg-4" *ngFor="let course of courses">
+                <div class="properties properties2 mb-30" *ngIf="coursealreadybought(course.courseId)">
+                    <div class="properties__card">
+                        <div class="properties__img overlay1" *ngIf="!course.thumbnailImage">
+                            <a href="#"><img src="assets/img/productplaceholder.jpg" alt=""></a>
+                        </div>
+                        <div class="properties__img overlay1" *ngIf="course.thumbnailImage">                   
+                            <a href="#"><img style="height: 200px;" [src]="loadimage(course.thumbnailImage)" alt=""></a>
+                        </div>
+                        <div class="properties__caption">
+                            <p>{{course.hastag}}</p>
+                            <h3><a href="#">{{course.courseName}}</a></h3>
+                            <p class="description">{{course.description}}</p>
+                            <div class="properties__footer d-flex justify-content-between align-items-center">
+                                <div class="restaurant-name">
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half"></i>
+                                    </div>
+                                    <p><span>(4.5)</span> based on 120</p>
+                                </div>
+                                <div class="price">
+                                    <span>${{course.price}}</span>
+                                </div>
+                            </div>
+                            <a class="button button-success" (click)="viewdetail(course.courseId)">Find out more</a>
+                            <div class="button button-primary" (click)="addToCart(course)">Add To Cart</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="properties properties2 mb-30" *ngIf="!coursealreadybought(course.courseId)">
+                    <div class="properties__card">
+                        <div class="properties__img overlay1" *ngIf="!course.thumbnailImage">
+                            <a href="#"><img src="assets/img/productplaceholder.jpg" alt=""></a>
+                        </div>
+                        <div class="properties__img overlay1" *ngIf="course.thumbnailImage">
+                            <a href="#"><img style="height: 200px;" [src]="loadimage(course.thumbnailImage)" alt=""></a>
+                        </div>
+                        <div class="properties__caption">
+                            <p>{{course.hastag}}</p>
+                            <h3><a href="#">{{course.courseName}}</a></h3>
+                            <p class="description">{{course.description}}</p>
+                            <div class="properties__footer d-flex justify-content-between align-items-center">
+                                <div class="restaurant-name">
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half"></i>
+                                    </div>
+                                    <p><span>(4.5)</span> based on 120</p>
+                                </div>
+                                <div class="price">
+                                    <span>${{course.price}}</span>
+                                </div>
+                            </div>
+                            <a class="button button-success" (click)="viewdetail(course.courseId)">Find out more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!login">
+            <div class="col-lg-4" *ngFor="let course of courses">
+                <div class="properties properties2 mb-30">
+                    <div class="properties__card">
+                        <div class="properties__img overlay1" *ngIf="!course.thumbnailImage">
+                            <a href="#"><img src="assets/img/productplaceholder.jpg" alt=""></a>
+                        </div>
+                        <div class="properties__img overlay1" *ngIf="course.thumbnailImage">  
+                             <a href="#"><img style="height: 200px;" [src]="loadimage(course.thumbnailImage)" alt=""></a>
+                        </div>
+                        <div class="properties__caption">
+                            <p>{{course.hastag}}</p>
+                            <h3><a href="#">{{course.courseName}}</a></h3>
+                            <p class="description">{{course.description}}</p>
+                            <div class="properties__footer d-flex justify-content-between align-items-center">
+                                <div class="restaurant-name">
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half"></i>
+                                    </div>
+                                    <p><span>(4.5)</span> based on 120</p>
+                                </div>
+                                <div class="price">
+                                    <span>${{course.price}}</span>
+                                </div>
+                            </div>
+                            <a class="button button-success" (click)="viewdetail(course.courseId)">Find out more</a>
+                            <div class="button button-primary" routerLink="/login">Add To Cart</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    
+      <!--Carousel Wrapper-->
+      <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+  
+          <!--First slide-->
+          <div class="carousel-item active">
+          </div>
+          <!--/.First slide-->
+  
+        </div>
+        <!--/.Slides-->
+      <!-- Controls-->
+      <a class="left carousel-control-prev" href="#multi-item-example" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control-next" href="#multi-item-example" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" ></span>
+        <span class="sr-only">Next</span>
+    </a>
+      </div>
+      <!--/.Carousel Wrapper-->
+    </div>
+   <!-- Courses area end -->
+  <!--? About Area-1 Start -->
+    <section class="about-area1 fix pt-10">
+        <div class="support-wrapper align-items-center">
+            <div class="left-content1">
+                <div class="about-icon">
+                    <img src="assets/img/icon/about.svg" alt="">
+                </div>
+                <!-- section tittle -->
+                <div class="section-tittle section-tittle2 mb-55">
+                    <div class="front-text">
+                        <h2 class="">Learn new skills online with top educators</h2>
+                        <p>The automated process all your website tasks. Discover tools and
+                            techniques to engage effectively with vulnerable children and young
+                        people.</p>
+                    </div>
+                </div>
+                <div class="single-features">
+                    <div class="features-icon">
+                        <img src="assets/img/icon/right-icon.svg" alt="">
+                    </div>
+                    <div class="features-caption">
+                        <p>Techniques to engage effectively with vulnerable children and young people.</p>
+                    </div>
+                </div>
+                <div class="single-features">
+                    <div class="features-icon">
+                        <img src="assets/img/icon/right-icon.svg" alt="">
+                    </div>
+                    <div class="features-caption">
+                        <p>Join millions of people from around the world  learning together.</p>
+                    </div>
+                </div>
+  
+                <div class="single-features">
+                    <div class="features-icon">
+                        <img src="assets/img/icon/right-icon.svg" alt="">
+                    </div>
+                    <div class="features-caption">
+                        <p>Join millions of people from around the world learning together. Online learning is as easy and natural.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="right-content1">
+                <!-- img -->
+                <div class="right-img">
+                    <img src="assets/img/gallery/about.png" alt="">
+  
+                    <div class="video-icon" >
+                        <a class="popup-video btn-icon" href="https://www.youtube.com/watch?v=up68UAfH0d0"><i class="fas fa-play"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Area End -->
+    <!--? top subjects Area Start -->
+    <div class="topic-area section-padding40">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle text-center mb-55">
+                        <h2>Explore top subjects</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-topic text-center mb-30">
+                        <div class="topic-img">
+                            <img src="assets/img/gallery/topic1.png" alt="">
+                            <div class="topic-content-box">
+                                <div class="topic-content">
+                                    <h3><a href="#">Java basic</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-topic text-center mb-30">
+                        <div class="topic-img">
+                            <img src="assets/img/gallery/topic2.png" alt="">
+                            <div class="topic-content-box">
+                                <div class="topic-content">
+                                    <h3><a href="#">Java Advanced </a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-topic text-center mb-30">
+                        <div class="topic-img">
+                            <img src="assets/img/gallery/topic3.png" alt="">
+                            <div class="topic-content-box">
+                                <div class="topic-content">
+                                    <h3><a href="#">IOS - Android</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-topic text-center mb-30">
+                        <div class="topic-img">
+                            <img src="assets/img/gallery/topic4.png" alt="">
+                            <div class="topic-content-box">
+                                <div class="topic-content">
+                                    <h3><a href="#">Ai - Vr - iot</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-topic text-center mb-30">
+                        <div class="topic-img">
+                            <img src="assets/img/gallery/topic5.png" alt="">
+                            <div class="topic-content-box">
+                                <div class="topic-content">
+                                    <h3><a href="#">JavaScript</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-topic text-center mb-30">
+                        <div class="topic-img">
+                            <img src="assets/img/gallery/topic6.png" alt="">
+                            <div class="topic-content-box">
+                                <div class="topic-content">
+                                    <h3><a href="#">python - C </a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-topic text-center mb-30">
+                        <div class="topic-img">
+                            <img src="assets/img/gallery/topic7.png" alt="">
+                            <div class="topic-content-box">
+                                <div class="topic-content">
+                                    <h3><a href="#">gear - hardware</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-topic text-center mb-30">
+                        <div class="topic-img">
+                            <img src="assets/img/gallery/topic8.png" alt="">
+                            <div class="topic-content-box">
+                                <div class="topic-content">
+                                    <h3><a href="#">ux - ui - designer</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-12">
+                    <div class="section-tittle text-center mt-20">
+                        <a routerLink="/category" class="border-btn">View More Subjects</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- top subjects End -->
+    <!--? About Area-3 Start -->
+    <section class="about-area3 fix">
+        <div class="support-wrapper align-items-center">
+            <div class="right-content3">
+                <!-- img -->
+                <div class="right-img">
+                    <img src="assets/img/gallery/about3.png" alt="">
+                </div>
+            </div>
+            <div class="left-content3">
+                <!-- section tittle -->
+                <div class="section-tittle section-tittle2 mb-20">
+                    <div class="front-text">
+                        <h2 class="">Learner outcomes on courses you will take</h2>
+                    </div>
+                </div>
+                <div class="single-features">
+                    <div class="features-icon">
+                        <img src="assets/img/icon/right-icon.svg" alt="">
+                    </div>
+                    <div class="features-caption">
+                        <p>Techniques to engage effectively with vulnerable children and young people.</p>
+                    </div>
+                </div>
+                <div class="single-features">
+                    <div class="features-icon">
+                        <img src="assets/img/icon/right-icon.svg" alt="">
+                    </div>
+                    <div class="features-caption">
+                        <p>Join millions of people from around the world
+                        learning together.</p>
+                    </div>
+                </div>
+                <div class="single-features">
+                    <div class="features-icon">
+                        <img src="assets/img/icon/right-icon.svg" alt="">
+                    </div>
+                    <div class="features-caption">
+                        <p>Join millions of people from around the world learning together.
+                        Online learning is as easy and natural.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Area End -->  
+    <!--? Team -->
+    <section class="team-area section-padding40 fix">
+      <div class="container my-4">
+        <div class="row justify-content-center">
+          <div class="col-xl-7 col-lg-8">
+              <div class="section-tittle text-center">
+                  <h2>Community experts</h2>
+              </div>
+          </div>
+        </div>
+        <!--Carousel Wrapper-->
+        <div class="mhn-slide owl-carousel">
+          <div class="mhn-item">
+              <div class="mhn-inner">
+                  <img class="rounded-circle" src="../../assets/img/team-1.jpg">
+                  <div class="mhn-img"><div class="loader-circle"><div class="loader-stroke-left"></div><div class="loader-stroke-right"></div></div></div>
+                  <div class="mhn-text">
+                      <h4>Ruth Wood</h4>
+                      <p>Course has given me the opportunity to reach a global audience for my classes that wouldn’t have been possible otherwise. I really like this lovely website</p>
+                  </div>
+              </div>
+          </div>
+          <div class="mhn-item">
+              <div class="mhn-inner">
+                  <img src="../../assets/img/team-2.jpg">
+                  <div class="mhn-img"><div class="loader-circle"><div class="loader-stroke-left"></div><div class="loader-stroke-right"></div></div></div>
+                  <div class="mhn-text">
+                      <h4>Timothy Reed</h4>
+                      <p>Launching my first course on Course allowed me to quit my full-time job and start my own company. I went from working 60+ hour weeks to setting my own hours and schedule..</p>
+                  </div>
+              </div>
+          </div>
+          <div class="mhn-item">
+              <div class="mhn-inner">
+                  <img class="rounded-circle" src="../../assets/img/team-3.jpg">
+                  <div class="mhn-img"><div class="loader-circle"><div class="loader-stroke-left"></div><div class="loader-stroke-right"></div></div></div>
+                  <div class="mhn-text">
+                      <h4>Victoria Valdez</h4>
+                      <p>There's no greater success on the Course marketplace than hearing that you've helped a student achieve their goals. Teaching on Udemy has brought me new relationships from wonderful</p>
+                  </div>
+              </div>
+          </div>
+          <div class="mhn-item">
+              <div class="mhn-inner">
+                  <img src="../../assets/img/team-4.jpg">
+                  <div class="mhn-img"><div class="loader-circle"><div class="loader-stroke-left"></div><div class="loader-stroke-right"></div></div></div>
+                  <div class="mhn-text">
+                      <h4>Baverly Little</h4>
+                      <p>We were looking for a scalable and credible solution that we would not need to develop internally. Coursera not only offers training from very prestigious institutions</p>
+                  </div>
+              </div>
+          </div>
+          <div class="mhn-item">
+              <div class="mhn-inner">
+                  <img src="../../assets/img/team-5.jpg">
+                  <div class="mhn-img"><div class="loader-circle"><div class="loader-stroke-left"></div><div class="loader-stroke-right"></div></div></div>
+                  <div class="mhn-text">
+                      <h4>Colt Steele</h4>
+                      <p>Launching my first course on Udemy allowed me to quit my full-time job and start my own company. I went from working 60+ hour weeks to setting my own hours and schedule.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="mhn-item">
+            <div class="mhn-inner">
+                <img src="../../assets/img/team-6.jpg">
+                <div class="mhn-img"><div class="loader-circle"><div class="loader-stroke-left"></div><div class="loader-stroke-right"></div></div></div>
+                <div class="mhn-text">
+                    <h4>Jean Lurssen</h4>
+                    <p>“I started out having no knowledge. Thanks to Coursera, I was able to start my online learning and ultimately acquire enough knowledge and skills to steer me towards a well-paying </p>
+                </div>
+            </div>
+            </div>
+            <div class="mhn-item">
+            <div class="mhn-inner">
+                <img src="../../assets/img/team-7.jpg">
+                <div class="mhn-img"><div class="loader-circle"><div class="loader-stroke-left"></div><div class="loader-stroke-right"></div></div></div>
+                <div class="mhn-text">
+                    <h4>Stephen Grider</h4>
+                    <p>We were looking for a scalable and credible solution that we would not need to develop internally.Course not only offers training from very prestigious institutions. </p>
+                </div>
+            </div>
+        </div>
+      </div>
+        <!--/.Carousel Wrapper-->
+      </div>
+    </section>
+    <!-- Services End -->
+    <!--? About Area-2 Start -->
+    <section class="about-area2 fix pb-padding">
+        <div class="support-wrapper align-items-center">
+            <div class="right-content2">
+                <!-- img -->
+                <div class="right-img">
+                    <img src="assets/img/gallery/about2.png" alt="">
+                </div>
+            </div>
+            <div class="left-content2">
+                <!-- section tittle -->
+                <div class="section-tittle section-tittle2 mb-20">
+                    <div class="front-text">
+                        <h2 class="">Take the next step
+                            toward your personal
+                            and professional goals
+                        with us.</h2>
+                        <p>The automated process all your website tasks. Discover tools and techniques to engage effectively with vulnerable children and young people.</p>
+                        <a *ngIf="!login" routerLink="/register" class="btn">Join now for Free</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Area End -->
+</main>
+  
+  
+  

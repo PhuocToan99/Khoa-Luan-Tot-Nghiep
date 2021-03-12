@@ -1,0 +1,49 @@
+<input id="quiz" type="file" (change)="onFileChangeQuiz($event)" accept=".xlsx" multiple="false" />
+<table>
+    <tbody>
+        <tr *ngFor="let row of data">
+                <td *ngFor="let cell of row">
+                        {{cell}}
+                </td>
+        </tr>
+    </tbody>
+</table>
+<input id="answer" type="file" (change)="onFileChangeAnswer($event)" accept=".xlsx" multiple="false" />
+<table>
+    <tbody>
+        <tr *ngFor="let row of data1">
+                <td *ngFor="let cell of row">
+                        {{cell}}
+                </td>
+        </tr>
+    </tbody>
+</table>
+<button (click)='exportAsXLSX()'>Download Excel</button>
+
+<section class="tabs-container">
+ 
+    <label for="tab1"> First Tab </label>
+    <label for="tab2"> Second Tab </label>
+    <label for="tab3"> Third Tab </label>
+    <label for="tab-n"> N Tab </label>
+</section>
+<input name="tab" id="tab1" type="radio" checked />
+<section class="tab-content">
+   <h2> Tab Heading </h2>
+   <p>Your peragraph goes here.</p>
+   <!-- Any other content -->
+</section>
+ 
+<input name="tab" id="tab2" type="radio" checked />
+<section class="tab-content">
+   <p> Contents for tab 2 </p>
+</section>
+ 
+<input name="tab" id="tab3" type="radio" checked />
+<section class="tab-content">
+   <p> Contents for tab 3 </p>
+</section>
+<input name="tab" id="tab-n" type="radio" checked />
+<section class="tab-content">
+   <p> Contents for N tab</p>
+</section>
