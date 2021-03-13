@@ -1,0 +1,48 @@
+<section class="slider-area slider-area2">
+  <div class="slider-active">
+    <!-- Single Slider -->
+    <div class="single-slider slider-height2">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-8 col-lg-11 col-md-12">
+            <div class="hero__caption hero__caption2">
+              <h1 data-animation="bounceIn" data-delay="0.2s">{{CourseName}}</h1>
+              <!-- breadcrumb Start-->
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+                <li class="breadcrumb-item"><a routerLink="/coursedetail/{{id}}">Course detail</a></li>
+              </ol>
+              <!-- breadcrumb End -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+          *ngFor="let topic of topicdataset; let i = index">
+          <mat-expansion-panel-header (click)="getsubtopics(topic.topicId)">
+            <mat-panel-title>
+              Topic{{i+1}}: {{topic.topicTitle}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p *ngFor="let subtopic of subtopicdataset" (click)="showdetail(subtopic.subTopicId)">
+            {{subtopic.subTopicTitle}}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-md-8">
+      <div class="container-fluid">
+        <div class="resize-container" #container *ngFor="let video of videoUrls,let i=index">
+          <ngx-y2-player #video [videoUrl]="video" [playerOptions]="playerOptions" [container]="container">
+          </ngx-y2-player>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
