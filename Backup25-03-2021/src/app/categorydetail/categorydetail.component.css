@@ -1,0 +1,258 @@
+.product-page {
+    width: 100%;
+}
+.product-page-container {
+    max-width: 1140px;
+    text-align: center;
+    padding: 0 30px;
+    margin: auto;
+}
+.product-breadcrumbs {
+    padding: 30px 0;
+}
+.product-breadcrumbs li{
+    display: inline-block;
+    letter-spacing: .1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: .85em;
+}
+.product-breadcrumbs li a {
+    color: #4a4a4a;
+}
+.product-breadcrumbs li:last-child{
+    opacity: 0.5;
+}
+
+.product-details-image {
+    width: 95%;
+    padding-top: 63.3%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media screen and (max-width: 992px) {
+    .product-details-image {
+        width: 100%;
+        padding-top: 66.6%;
+    }
+}
+.product-brand {
+    color: #7d7d7d;
+}
+.product-title {
+    margin:15px 0;
+    font-size:2.5em;
+    font-weight: 400;
+    font-family: "Playfair Display";
+}
+.product-price {
+    color:#9f9f9f;
+    font-family: "Playfair Display";
+    font-size:20px;
+}
+.product-description {
+    color: #7d7d7d;
+    margin:10px 0 30px 0;
+}
+.product-details-button {
+    padding:25px 0;
+    border-top: 1px solid #e4e4e4;
+    text-align: center;
+}
+.product-cart-button {
+    vertical-align: top;
+    margin-left:5px
+}
+body, p {
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+    }
+    
+    p {
+    margin: 0;
+    }
+    
+    .card {
+      background: #FFF;
+      width: auto;
+      margin-left: 5px;
+      margin-top: 30px;
+      border:none;
+    }
+    
+    .card-img-top {
+      height: 150px;
+      border-radius: 30px 30px 0 0;
+      
+    }
+    
+    .card-top-text {
+      color: #FFF;
+      font-size: 1.5em;
+      position: absolute;
+      top:0;
+      padding: 40px;
+    }
+    
+    .card-text, span {
+      color: #779a94;
+    }
+    
+    .card-block {
+      padding: 20px 35px;
+    }
+    
+    .card-block .card-course-info:first-child {
+      width: 60%;
+      float: left;
+    }
+    
+    .card-block .card-course-info {
+      display: inline-block;
+      height: auto;
+    }
+    
+    .card-block .card-course-info figure {
+      max-width: 54px;
+      height: 54px;
+      text-align: center;
+      margin: 0 10px;
+      float: left;
+      overflow: hidden;
+      border-radius: 50%;
+    }
+    
+    .card-block .card-course-info figure img {
+    height: 50px;
+    width: 50px;
+   
+    }
+    
+    .card-block .card-course-info span {
+      display: block;
+      font-size: 0.9em;
+      text-align: left;
+    }
+    
+    .card-block .card-course-info span i {
+      padding-right: 10px;
+    }
+    
+    .icon {
+      display: inline-block;
+      width: 1.3em;
+      height: 1.3em;
+      stroke-width: 0;
+      stroke: currentColor;
+      fill: currentColor;
+      margin-right: 10px;
+    }
+    
+    .icon.icon-icon-heart {
+      height: 1em;
+    }
+    
+    .card-block.card-bottom {
+      padding: 0px;
+    }
+    
+    .card-block a.btn {
+      display: block;
+      width: 100%;
+      height: 80px;
+      background-color: #3ce4c5;
+      border-radius: 0px;
+      color: #FFF;
+      text-align: center;
+      line-height: 35px;
+      font-size: 20px;
+    }
+    
+    .icon-icon-play {
+      width: 2em;
+      height: 2em;
+    }
+    
+    
+    span.tutor-description {
+    font-size: 12px !important;
+    }
+    .price{
+        font-size: 25px;
+        text-align: center;
+        margin:10px 30px 15px 15px;
+        
+        
+    }
+    .tdchinh{
+        font-weight: 600;
+        font-size: 40px;
+        margin-top: 30px;
+        text-align: center;
+    }
+    .kobienmau{
+        color: #343436;
+        line-height: 40px;
+        padding-left: 10px;
+        color: #333333;
+    }
+    .panel-title
+    {
+      Box-shadow:0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+      height: 40px;
+      background-color: #f5f5f5;
+      display: block;
+    }
+    .list-group-item{
+      cursor: pointer;
+    }
+    .list-group-item:last-child{
+      margin-bottom: 15px;
+    }
+    .panel-group
+    {
+      position: relative;
+    }
+    .arrow{
+  float: right;
+  font-size: 30px;
+  line-height: 40px;
+  padding-right: 30px;
+  color: black;
+    }
+    .tdtopic{
+      color: black;
+      font-weight: bolder;
+    }
+    .row{
+      margin: 0;
+    }
+    .fa-check{
+      color: green;
+      padding-right: 10px;
+    }
+    .muctieu{
+      color: black;
+      line-height: 15px;
+      margin-bottom: 15px;
+    }
+    .card-block
+    {
+      background-color: hsl(156, 100%, 97%);
+      
+    }
+    .card-block:last-child{
+      border-radius:0 0 30px 30px ;
+    }
+    .icon1{
+        font-size: 20px;
+        color: #c7c7c7;
+    }
+    .backto
+    {
+        color: #c3c3c3;
+        font-weight: 400;
+    }
+    
