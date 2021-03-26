@@ -298,7 +298,8 @@ export class ExcelreaderComponent implements OnInit {
   }
   openQuizDialog(){
     const dialogRef = this.dialog.open(QuizdialogComponent, {
-      width: '400px',
+      width: '60%',
+      height: '70vh',
       data: { question : this.Question,option1 : this.Option1,option2 :this.Option2,option3 : this.Option3,option4 : this.Option4,option5 : this.Option5,isCorrect: this.isCorrect,imageOption1 :this.ImageOption1,
         imageOption2 :this.ImageOption2,imageOption3 : this.ImageOption3,imageOption4 : this.ImageOption4,imageOption5 : this.ImageOption5,description : this.Description,time: this.Time,
         tagtopic: this.Tagtopic,imageQuestion : this.ImageQuestion,questionType: this.QuestionType}

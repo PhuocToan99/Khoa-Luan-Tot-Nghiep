@@ -71,6 +71,7 @@ import { CoursedialogComponent } from './dialog/coursedialog/coursedialog.compon
 import { ManagepublishcourseComponent } from './managepublishcourse/managepublishcourse.component';
 import { QuizdialogComponent } from './dialog/quizdialog/quizdialog.component';
 import { QuestionpooldialogComponent } from './dialog/questionpooldialog/questionpooldialog.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -141,9 +142,10 @@ import { QuestionpooldialogComponent } from './dialog/questionpooldialog/questio
     RouterModule,
     NgxY2PlayerModule,
     HttpModule,
+    MatGridListModule
   ],
   providers: [CartService,DatePipe],
   bootstrap: [AppComponent],
-  exports: [ RouterModule ]
+  exports: [ RouterModule,MatGridListModule ]
 })
 export class AppModule { }
