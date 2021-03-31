@@ -1,0 +1,201 @@
+<!-- <img class="header-image" src="/assets/img/quiz.png" alt="quiz"><h1 mat-dialog-title class="header-title">Create a quiz</h1>
+<div mat-dialog-content>
+    <mat-form-field style="width: 100%;">
+        <h4>1. Name this quiz</h4>
+        <mat-label>Quiz Name</mat-label>
+        <input matInput [(ngModel)]="data.quizName" /> 
+    </mat-form-field>
+    <mat-form-field style="width: 100%;" *ngIf="lessondataset.length > 0">
+        <mat-select  class="form-control" [(ngModel)]="data.lessonId">
+            <mat-option  *ngFor="let lesson of lessondataset" [value]="lesson.lessonId">
+                {{lesson.lessonTitle}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field> 
+    <mat-form-field style="width: 100%;" *ngIf="lessondataset.length == 0">
+        <div *ngIf="lessondataset.length == 0">
+            <h4>Course don't have any lesson yet</h4>
+        </div>
+    </mat-form-field> 
+    <mat-form-field style="width: 100%;">
+        <h4>2. Choose relevant subjects</h4>
+        <div class="row">
+            <div *ngFor="let hastag of quizhastags" [(ngModel)]="data.hastag">
+                <a class="quizhastag" (click)="pushhastag(hastag)">{{hastag}}</a>
+            </div>
+        </div>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button class="button button-success" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+</div> -->
+
+
+
+<!-- <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Write your question here</mat-label>
+      <textarea matInput [(ngModel)]="data.question"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Answer option 1</mat-label>
+      <span *ngIf="data.isCorrect == 1" class="correct"><i class ="fa fa-check-square-o check"></i></span>
+      <input class ="input-true" matInput [(ngModel)]="data.option1">
+    </mat-form-field>
+    <label for="upload-photo"><span><i class ="fa fa-picture-o"></i></span></label>
+    <input type="file" name="photo" id="upload-photo" accept="image/*" (change)="handleFileInput($event.target.files,1)"/>
+    <mat-form-field appearance="fill">
+      <mat-label>Answer option 2</mat-label>
+      <span *ngIf="data.isCorrect == 2"><i class ="fa fa-check-square-o"></i></span>
+      <input matInput [(ngModel)]="data.option2">
+    </mat-form-field>
+    <label for="upload-photo-1"><span><i class ="fa fa-picture-o"></i></span></label>
+    <input type="file" name="photo" id="upload-photo-1" accept="image/*" (change)="handleFileInput($event.target.files,2)"/>
+    <mat-form-field appearance="fill">
+      <mat-label>Answer option 3</mat-label>
+      <span *ngIf="data.isCorrect == 3"><i class ="fa fa-check-square-o"></i></span>
+      <input matInput [(ngModel)]="data.option3">
+    </mat-form-field>
+    <label for="upload-photo-2"><span><i class ="fa fa-picture-o"></i></span></label>
+    <input type="file" name="photo" id="upload-photo-2" accept="image/*" (change)="handleFileInput($event.target.files,3)"/>
+    <mat-form-field appearance="fill">
+      <mat-label>Answer option 4</mat-label>
+      <span *ngIf="data.isCorrect == 4"><i class ="fa fa-check-square-o"></i></span>
+      <input matInput [(ngModel)]="data.option4">
+    </mat-form-field>
+    <label for="upload-photo-3"><span><i class ="fa fa-picture-o"></i></span></label>
+    <input type="file" name="photo" id="upload-photo-3" accept="image/*" (change)="handleFileInput($event.target.files,4)"/>
+    <mat-form-field>
+      <span class="time"><i class ="fa fa-clock-o"></i></span>
+      <mat-label>{{data.time}} Seconds</mat-label>
+      <mat-select [(ngModel)]="data.time">
+        <mat-option value="5">5 Seconds</mat-option>
+        <mat-option value="10">10 Seconds</mat-option>
+        <mat-option value="20">20 Seconds</mat-option>
+        <mat-option value="30">30 Seconds</mat-option>
+        <mat-option value="45">45 Seconds</mat-option>
+        <mat-option value="60">60 Seconds</mat-option>
+        <mat-option value="120">2 Minutes</mat-option>
+        <mat-option value="180">3 Minutes</mat-option>
+        <mat-option value="300">5 Minutes</mat-option>
+        <mat-option value="600">10 Minutes</mat-option>
+        <mat-option value="900">15 Minutes</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="haveTopic == true">
+      <span class="topic"><i class ="fa fa-tags"></i></span>
+      <mat-label>Tag topic</mat-label>
+      <mat-select [(ngModel)]="data.tagtopic">
+        <mat-option *ngFor="let topic of Topic" value="{{topic.topicId}}">{{topic.topicTitle}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Select correct answer</mat-label>
+      <mat-select [(ngModel)]="data.isCorrect">
+        <mat-option value="1">Answer 1</mat-option>
+        <mat-option value="2">Answer 2</mat-option>
+        <mat-option value="3">Answer 3</mat-option>
+        <mat-option value="4">Answer 4</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button class="button button-success" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+  </div> -->
+
+
+
+  <mat-grid-list cols="2" rowHeight="100%">
+    <mat-grid-tile>
+      <div mat-dialog-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Write your question here</mat-label>
+        <textarea matInput [(ngModel)]="data.question"></textarea>
+      </mat-form-field>
+      <label for="upload-photo"><span><i class ="fa fa-picture-o"></i></span></label>
+      <input type="file" name="photo" id="upload-photo" accept="image/*" (change)="handleFileInput($event.target.files,0)"/>
+      <mat-form-field appearance="fill">
+        <mat-label>Answer option 1</mat-label>
+        <span *ngIf="data.isCorrect == 1" class="correct"><i class ="fa fa-check-square-o"></i></span>
+        <input class ="input-true" matInput [(ngModel)]="data.option1">
+      </mat-form-field>
+      <label for="upload-photo-1"><span><i class ="fa fa-picture-o"></i></span></label>
+      <input type="file" name="photo" id="upload-photo-1" accept="image/*" (change)="handleFileInput($event.target.files,1)"/>
+      <mat-form-field appearance="fill">
+        <mat-label>Answer option 2</mat-label>
+        <span *ngIf="data.isCorrect == 2" class="correct"><i class ="fa fa-check-square-o"></i></span>
+        <input matInput [(ngModel)]="data.option2">
+      </mat-form-field>
+      <label for="upload-photo-2"><span><i class ="fa fa-picture-o"></i></span></label>
+      <input type="file" name="photo" id="upload-photo-2" accept="image/*" (change)="handleFileInput($event.target.files,2)"/>
+      <mat-form-field appearance="fill">
+        <mat-label>Answer option 3</mat-label>
+        <span *ngIf="data.isCorrect == 3" class="correct"><i class ="fa fa-check-square-o"></i></span>
+        <input matInput [(ngModel)]="data.option3">
+      </mat-form-field>
+      <label for="upload-photo-3"><span><i class ="fa fa-picture-o"></i></span></label>
+      <input type="file" name="photo" id="upload-photo-3" accept="image/*" (change)="handleFileInput($event.target.files,3)"/>
+      <mat-form-field appearance="fill">
+        <mat-label>Answer option 4</mat-label>
+        <span *ngIf="data.isCorrect == 4" class="correct"><i class ="fa fa-check-square-o"></i></span>
+        <input matInput [(ngModel)]="data.option4">
+      </mat-form-field>
+      <label for="upload-photo-4"><span><i class ="fa fa-picture-o"></i></span></label>
+      <input type="file" name="photo" id="upload-photo-4" accept="image/*" (change)="handleFileInput($event.target.files,4)"/>
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <span class="description"><i class ="fa fa-quote-left"></i></span>
+        <input matInput [(ngModel)]="data.description">
+      </mat-form-field>
+      <mat-form-field>
+        <span class="time"><i class ="fa fa-clock-o"></i></span>
+        <mat-label>{{data.time}} Seconds</mat-label>
+        <mat-select [(ngModel)]="data.time">
+          <mat-option value="5">5 Seconds</mat-option>
+          <mat-option value="10">10 Seconds</mat-option>
+          <mat-option value="20">20 Seconds</mat-option>
+          <mat-option value="30">30 Seconds</mat-option>
+          <mat-option value="45">45 Seconds</mat-option>
+          <mat-option value="60">60 Seconds</mat-option>
+          <mat-option value="120">2 Minutes</mat-option>
+          <mat-option value="180">3 Minutes</mat-option>
+          <mat-option value="300">5 Minutes</mat-option>
+          <mat-option value="600">10 Minutes</mat-option>
+          <mat-option value="900">15 Minutes</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="haveTopic == true">
+        <span class="topic"><i class ="fa fa-tags"></i></span>
+        <mat-label>Tag topic</mat-label>
+        <mat-select [(ngModel)]="data.tagtopic">
+          <mat-option *ngFor="let topic of Topic" value="{{topic.topicId}}">{{topic.topicTitle}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Select correct answer</mat-label>
+        <mat-select [(ngModel)]="data.isCorrect">
+          <mat-option value="1">Answer 1</mat-option>
+          <mat-option value="2">Answer 2</mat-option>
+          <mat-option value="3">Answer 3</mat-option>
+          <mat-option value="4">Answer 4</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button class="button button-success" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+      <button class="button button-cancel" mat-button (click)="cancel()">Cancel</button>
+    </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class = "container">
+        <!-- <img *ngIf="data.imageQuestion != null" [src]="loadimage(data.imageQuestion)" style="width:50px;height:50px;"> -->
+        <p class="showquestion" *ngIf ="data.question.length > 0">{{data.question}}</p>
+        <div class="question1"><p class="showanswer" *ngIf ="data.option1.length > 0">{{data.option1}}</p></div>
+        <div class="question2"><p class="showanswer" *ngIf ="data.option2.length > 0">{{data.option2}}</p></div>
+        <div class="question3"><p class="showanswer" *ngIf ="data.option3.length > 0">{{data.option3}}</p></div>
+        <div class="question4"><p class="showanswer" *ngIf ="data.option4.length > 0">{{data.option4}}</p></div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+ 

@@ -1,0 +1,63 @@
+<!-- <form>
+    <div class="form-group">
+        <fieldset class="form-group">
+
+            <label>Upload Logo</label>
+            {{imageError}}
+            <div class="custom-file fileInputProfileWrap">
+                <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile">
+                <div class="img-space">
+
+                    <ng-container *ngIf="isImageSaved; else elseTemplate">
+                        <img [src]="cardImageBase64" />
+                    </ng-container>
+                    <ng-template #elseTemplate>
+
+                        <img src="./../../assets/placeholder.png" class="img-responsive">
+                    </ng-template>
+
+                </div>
+
+            </div>
+        </fieldset>
+    </div>
+    <a class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
+</form> -->
+
+
+<div mat-dialog-content>
+    <mat-form-field >
+        <div class="form-group">
+            <fieldset class="form-group">
+    
+                <label>Upload Logo</label>
+                {{imageError}}
+                <div class="custom-file fileInputProfileWrap">
+                    <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile">
+                    <div class="img-space">
+    
+                        <ng-container *ngIf="isImageSaved; else elseTemplate">
+                            <img [src]="cardImageBase64" />
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                            <img src="../../assets/img/addimageplaceholder.png" class="img-responsive">
+                        </ng-template>
+    
+                    </div>
+    
+                </div>
+            </fieldset>
+        </div>
+        <a class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+            <mat-label>Image URL</mat-label>
+            <span class="imageUrl"><i class ="fa fa-link"></i></span>
+            <input matInput [(ngModel)]="data.imageURL">
+    </mat-form-field>  
+
+</div>
+<div mat-dialog-actions>
+    <button class="btn btn-success" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+</div>
