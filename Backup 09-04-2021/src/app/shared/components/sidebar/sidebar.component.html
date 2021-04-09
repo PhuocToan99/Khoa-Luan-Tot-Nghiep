@@ -1,0 +1,19 @@
+<mat-nav-list>
+  <div class="profile-card">
+      <div class="header">
+          <h2>{{currentAccount.username}}</h2>
+          <h4>{{userEmail}}</h4>
+      </div>
+      <img src="assets/img/admin.png" alt="Admin">
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <h2 matSubheader>Pages</h2>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/dashboard">Dashboard</a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/manageuser">Manage User</a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/managecourse">Course List</a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/instructorbalance">Instructor Balance</a>
+  <mat-divider></mat-divider>
+</mat-nav-list>
