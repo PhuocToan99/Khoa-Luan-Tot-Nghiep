@@ -1,0 +1,51 @@
+
+<div class="quizzwrap" *ngFor="let quiz of quizlist, let i=index">
+    <div class="quizzheader">
+        <div class="quizicon">
+        <span><i class="fa fa-question"></i></span>
+        <h5>Question {{i+1}}</h5>
+        </div>
+        <div class="quizztime">
+            <span><i class="fa fa-clock-o"></i></span>
+            <h5>{{quiz.time}}s</h5>
+        </div>
+    </div>
+    <h2>{{quiz.question}}</h2>
+    <hr>
+    <!-- <div class="answer">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="answerstring"> 
+                    <span><i class="fa fa-circle"></i><p class="answertext"> Answer 1</p></span>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="answerstring"> 
+                    <span><i class="fa fa-circle"></i><p class="answertext"> Answer 2</p></span>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="answerstring"> 
+                    <span><i class="fa fa-circle"></i><p class="answertext"> Answer 3</p></span>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="answerstring"> 
+                    <span><i class="fa fa-circle"></i><p class="answertext"> Answer 4</p></span>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="answer">
+        <div class="row">
+            <ng-container *ngFor ="let choice of quiz.choices">
+            <div class="col-lg-6" *ngIf="choice.answer != null">
+                <div class="answerstring" > 
+                    <span  *ngIf="choice.isCorrect == false"><i class="fa fa-circle"></i><p class="answertext"> {{choice.answer}}</p></span>
+                    <span *ngIf="choice.isCorrect == true"><i class="fa fa-circle true"></i><p class="answertext"> {{choice.answer}}</p></span>
+                </div>
+            </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

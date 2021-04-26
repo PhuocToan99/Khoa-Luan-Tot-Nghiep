@@ -1,0 +1,118 @@
+/* Tabs Name Container */
+.tabs-container{
+    position: relative;
+    background: #2652CC;
+    width: 120px;
+    height: 100vh;
+    float: left;
+    z-index: 20;
+  
+ }
+ /* Tabs Names Label */
+ .tabs-container label{
+    position: relative;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: block;
+    font-size: 13px;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+ }
+  
+ /* Hover effect on tabs names */
+ .tabs-container label:hover{
+   background: rgba(0, 0, 0, 0.2);
+  
+ }
+ /* Content area for tabs */
+.tab-content{
+    position: relative;
+    background: #eee;
+    width: calc(100% - 120px);
+    min-height: 100vh;
+    padding: 15px;
+    float: left;
+    box-sizing: border-box;
+    z-index: 19;
+    display: none;
+ }
+  
+ .tab-content:after{
+    content: "";
+    clear: both;
+  
+ }
+ /* Hide input radio from users */
+input[name="tab"]{
+    display: none;
+ }
+ /* Show tab when input checked */
+ input[name="tab"]:checked + .tab-content{
+    display: block;
+    animation: slide 0.5s forwards;
+ }
+  
+ /* Slide animation for tab contents */
+ @keyframes slide{
+    from{
+      left: -100%;
+      opacity: 0;
+    }
+    to{
+      left: 0;
+      opacity: 1;
+    }
+ }
+ .container{
+    margin: 0;
+    padding: 0;
+ }
+ .questionpoolContainer{
+   width: 100%;
+   background-color: #fff;
+   height: 15vh;
+   border-radius: 4px;
+   margin-bottom: 3px;
+   display: block;
+ }
+ .questionpoolImageWrapper{
+      width: 100%;
+    height: 100%;
+ }
+ .questionpoolImage{
+   height: 15vh;
+   width: 15vh;
+ }
+ .editQuestionpool{
+    float: right;
+    margin: 10px 10px;
+    padding: 10px 20px;
+    background-color: green;
+    color: #fff;
+    font-weight: 800;
+ }
+ .deleteQuestionpool{
+   float: right;
+   right: 0px;
+   margin: 10px 10px;
+   padding: 10px 20px;
+   background-color: red;
+   color: #fff;
+   font-weight: 800;
+}
+.normalQuestionpool{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+ 
