@@ -1,0 +1,30 @@
+<div class="row" *ngIf="quizService.qns && this.quizService.qnProgress != totalQuiz && this.quizService.seconds != quiztime">
+    <div class="col s8 offset-s2">
+      <span>Time Elapsed : {{quizService.displayTimeElapsed()}}</span>
+      <div class="progress">
+        <div class="determinate" [style.width.%]="(quizService.qnProgress+1)*totalQuiz"></div>
+      </div>
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">{{quizService.qnProgress+1}}</span>
+          <p>{{quizService.qns[quizService.qnProgress].question}}</p>
+          <div *ngIf="(quizService.qns[quizService.qnProgress].quizImage != undefined && quizService.qns[quizService.qnProgress].quizImage != null && quizService.qns[quizService.qnProgress].quizImage != errorString)">
+            <img class="center" [src]="imageService.getImageSource(quizService.qns[quizService.qnProgress].quizImage)" style="width:350px;height:200px">
+          </div>
+          <div *ngIf="quizService.qns[quizService.qnProgress].imageLink != undefined || quizService.qns[quizService.qnProgress].imageLink != null">
+            <img class="center" [src]="quizService.qns[quizService.qnProgress].imageLink" style="width:350px;height:200px">
+          </div>
+        </div>
+        <div class="card-action">
+          <ul class="collection answer">
+            <ng-container *ngFor="let option of quizService.qns[quizService.qnProgress].choices;let i = index">
+              <li *ngIf="option != null" class="collection-item" (click)="Answer(quizService.qns[quizService.qnProgress].QnID,i)">
+                {{option.answer}}
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+  
+    </div>
+</div>
