@@ -1,0 +1,33 @@
+<div class = "container-fluid">
+<div class="wrapquestion">
+<div class="row" *ngIf="quizService.qns && this.quizService.qnProgress != totalQuiz && this.quizService.seconds != quiztime">
+      <div class="timer">
+      <span style="color: white;font-size: 10px;font-weight: 600;">Time Elapsed : {{quizService.displayTimeElapsed()}}</span>
+      <div class="progress">
+        <div class="determinate" [style.width.%]="((quizService.qnProgress+1)/totalQuiz)*100"></div>
+      </div>
+      </div>
+          <p class="questiontext"> <span class="card-title">{{quizService.qnProgress+1}}. </span>{{quizService.qns[quizService.qnProgress].question}}</p>
+          <div *ngIf="(quizService.qns[quizService.qnProgress].quizImage != undefined && quizService.qns[quizService.qnProgress].quizImage != null && quizService.qns[quizService.qnProgress].quizImage != errorString)">
+            <img class="center" [src]="imageService.getImageSource(quizService.qns[quizService.qnProgress].quizImage)" style="width:350px;height:200px">
+          </div>
+          <div *ngIf="quizService.qns[quizService.qnProgress].imageLink != undefined || quizService.qns[quizService.qnProgress].imageLink != null">
+            <img class="center" [src]="quizService.qns[quizService.qnProgress].imageLink" style="width:350px;height:200px">
+          </div>
+        <div class="answerwrap">
+          <!-- <ul class="collection answer">
+            <ng-container *ngFor="let option of quizService.qns[quizService.qnProgress].choices;let i = index">
+              <li *ngIf="option != null" class="collection-item" (click)="Answer(quizService.qns[quizService.qnProgress].QnID,i)">
+                {{option.answer}}
+              </li>
+            </ng-container>
+          </ul> -->
+          <ng-container *ngFor="let option of quizService.qns[quizService.qnProgress].choices;let i = index">
+            <div id="option{{i}}" *ngIf="option != null" class="collection-item" (click)="Answer(quizService.qns[quizService.qnProgress].QnID,i)">
+                <p class="answertext">{{option.answer}}</p>
+            </div>
+          </ng-container>
+        </div>
+</div>
+</div>
+</div>
