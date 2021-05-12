@@ -1,0 +1,38 @@
+<img class="header-image" src="/assets/img/quiz.png" alt="quiz"><h1 mat-dialog-title class="header-title">Create a quiz</h1>
+<div mat-dialog-content>
+    <mat-form-field style="width: 100%;">
+        <h4>1. Name this quiz</h4>
+        <input matInput [(ngModel)]="data.questionpoolName" /> 
+    </mat-form-field>
+    <mat-form-field style="width: 100%;" *ngIf="lessondataset.length > 0">
+        <h4>2. Choose your lesson</h4>
+        <mat-select  class="form-control" [(ngModel)]="data.lessonId">
+            <mat-option  *ngFor="let lesson of lessondataset" [value]="lesson.lessonId">
+                {{lesson.lessonTitle}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field> 
+    <mat-dialog-content class="mat-typography" *ngIf="lessondataset.length == 0">
+        <ng-container>
+            <h4>2. Choose your lesson</h4>
+            <p>Course don't have any lesson yet</p>
+          </ng-container>
+    </mat-dialog-content> 
+    <!-- <div *ngIf="lessondataset.length == 0">
+            <h4>Course don't have any lesson yet</h4>
+    </div>  -->
+        <h4>3. Choose relevant subjects</h4>
+    <!-- <div class="row">
+            <div *ngFor="let hastag of questionpoolhastags" [(ngModel)]="data.hastag">
+                <a class="quizhastag" (click)="pushhastag(hastag)">{{hastag}}</a>
+            </div>
+    </div> -->
+    <mat-dialog-content class="mat-typography">
+        <ng-container *ngFor="let hastag of questionpoolhastags" [(ngModel)]="data.hastag" ngDefaultControl>
+            <p class="quizhastag" (click)="pushhastag(hastag)">{{hastag}}</p>
+          </ng-container>
+    </mat-dialog-content> 
+</div>
+<div mat-dialog-actions>
+    <button class="button button-success" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+</div>
