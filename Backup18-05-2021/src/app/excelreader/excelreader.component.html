@@ -1,0 +1,199 @@
+<!-- <input id="quiz" type="file" (change)="onFileChangeQuiz($event)" accept=".xlsx" multiple="false" />
+<table>
+    <tbody>
+        <tr *ngFor="let row of data">
+                <td *ngFor="let cell of row">
+                        {{cell}}
+                </td>
+        </tr>
+    </tbody>
+</table>
+<input id="answer" type="file" (change)="onFileChangeAnswer($event)" accept=".xlsx" multiple="false" />
+<table>
+    <tbody>
+        <tr *ngFor="let row of data1">
+                <td *ngFor="let cell of row">
+                        {{cell}}
+                </td>
+        </tr>
+    </tbody>
+</table>
+<button (click)='exportAsXLSX()'>Download Excel</button>
+<button (click)='openQuestionpoolDialog()'>Create Questionpool Dialog</button>
+<button (click)='openQuizDialog()'>Create Quiz Dialog</button>
+<section class="tabs-container">
+ 
+    <label for="tab1"> First Tab </label>
+    <label for="tab2"> Second Tab </label>
+    <label for="tab3"> Third Tab </label>
+    <label for="tab-n"> N Tab </label>
+</section>
+<section class="tab-content">
+   <h2> Tab Heading </h2>
+   <p>Your peragraph goes here.</p>
+</section>
+ 
+
+<section class="tab-content">
+   <p> Contents for tab 2 </p>
+</section>
+ 
+<input name="tab" id="tab3" type="radio" checked />
+<section class="tab-content">
+   <p> Contents for tab 3 </p>
+   <div class ="container-fluid"*ngIf="QuestionpoolList.length > 0">
+   <div class="questionpoolContainer" *ngFor ="let questionpool of QuestionpoolList">
+    <div class="row">
+        <div class="col-2">
+          <div class ="questionpoolImageWrapper">
+          <img class = "questionpoolImage" src="./assets/img/quizthumbnail.png">
+          </div>
+        </div>
+        <div class="col-10">
+        <button class="deleteQuestionpool" (click)="deleteQuestionpool(questionpool)" *ngIf="questionpool.isActive == true"><span><i class="fa fa-trash"></i></span> Delete</button>
+        <button class="editQuestionpool" *ngIf="questionpool.isActive == true"><span><i class="fa fa-edit"></i></span> Edit</button>
+        <button class="deleteQuestionpool" *ngIf="questionpool.isActive == false" (click)="undodeleteQuestionpool(questionpool)"><span><i class="fa fa-undo"></i></span> Undo Delete</button>
+         <h5>QUIZ</h5>
+         <h3>{{questionpool.questionpoolName}}</h3>
+         <p><span><i class ="fa fa-th-list"></i></span>{{questionpool.quizCount}}</p>
+            <img src="assets/img/userplaceholder.png" style="width:50px;height:50px;border-radius: 25%;" *ngIf="check(questionpool.user.avatarPath) == false">
+            <img [src]="loadimage(questionpool.user.avatarPath)" style="width:50px;height:50px;border-radius: 25%;" *ngIf="check(questionpool.user.avatarPath) == true">
+            <p>{{questionpool.user.firstName}} {{questionpool.user.lastName}}</p>
+            <p>{{questionpool.dateDistance}} days ago</p>    
+        </div>
+      </div>
+    </div>
+    </div>
+</section>
+<section class="tab-content">
+   <p> Contents for N tab</p>
+   <div [ngbTooltip]="tooltipTemplate">
+  Button with delay-default tooltip
+    </div>
+<ng-template #tooltipTemplate>
+    <div>
+    <img src="./assets/img/avatar.jpg" style="width:300px;height:300px;">
+    </div>
+</ng-template>
+</section>-->
+
+
+
+<div id="invoiceholder">
+
+    <div id="headerimage"></div>
+    <div id="invoice" class="effect2">
+      
+      <div id="invoice-top">
+        <div class="logo"></div>
+        <div class="info" style="margin-left: 70px;">
+          <h2>Michael Truong</h2>
+          <p> hello@michaeltruong.ca <br>
+              289-335-6503
+          </p>
+        </div><!--End Info-->
+        <div class="title">
+          <h1>Invoice #1069</h1>
+          <p>Issued: May 27, 2015<br>
+             Payment Due: June 27, 2015
+          </p>
+        </div><!--End Title-->
+      </div><!--End InvoiceTop-->
+  
+  
+      
+      <div id="invoice-mid">
+        
+        <div class="clientlogo"></div>
+        <div class="info">
+          <h2>Client Name</h2>
+          <p>JohnDoe@gmail.com<br>
+             555-555-5555<br>
+        </div>
+  
+        <div id="project">
+          <h2>Project Description</h2>
+          <p>Proin cursus, dui non tincidunt elementum, tortor ex feugiat enim, at elementum enim quam vel purus. Curabitur semper malesuada urna ut suscipit.</p>
+        </div>   
+  
+      </div><!--End Invoice Mid-->
+      
+      <div id="invoice-bot">
+        
+        <div id="table">
+          <table>
+            <tr class="tabletitle">
+              <td class="item"><h2>Item Description</h2></td>
+              <td class="Hours"><h2>Hours</h2></td>
+              <td class="Rate"><h2>Rate</h2></td>
+              <td class="subtotal"><h2>Sub-total</h2></td>
+            </tr>
+            
+            <tr class="service">
+              <td class="tableitem"><p class="itemtext">Communication</p></td>
+              <td class="tableitem"><p class="itemtext">5</p></td>
+              <td class="tableitem"><p class="itemtext">$75</p></td>
+              <td class="tableitem"><p class="itemtext">$375.00</p></td>
+            </tr>
+            
+            <tr class="service">
+              <td class="tableitem"><p class="itemtext">Asset Gathering</p></td>
+              <td class="tableitem"><p class="itemtext">3</p></td>
+              <td class="tableitem"><p class="itemtext">$75</p></td>
+              <td class="tableitem"><p class="itemtext">$225.00</p></td>
+            </tr>
+            
+            <tr class="service">
+              <td class="tableitem"><p class="itemtext">Design Development</p></td>
+              <td class="tableitem"><p class="itemtext">5</p></td>
+              <td class="tableitem"><p class="itemtext">$75</p></td>
+              <td class="tableitem"><p class="itemtext">$375.00</p></td>
+            </tr>
+            
+            <tr class="service">
+              <td class="tableitem"><p class="itemtext">Animation</p></td>
+              <td class="tableitem"><p class="itemtext">20</p></td>
+              <td class="tableitem"><p class="itemtext">$75</p></td>
+              <td class="tableitem"><p class="itemtext">$1,500.00</p></td>
+            </tr>
+            
+            <tr class="service">
+              <td class="tableitem"><p class="itemtext">Animation Revisions</p></td>
+              <td class="tableitem"><p class="itemtext">10</p></td>
+              <td class="tableitem"><p class="itemtext">$75</p></td>
+              <td class="tableitem"><p class="itemtext">$750.00</p></td>
+            </tr>
+            
+            <tr class="service">
+              <td class="tableitem"><p class="itemtext"></p></td>
+              <td class="tableitem"><p class="itemtext">HST</p></td>
+              <td class="tableitem"><p class="itemtext">13%</p></td>
+              <td class="tableitem"><p class="itemtext">$419.25</p></td>
+            </tr>
+            
+              
+            <tr class="tabletitle">
+              <td></td>
+              <td></td>
+              <td class="Rate"><h2>Total</h2></td>
+              <td class="payment"><h2>$3,644.25</h2></td>
+            </tr>
+            
+          </table>
+        </div><!--End Table-->
+        
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="QRZ7QTM9XRPJ6">
+        <input type="image" src="http://michaeltruong.ca/images/paypal.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+      </form>
+  
+        
+        <div id="legalcopy">
+          <p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices. 
+          </p>
+        </div>
+        
+      </div><!--End InvoiceBot-->
+    </div><!--End Invoice-->
+  </div><!-- End Invoice Holder-->

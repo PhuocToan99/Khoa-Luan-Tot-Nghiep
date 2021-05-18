@@ -1,0 +1,173 @@
+
+    <section class="slider-area slider-area2">
+        <div class="slider-active">
+            <!-- Single Slider -->
+            <div class="single-slider slider-height2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-11 col-md-12">
+                            <div class="hero__caption hero__caption2">
+                                <h1 data-animation="bounceIn" data-delay="0.2s">Invoice History</h1>
+                                <!-- breadcrumb Start-->
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+                                        <li class="breadcrumb-item"><a routerLink="/invoicehistory">Invoice History</a></li>
+                                    </ol>
+                                <!-- breadcrumb End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="courses-area fix">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle text-center mb-40 mt-30">
+                        <h2>Your Invoice</h2>
+                    </div>
+                </div>
+            </div>
+            <!-- <ng-container>
+           
+                  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="table" class="table" style="width:1000px;">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Invoice Code</th>            
+                        <th scope="col">Course Information</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Create Date</th>            
+                        <th scope="col">Payment Method</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <tr *ngFor='let element of dataSource' (click)="showInvoice(element)">
+                        <td style="line-height: 60px;">{{element.invoice.invoiceCode}}</td> 
+                        <td> <img *ngIf="element.course.thumbnailImage == null || element.course.thumbnailImage == undefined" style="height: 50px; width: 50px;padding: 5px 10px; float: left;" src="assets/img/productplaceholder.jpg" alt="courseplaceholder">
+                            <img *ngIf="element.course.thumbnailImage != null && element.course.thumbnailImage != undefined" style="height: 50px; width: 50px;padding: 5px 10px; float: left;" [src]="loadimage(element.course.thumbnailImage)" alt="courseimage">
+                              <h3 style="line-height: 60px; margin: 0; padding: 0;">{{element.course.courseName}} </h3></td>
+                        <td style="line-height: 60px;">{{element.course.price}}</td>
+                        <td style="line-height: 60px;">{{element.invoice.createdDate}}</td>
+                        <td>
+                            <img *ngIf="element.invoice.paymentMethod == 'Paypal'" style="height: 50px; width: 50px;padding: 5px 10px; float: left;" src="assets/img/paypal.png" alt="Paypal">
+                            <img *ngIf="element.invoice.paymentMethod == 'Account Balance'" style="height: 50px; width: 50px;padding: 5px 10px; float: left;" src="assets/img/cashpayment.png" alt="Account Balance">
+                            <h3 style="line-height: 60px; margin: 0; padding: 0;">{{element.invoice.paymentMethod}}</h3>
+                        </td>               
+                      </tr>
+                    </tbody>
+                  </table>
+            </ng-container> -->
+
+              <ng-container>
+           
+                  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="table" class="table" style="width:1000px;">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Invoice Code</th>            
+                        <th scope="col">Total Course</th>
+                        <th scope="col">Create Date</th> 
+                        <th scope="col">Total Price</th>           
+                        <th scope="col">Payment Method</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <tr *ngFor='let element of invoiceCodeList,let i = index' (click)="showInvoice(element)">
+                        <td style="line-height: 60px;">{{element}}</td> 
+                        <td style="line-height: 60px;">{{totalCourse[i]}}</td>
+                        <td style="line-height: 60px;">{{createDateList[i]}}</td>
+                        <td style="line-height: 60px;">{{totalPrice[i]}}</td>
+                        <td>
+                            <img *ngIf="payMethodList[i] == 'Paypal'" style="height: 50px; width: 50px;padding: 5px 10px; float: left;" src="assets/img/paypal.png" alt="Paypal">
+                            <img *ngIf="payMethodList[i] == 'Account Balance'" style="height: 50px; width: 50px;padding: 5px 10px; float: left;" src="assets/img/cashpayment.png" alt="Account Balance">
+                            <h3 style="line-height: 60px; margin: 0; padding: 0;">{{payMethodList[i]}}</h3>
+                        </td>               
+                      </tr>
+                    </tbody>
+                  </table>
+            </ng-container>
+        </div>
+    </div>
+    <div class="container" *ngIf="show" style="margin-top: 10px;">
+        <div id="invoice" class="effect2" style="border:1px solid #EEE">
+      
+          <div id="invoice-top">
+              <img class="logo" *ngIf="currentUser.avatarPath == null || currentUser.avatarPath == undefined" src="assets/img/userplaceholder.png">
+              <img class="logo" *ngIf="currentUser.avatarPath != null && currentUser.avatarPath != undefined" [src]="loadimage(currentUser.avatarPath)">
+            <div class="info" style="margin-left: 70px;">
+              <h2>{{userName}}</h2>
+              <p> {{currentUser.email}} <br>
+                {{currentUser.phoneNumber}}
+              </p>
+            </div><!--End Info-->
+            <div class="title">
+              <h1 style="text-align: right;">Invoice #{{invoiceCode}}</h1>
+              <p>Issued: {{date}}<br>
+                 Payment Due: {{date}}
+              </p>
+            </div><!--End Title-->
+          </div><!--End InvoiceTop-->
+          <hr>
+      
+          
+          <div id="invoice-mid">
+            
+            <img class="logo" *ngIf="adminUser.avatarPath == null || adminUser.avatarPath == undefined" src="assets/img/admin.png">
+            <img class="logo" *ngIf="adminUser.avatarPath != null && adminUser.avatarPath != undefined" [src]="loadimage(adminUser.avatarPath)">
+            <div class="info">
+              <h2>{{adminName}}</h2>
+              <p>{{adminUser.email}}<br>
+                 {{adminUser.phoneNumber}}<br>
+            </div>
+      
+            <div id="project">
+              <h2>Project Description</h2>
+              <p>Proin cursus, dui non tincidunt elementum, tortor ex feugiat enim, at elementum enim quam vel purus. Curabitur semper malesuada urna ut suscipit.</p>
+            </div>   
+      
+          </div><!--End Invoice Mid-->
+          <hr>
+          <div id="invoice-bot">
+            
+            <div id="table">
+              <table>
+                <tr class="tabletitle">
+                    <td class="item"><h2>Course Name</h2></td>
+                    <td class="Hours"><h2>Hastag</h2></td>
+                    <td class="Rate"><h2>Level</h2></td>
+                    <td class="subtotal"><h2>Price</h2></td>
+                </tr>
+                
+                <tr class="service" *ngFor="let info of invoiceInfo;let i = index">
+                  <td class="tableitem" style="line-height: 60px;"><img *ngIf="info.course.thumbnailImage == null || info.course.thumbnailImage == undefined" style="height: 50px; width: 50px;padding: 5px 10px; float: left;" src="assets/img/productplaceholder.jpg" alt="courseplaceholder">
+                    <img *ngIf="info.course.thumbnailImage != null && info.course.thumbnailImage != undefined" style="height: 50px; width: 50px;padding: 5px 10px; float: left;" [src]="loadimage(info.course.thumbnailImage)" alt="courseimage"><p class="itemtext">{{info.course.courseName}}</p></td>
+                  <td class="tableitem" style="line-height: 60px;"><p class="itemtext">{{info.course.hastag}}</p></td>
+                  <td class="tableitem" style="line-height: 60px;"><p class="itemtext">{{info.course.level}}</p></td>
+                  <td class="tableitem" style="line-height: 60px;"><p class="itemtext">${{info.course.price}}</p></td>
+                </tr>
+                <tr class="tabletitle">
+                  <td></td>
+                  <td></td>
+                  <td class="Rate"><h2>Total</h2></td>
+                  <td class="payment"><h2>${{invoiceTotalPrice}}</h2></td>
+                </tr>
+                
+              </table>
+            </div><!--End Table-->
+            
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="QRZ7QTM9XRPJ6">
+            <input type="image" src="http://michaeltruong.ca/images/paypal.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+          </form>
+      
+            
+            <div id="legalcopy">
+              <p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices. 
+              </p>
+            </div>
+            
+          </div><!--End InvoiceBot-->
+        </div><!--End Invoice-->
+      </div>  

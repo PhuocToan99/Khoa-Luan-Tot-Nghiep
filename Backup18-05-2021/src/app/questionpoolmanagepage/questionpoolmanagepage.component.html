@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="header">
+        <a class="createquiz" (click)="openQuestionpoolDialog()"><i class="fa fa-plus-circle"></i>Create Questionpool</a>
+        <a class="createquiz" (click)="goToExamPage()"><i class="fa fa-list"></i>Create Exam</a>
+        <a class="backpage" (click)="back()"><i class="fa fa-arrow-circle-left"></i>Back to Coursepreview</a>
+        <hr>
+    </div>
+    <div class="quetstionpoollist" *ngIf="questionpoolList.length > 0">
+        <div *ngFor="let questionpool of questionpoolList" >
+            <p style ="margin:10px !important;" class="questionpoolname" (click)="goToQuestionpooldetail(questionpool.questionpoolId)"><span><i class="fa fa-folder-open" style="color: #fff;"></i></span> {{questionpool.questionpoolName}}</p>    
+        </div>
+    </div>
+</div>

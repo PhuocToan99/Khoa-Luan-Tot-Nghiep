@@ -1,0 +1,222 @@
+<main class="page">
+    <section class="shopping-cart dark">
+      <div class="container">
+           <div class="block-heading">
+             <h2 class="card-title">Cart detail</h2>
+           </div>
+           <div class="content">
+          <div class="row">
+            <div *ngIf="cartList.length > 0" class="col-md-12 col-lg-8">
+              <div *ngFor="let cart of cartList;let i = index" class="items">
+                <div class="product">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <img class="img-fluid mx-auto d-block image" *ngIf="cart.course.thumbnailImage != null" [src]="loadimage(cart.course.thumbnailImage)">
+                      <img class="img-fluid mx-auto d-block image" *ngIf="cart.course.thumbnailImage == null" src="assets/img/productplaceholder.jpg">
+                    </div>
+                    <div class="col-md-9">
+                      <div class="info">
+                        <div class="row">
+                          <div class="col-md-5 product-name">
+                            <div class="product-name">
+                              <div class="product-info">
+                                <div>Tên khóa học: <span class="value">{{cart.course.courseName}}</span></div>
+                                <div>Tag: <span class="value">{{cart.course.hastag}}</span></div>
+                                <div>Level: <span class="value">{{cart.course.level}}</span></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4 quantity">
+                            <label for="quantity">Số lượng</label>
+                            <input id="quantity" type="number" value ="1" class="form-control quantity-input" min="1" readonly>
+                          </div>
+                          <div class="col-md-2 price">
+                            <span>{{cart.quantity*cart.course.price | currency :'USD':true }}</span>
+                          </div>
+                          <div class="col-md-1 ">
+                            <i class="fa fa-close iconx" (click)="removeFromCart(i)"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+              <i class="icon1 fa fa-angle-double-left mr-1 mt-2"></i>
+              <a routerLink="/category"><p class="backto">Back to category</p></a>
+            </div></div>
+            <div class="col-md-12 col-lg-8" *ngIf="cartList.length == 0">
+                <h4>Your cart is empty.</h4>
+                <a routerLink="/category"><p>Go shopping</p></a>
+            </div>
+            <div class="col-md-12 col-lg-4">
+              <div class="summary">
+                <h3>THANH TOÁN</h3>
+                <div class="summary-item clearfix"><span class="text">Số lượng : </span><span class="price1">{{cartList.length}}</span></div>
+                <div class="summary-item clearfix"><span class="text">Tổng tiền : </span><span class="price1">{{totalPrice | currency :'USD':true}}</span></div>
+                <div class="button button-success"  (click)="balancepayment()">Pay By Account Balance</div>
+                <div #paypal></div>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+   </section>
+</main>
+
+
+
+
+
+
+<!-- <main class="page">
+  <section class="shopping-cart dark">
+    <div class="container">
+         <div class="block-heading">
+           <h2 class="card-title">Cart detail</h2>
+         </div>
+         <div class="content">
+        <div class="row">
+          <div *ngIf="cartList.length > 0" class="col-md-12 col-lg-8">
+            <div *ngFor="let cart of cartList;let i = index" class="items">
+              <div class="product">
+                <div class="row">
+                  <div class="col-md-3">
+                    <img class="img-fluid mx-auto d-block image" *ngIf="cart.course.thumbnailImage != null" [src]="loadimage(cart.course.thumbnailImage)">
+                    <img class="img-fluid mx-auto d-block image" *ngIf="cart.course.thumbnailImage == null" src="assets/img/productplaceholder.jpg">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="info">
+                      <div class="row">
+                        <div class="col-md-5 product-name">
+                          <div class="product-name">
+                            <div class="product-info">
+                              <div>Tên khóa học: <span class="value">{{cart.course.courseName}}</span></div>
+                              <div>Tag: <span class="value">{{cart.course.hastag}}</span></div>
+                              <div>Level: <span class="value">{{cart.course.level}}</span></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4 quantity">
+                          <label for="quantity">Số lượng</label>
+                          <input id="quantity" type="number" value ="1" class="form-control quantity-input" min="1" readonly>
+                        </div>
+                        <div class="col-md-2 price">
+                          <span>{{cart.quantity*cart.course.price | currency :'USD':true }}</span>
+                        </div>
+                        <div class="col-md-1 ">
+                          <i class="fa fa-close iconx" (click)="removeFromCart(i)"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <i class="icon1 fa fa-angle-double-left mr-1 mt-2"></i>
+            <a routerLink="/category"><p class="backto">Back to category</p></a>
+          </div></div>
+          <div class="col-md-12 col-lg-8" *ngIf="cartList.length == 0">
+              <h4>Your cart is empty.</h4>
+              <a routerLink="/category"><p>Go shopping</p></a>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <div class="summary">
+              <h3>THANH TOÁN</h3>
+              <div class="summary-item clearfix"><span class="text">Số lượng : </span><span class="price1">{{cartList.length}}</span></div>
+              <div class="summary-item clearfix"><span class="text">Tổng tiền : </span><span class="price1">${{totalPrice}}</span></div>
+              <div class="button button-success"  (click)="balancepayment()">Pay By Account Balance</div>
+              <div #paypal></div>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+ </section>
+</main> -->
+
+
+
+<div class="container" *ngIf="cartList.length > 0">
+  <div id="invoice" class="effect2" style="border:1px solid #EEE">
+
+    <div id="invoice-top">
+        <img class="logo" *ngIf="currentUser.avatarPath == null || currentUser.avatarPath == undefined" src="assets/img/userplaceholder.png">
+        <img class="logo" *ngIf="currentUser.avatarPath != null && currentUser.avatarPath != undefined" [src]="loadimage(currentUser.avatarPath)">
+      <div class="invoice-info" style="margin-left: 70px;">
+        <h2>{{userName}}</h2>
+        <p> {{currentUser.email}} <br>
+          {{currentUser.phoneNumber}}
+        </p>
+      </div><!--End Info-->
+      <div class="title">
+        <h1 style="text-align: right;">Invoice #{{invoiceCode}}</h1>
+        <p>Issued: {{date}}<br>
+           Payment Due: {{date}}
+        </p>
+      </div><!--End Title-->
+    </div><!--End InvoiceTop-->
+    <hr>
+
+    
+    <div id="invoice-mid">
+      
+      <img class="logo" *ngIf="adminUser.avatarPath == null || adminUser.avatarPath == undefined" src="assets/img/admin.png">
+      <img class="logo" *ngIf="adminUser.avatarPath != null && adminUser.avatarPath != undefined" [src]="loadimage(adminUser.avatarPath)">
+      <div class="invoice-info">
+        <h2>{{adminName}}</h2>
+        <p>{{adminUser.email}}<br>
+           {{adminUser.phoneNumber}}<br>
+      </div>
+
+      <div id="project">
+        <h2>Project Description</h2>
+        <p>Proin cursus, dui non tincidunt elementum, tortor ex feugiat enim, at elementum enim quam vel purus. Curabitur semper malesuada urna ut suscipit.</p>
+      </div>   
+
+    </div><!--End Invoice Mid-->
+    <hr>
+    <div id="invoice-bot">
+      
+      <div id="table">
+        <table>
+          <tr class="tabletitle">
+            <td class="item"><h2>Course Name</h2></td>
+            <td class="Hours"><h2>Hastag</h2></td>
+            <td class="Rate"><h2>Level</h2></td>
+            <td class="subtotal"><h2>Price</h2></td>
+          </tr>
+          
+          <tr class="service" *ngFor="let cart of cartList;let i = index">
+            <td class="tableitem"><p class="itemtext">{{cart.course.courseName}}</p></td>
+            <td class="tableitem"><p class="itemtext">{{cart.course.hastag}}</p></td>
+            <td class="tableitem"><p class="itemtext">{{cart.course.level}}</p></td>
+            <td class="tableitem"><p class="itemtext">${{cart.quantity*cart.course.price}}</p></td>
+          </tr> 
+          <tr class="tabletitle">
+            <td></td>
+            <td></td>
+            <td class="Rate"><h2>Total</h2></td>
+            <td class="payment"><h2>${{totalPrice}}</h2></td>
+          </tr>
+          
+        </table>
+      </div><!--End Table-->
+      
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="QRZ7QTM9XRPJ6">
+      <input type="image" src="http://michaeltruong.ca/images/paypal.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    </form>
+
+      
+      <div id="legalcopy">
+        <p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices. 
+        </p>
+      </div>
+      
+    </div><!--End InvoiceBot-->
+  </div><!--End Invoice-->
+</div>  
