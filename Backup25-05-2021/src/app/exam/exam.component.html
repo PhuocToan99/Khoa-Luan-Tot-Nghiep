@@ -1,0 +1,36 @@
+<div class = "container-fluid">
+  <div class="wrapquestion">
+  <div class="row" *ngIf="examQuizService.qns && this.examQuizService.qnProgress != totalQuiz && this.examQuizService.seconds != quiztime">
+        <div class="timer">
+        <span style="color: white;font-size: 20px;font-weight: 600;">Time Elapsed : {{examQuizService.displayTimeElapsed()}}</span>
+        <div class="progress">
+          <div class="determinate" [style.width.%]="((examQuizService.qnProgress+1)/totalQuiz)*100"></div>
+        </div>
+        </div>
+            <p class="questiontext"> <span class="card-title">{{examQuizService.qnProgress+1}}. </span>{{examQuizService.qns[examQuizService.qnProgress].examQuestion}}</p>
+            <div *ngIf="(examQuizService.qns[examQuizService.qnProgress].examQuestionImage != undefined && examQuizService.qns[examQuizService.qnProgress].examQuestionImage != null && examQuizService.qns[examQuizService.qnProgress].examQuestionImage != errorString)">
+              <img class="center" [src]="imageService.getImageSource(examQuizService.qns[examQuizService.qnProgress].examQuestionImage)" style="width:350px;height:200px">
+            </div>
+            <div *ngIf="examQuizService.qns[examQuizService.qnProgress].examQuestionImageURL != undefined || examQuizService.qns[examQuizService.qnProgress].examQuestionImageURL != null">
+              <img class="center" [src]="examQuizService.qns[examQuizService.qnProgress].examQuestionImageURL" style="width:350px;height:200px">
+            </div>
+          <div class="answerwrap">
+            <ng-container>
+              <div id="option0" *ngIf="examQuizService.qns[examQuizService.qnProgress].examOption1" class="collection-item" (click)="Answer(examQuizService.qns[examQuizService.qnProgress].examQuizId,1)">
+                  <p class="answertext">{{examQuizService.qns[examQuizService.qnProgress].examOption1}}</p>
+              </div>
+              <div id="option1" *ngIf="examQuizService.qns[examQuizService.qnProgress].examOption2" class="collection-item" (click)="Answer(examQuizService.qns[examQuizService.qnProgress].examQuizId,2)">
+                <p class="answertext">{{examQuizService.qns[examQuizService.qnProgress].examOption2}}</p>
+            </div>
+            <div id="option2" *ngIf="examQuizService.qns[examQuizService.qnProgress].examOption3" class="collection-item" (click)="Answer(examQuizService.qns[examQuizService.qnProgress].examQuizId,3)">
+              <p class="answertext">{{examQuizService.qns[examQuizService.qnProgress].examOption3}}</p>
+            </div>
+            <div id="option3" *ngIf="examQuizService.qns[examQuizService.qnProgress].examOption4" class="collection-item" (click)="Answer(examQuizService.qns[examQuizService.qnProgress].examQuizId,4)">
+            <p class="answertext">{{examQuizService.qns[examQuizService.qnProgress].examOption4}}</p>
+            </div>
+            </ng-container>
+          </div>
+  </div>
+  </div>
+  </div>
+  

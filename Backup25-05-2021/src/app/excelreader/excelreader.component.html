@@ -1,0 +1,181 @@
+<!-- <input id="quiz" type="file" (change)="onFileChangeQuiz($event)" accept=".xlsx" multiple="false" />
+<table>
+    <tbody>
+        <tr *ngFor="let row of data">
+                <td *ngFor="let cell of row">
+                        {{cell}}
+                </td>
+        </tr>
+    </tbody>
+</table>
+<input id="answer" type="file" (change)="onFileChangeAnswer($event)" accept=".xlsx" multiple="false" />
+<table>
+    <tbody>
+        <tr *ngFor="let row of data1">
+                <td *ngFor="let cell of row">
+                        {{cell}}
+                </td>
+        </tr>
+    </tbody>
+</table>
+<button (click)='exportAsXLSX()'>Download Excel</button>
+<button (click)='openQuestionpoolDialog()'>Create Questionpool Dialog</button>
+<button (click)='openQuizDialog()'>Create Quiz Dialog</button>
+<section class="tabs-container">
+ 
+    <label for="tab1"> First Tab </label>
+    <label for="tab2"> Second Tab </label>
+    <label for="tab3"> Third Tab </label>
+    <label for="tab-n"> N Tab </label>
+</section>
+<section class="tab-content">
+   <h2> Tab Heading </h2>
+   <p>Your peragraph goes here.</p>
+</section>
+ 
+
+<section class="tab-content">
+   <p> Contents for tab 2 </p>
+</section>
+ 
+<input name="tab" id="tab3" type="radio" checked />
+<section class="tab-content">
+   <p> Contents for tab 3 </p>
+   <div class ="container-fluid"*ngIf="QuestionpoolList.length > 0">
+   <div class="questionpoolContainer" *ngFor ="let questionpool of QuestionpoolList">
+    <div class="row">
+        <div class="col-2">
+          <div class ="questionpoolImageWrapper">
+          <img class = "questionpoolImage" src="./assets/img/quizthumbnail.png">
+          </div>
+        </div>
+        <div class="col-10">
+        <button class="deleteQuestionpool" (click)="deleteQuestionpool(questionpool)" *ngIf="questionpool.isActive == true"><span><i class="fa fa-trash"></i></span> Delete</button>
+        <button class="editQuestionpool" *ngIf="questionpool.isActive == true"><span><i class="fa fa-edit"></i></span> Edit</button>
+        <button class="deleteQuestionpool" *ngIf="questionpool.isActive == false" (click)="undodeleteQuestionpool(questionpool)"><span><i class="fa fa-undo"></i></span> Undo Delete</button>
+         <h5>QUIZ</h5>
+         <h3>{{questionpool.questionpoolName}}</h3>
+         <p><span><i class ="fa fa-th-list"></i></span>{{questionpool.quizCount}}</p>
+            <img src="assets/img/userplaceholder.png" style="width:50px;height:50px;border-radius: 25%;" *ngIf="check(questionpool.user.avatarPath) == false">
+            <img [src]="loadimage(questionpool.user.avatarPath)" style="width:50px;height:50px;border-radius: 25%;" *ngIf="check(questionpool.user.avatarPath) == true">
+            <p>{{questionpool.user.firstName}} {{questionpool.user.lastName}}</p>
+            <p>{{questionpool.dateDistance}} days ago</p>    
+        </div>
+      </div>
+    </div>
+    </div>
+</section>
+<section class="tab-content">
+   <p> Contents for N tab</p>
+   <div [ngbTooltip]="tooltipTemplate">
+  Button with delay-default tooltip
+    </div>
+<ng-template #tooltipTemplate>
+    <div>
+    <img src="./assets/img/avatar.jpg" style="width:300px;height:300px;">
+    </div>
+</ng-template>
+</section>-->
+
+<div class="container">
+  <ckeditor [(ngModel)]="ckeditorContent"></ckeditor>
+</div>
+<div class="panel-body" [innerHTML]="ckeditorContent">
+</div>
+<div class="container">
+  <div class="comments-container">
+		<h1>Comentarios <a href="http://creaticode.com">creaticode.com</a></h1>
+
+		<ul id="comments-list" class="comments-list">
+			<li>
+				<div class="comment-main-level">
+					<!-- Avatar -->
+					<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+					<!-- Contenedor del Comentario -->
+					<div class="comment-box">
+						<div class="comment-head">
+							<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
+							<span>hace 20 minutos</span>
+							<i class="fa fa-reply"></i>
+							<i class="fa fa-heart"></i>
+						</div>
+						<div class="comment-content" [innerHTML]="ckeditorContent">
+						</div>
+					</div>
+				</div>
+				<!-- Respuestas de los comentarios -->
+				<ul class="comments-list reply-list">
+					<li>
+						<!-- Avatar -->
+						<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+						<!-- Contenedor del Comentario -->
+						<div class="comment-box">
+							<div class="comment-head">
+								<h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+								<span>hace 10 minutos</span>
+								<i class="fa fa-reply"></i>
+								<i class="fa fa-heart"></i>
+							</div>
+							<div class="comment-content">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+							</div>
+						</div>
+					</li>
+
+					<li>
+						<!-- Avatar -->
+						<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+						<!-- Contenedor del Comentario -->
+						<div class="comment-box">
+							<div class="comment-head">
+								<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
+								<span>hace 10 minutos</span>
+								<i class="fa fa-reply"></i>
+								<i class="fa fa-heart"></i>
+							</div>
+							<div class="comment-content">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+							</div>
+						</div>
+					</li>
+				</ul>
+			</li>
+
+			<li>
+				<div class="comment-main-level">
+					<!-- Avatar -->
+					<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+					<!-- Contenedor del Comentario -->
+					<div class="comment-box">
+						<div class="comment-head">
+							<h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+							<span>hace 10 minutos</span>
+							<i class="fa fa-reply"></i>
+							<i class="fa fa-heart"></i>
+						</div>
+						<div class="comment-content">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!-- <h1>How do you like our service</h1>
+<input type="text" [(ngModel)]="description" placeholder="Write your review about us" id="description"/>
+<fieldset class="rating">
+    <input type="radio" id="star5" name="rating" value="5" [(ngModel)]="rating" (change)="log()"/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+    <input type="radio" id="star4half" name="rating" value="4.5" [(ngModel)]="rating" (change)="log()"/><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+    <input type="radio" id="star4" name="rating" value="4" [(ngModel)]="rating"(change)="log()"/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+    <input type="radio" id="star3half" name="rating" value="3.5" [(ngModel)]="rating"(change)="log()"/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+    <input type="radio" id="star3" name="rating" value="3" [(ngModel)]="rating"(change)="log()"/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+    <input type="radio" id="star2half" name="rating" value="2.5" [(ngModel)]="rating"(change)="log()"/><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+    <input type="radio" id="star2" name="rating" value="2" [(ngModel)]="rating"(change)="log()"/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+    <input type="radio" id="star1half" name="rating" value="1.5" [(ngModel)]="rating"(change)="log()"/><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+    <input type="radio" id="star1" name="rating" value="1" [(ngModel)]="rating"(change)="log()"/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+    <input type="radio" id="starhalf" name="rating" value="0.5" [(ngModel)]="rating"(change)="log()"/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+    <p>🙁 😐 😊 😄 😍</p>
+</fieldset> -->
+<!-- <button (click)="save()">Leave Rating</button> -->
