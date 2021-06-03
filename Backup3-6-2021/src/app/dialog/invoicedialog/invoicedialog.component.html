@@ -1,0 +1,90 @@
+<mat-dialog-content class="mat-typography" *ngIf="data.invoiceCode != undefined" id="export">
+    <div id="invoice" class="effect2" style="border:1px solid #EEE">
+        <div id="invoice-top">
+            <img class="logo" *ngIf="currentUser.avatarPath == null || currentUser.avatarPath == undefined" src="assets/img/userplaceholder.png">
+            <img class="logo" *ngIf="currentUser.avatarPath != null && currentUser.avatarPath != undefined" [src]="loadimage(currentUser.avatarPath)">
+          <div class="info" style="margin-left: 70px;">
+            <h2>{{userName}}</h2>
+            <p> {{currentUser.email}} <br>
+              {{currentUser.phoneNumber}}
+            </p>
+          </div><!--End Info-->
+          <div class="title">
+            <h1 style="text-align: right;">Invoice #{{data.invoiceCode}}</h1>
+            <p>Issued: {{data.createDate}}<br>
+               Payment Due: {{data.createDate}}
+            </p>
+          </div><!--End Title-->
+        </div><!--End InvoiceTop-->
+        <hr>
+        <div id="invoice-bot">
+          
+          <div id="table">
+            <table>
+              <tr class="tabletitle">
+                  <td class="item"><h2>Course Name</h2></td>
+                  <td class="Hours"><h2>Hastag</h2></td>
+                  <td class="Rate"><h2>Level</h2></td>
+                  <td class="subtotal"><h2>Price</h2></td>
+              </tr>
+              
+              <tr class="service" *ngFor="let info of invoiceInfo;let i = index">
+                <td class="tableitem" style="line-height: 60px;"><img *ngIf="info.course.thumbnailImage == null || info.course.thumbnailImage == undefined" style="height: 50px; width: 50px;padding: 5px 10px; float: left;" src="assets/img/productplaceholder.jpg" alt="courseplaceholder">
+                  <img *ngIf="info.course.thumbnailImage != null && info.course.thumbnailImage != undefined" style="height: 50px; width: 50px;padding: 5px 10px; float: left;" [src]="loadimage(info.course.thumbnailImage)" alt="courseimage"><p class="itemtext">{{info.course.courseName}}</p></td>
+                <td class="tableitem" style="line-height: 60px;"><p class="itemtext">{{info.course.hastag}}</p></td>
+                <td class="tableitem" style="line-height: 60px;"><p class="itemtext">{{info.course.level}}</p></td>
+                <td class="tableitem" style="line-height: 60px;"><p class="itemtext">${{info.course.price}}</p></td>
+              </tr>
+              <tr class="tabletitle">
+                <td></td>
+                <td></td>
+                <td class="Rate"><h2>Total</h2></td>
+                <td class="payment"><h2>${{invoiceTotalPrice}}</h2></td>
+              </tr>
+              
+            </table>
+          </div><!--End Table-->
+          
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="QRZ7QTM9XRPJ6">
+          <input type="image" *ngIf="data.payMethod =='Paypal'" src="/assets/img/paypalinvoicelogo.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+          <img *ngIf="data.payMethod !='Paypal'" src="/assets/img/cashpayment.png" style="width: 50px;height: 50px;" border="0" alt="Buy by your account balance">
+        </form>
+    
+          
+          <div id="legalcopy">
+            <p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices. 
+            </p>
+          </div>
+          
+        </div><!--End InvoiceBot-->
+      </div><!--End Invoice-->
+</mat-dialog-content>
+<mat-dialog-content *ngIf="data.invoiceCode == undefined" class="mat-typography">
+  <h2 mat-dialog-title>Why should you buy our course?</h2>
+  <h3>Unblock all topic and lesson</h3>
+  <p>After payment and enroll our course, you can learn all of our interesting topic and lesson.</p>
+
+  <h3>Quiz test after learning</h3>
+  <p>Each lesson has a different quiz, which you can take to review the knowledge you have learned as well as test your level with different difficulty 
+  levels depending on your course level. Experience it now!</p>
+
+  <h3>Study anytime, anywhere</h3>
+  <p>After purchasing the course, the list of registered courses will be in your library. You can add to favorites, learn useful things from anywhere at 
+  any time, your convenience is always our top priority.</p>
+
+  <h3>Online interaction with instructors</h3>
+  <p>You can join online classes, receive notifications as soon as possible, and get enthusiastic and friendly interaction from our teaching staff as 
+  well as help you in the learning process promptly and promptly.</p>
+
+  <h3>And many more benefits</h3>
+
+  <p>Based on the list of course registrations, we can recommend you the best learning route, add discount codes for loyal customers as well as many 
+  attractive incentives. Join us now and learn a lot of new knowledge every day</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button *ngIf="data.isInfo" (click)="buyCourse()" style="background-color: #66fa03;color: #fff;" [mat-dialog-close]="data">Buy Course</button>
+  <button mat-button (click)="exportAsPDF('export')" *ngIf="!data.isInfo">Export as PDF</button>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
