@@ -1,0 +1,77 @@
+<h2 mat-dialog-title style="text-align: center;float: left;">My Quiz</h2>
+
+    <label class="switch" *ngIf="isLocked == true">
+        <input type="checkbox" checked=true (click)="checkCheckBoxvalue($event)">
+        <span class="slider round"></span>
+      </label>
+      <label class="switch" *ngIf="isLocked == false">
+        <input type="checkbox" (click)="checkCheckBoxvalue($event)">
+        <span class="slider round"></span>
+      </label>
+
+<mat-form-field style="width: 100%; padding: 0px 15px;" *ngIf="data.examQuizList.length > 0">
+    <input  matInput [(ngModel)]="examQuizName" *ngIf="examQuizName == undefined" placeholder="Quizname"> 
+    <input  matInput [(ngModel)]="examQuizName" *ngIf="examQuizName != undefined" value="examQuizName"> 
+</mat-form-field>
+<mat-dialog-content class="mat-typography" *ngIf="data.examQuizList.length > 0">
+    <div class="container">
+        <div class="quizzwrap" *ngFor="let examQuiz of data.examQuizList, let i=index">
+            <div class="quizzheader">
+                <div class="quizicon">
+                <span><i class="fa fa-question"></i></span>
+                <h5>Question {{i+1}}</h5>
+                </div>
+                <div class="quizztime">
+                    <span><i class="fa fa-clock-o"></i></span>
+                    <h5>{{examQuiz.examTime}}s</h5>
+                </div>
+                <i class="fa fa-trash" style="font-size: 20px; float: left; padding: 15px 15px;color: red;cursor: pointer;" (click)="deleteExamQuiz(examQuiz.quizId)"></i>
+            </div>
+            <h2>{{examQuiz.examQuestion}}</h2>
+            <hr>
+            <div class="answer">
+                <div class="row">
+                    <ng-container>
+                    <div class="col-lg-6" *ngIf="examQuiz.examOption1 != null">
+                        <div class="answerstring" > 
+                            <span *ngIf="examQuiz.examIsCorrect == '1'"><i class="fa fa-circle true"></i><p class="answertext"> {{examQuiz.examOption1}}</p></span>
+                            <span *ngIf="examQuiz.examIsCorrect != '1'"><i class="fa fa-circle"></i><p class="answertext"> {{examQuiz.examOption1}}</p></span>
+                        </div>
+                    </div>
+                    </ng-container>
+                    <ng-container>
+                        <div class="col-lg-6" *ngIf="examQuiz.examOption2 != null">
+                            <div class="answerstring" > 
+                                <span *ngIf="examQuiz.examIsCorrect == '2'"><i class="fa fa-circle true"></i><p class="answertext"> {{examQuiz.examOption2}}</p></span>
+                                <span *ngIf="examQuiz.examIsCorrect != '2'"><i class="fa fa-circle"></i><p class="answertext"> {{examQuiz.examOption2}}</p></span>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container>
+                        <div class="col-lg-6" *ngIf="examQuiz.examOption3 != null">
+                            <div class="answerstring" > 
+                                <span *ngIf="examQuiz.examIsCorrect == '3'"><i class="fa fa-circle true"></i><p class="answertext"> {{examQuiz.examOption3}}</p></span>
+                                <span *ngIf="examQuiz.examIsCorrect != '3'"><i class="fa fa-circle"></i><p class="answertext"> {{examQuiz.examOption3}}</p></span>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container>
+                        <div class="col-lg-6" *ngIf="examQuiz.examOption4 != null">
+                            <div class="answerstring" > 
+                                <span *ngIf="examQuiz.examIsCorrect == '4'"><i class="fa fa-circle true"></i><p class="answertext"> {{examQuiz.examOption4}}</p></span>
+                                <span *ngIf="examQuiz.examIsCorrect != '4'"><i class="fa fa-circle"></i><p class="answertext"> {{examQuiz.examOption4}}</p></span>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        </div>
+</mat-dialog-content>
+<mat-dialog-content class="mat-typography" *ngIf="data.examQuizList.length == 0" style="padding: 10px 0px; text-align: center;">
+    <h3>You don't have any question yet</h3>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="nosave()">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" (click)="save()" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

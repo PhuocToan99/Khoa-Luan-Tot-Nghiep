@@ -1,0 +1,625 @@
+.product-page {
+    width: 100%;
+}
+.product-page-container {
+    max-width: 1140px;
+    text-align: center;
+    padding: 0 30px;
+    margin: auto;
+}
+.product-breadcrumbs {
+    padding: 30px 0;
+}
+.product-breadcrumbs li{
+    display: inline-block;
+    letter-spacing: .1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: .85em;
+}
+.product-breadcrumbs li a {
+    color: #4a4a4a;
+}
+.product-breadcrumbs li:last-child{
+    opacity: 0.5;
+}
+
+.product-details-image {
+    width: 95%;
+    padding-top: 63.3%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media screen and (max-width: 992px) {
+    .product-details-image {
+        width: 100%;
+        padding-top: 66.6%;
+    }
+}
+.product-brand {
+    color: #7d7d7d;
+}
+.product-title {
+    margin:15px 0;
+    font-size:2.5em;
+    font-weight: 400;
+    font-family: "Playfair Display";
+}
+.product-price {
+    color:#9f9f9f;
+    font-family: "Playfair Display";
+    font-size:20px;
+}
+.product-description {
+    color: #7d7d7d;
+    margin:10px 0 30px 0;
+}
+.product-details-button {
+    padding:25px 0;
+    border-top: 1px solid #e4e4e4;
+    text-align: center;
+}
+.product-cart-button {
+    vertical-align: top;
+    margin-left:5px
+}
+body, p {
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+    }
+    
+    p {
+    margin: 0;
+    }
+    
+    .card {
+      background: #FFF;
+      width: auto;
+      margin-left: 5px;
+      margin-top: 30px;
+      border:none;
+    }
+    
+    .card-img-top {
+      height: 150px;
+      border-radius: 30px 30px 0 0;
+      
+    }
+    
+    .card-top-text {
+      color: #FFF;
+      font-size: 1.5em;
+      position: absolute;
+      top:0;
+      padding: 40px;
+      text-align:  center;
+    }
+    
+    .card-text, span {
+      color: #779a94;
+    }
+    
+    .card-block {
+      padding: 20px 35px;
+    }
+    
+    .card-block .card-course-info:first-child {
+      width: 60%;
+      float: left;
+    }
+    
+    .card-block .card-course-info {
+      display: inline-block;
+      height: auto;
+    }
+    
+    .card-block .card-course-info figure {
+      max-width: 54px;
+      height: 54px;
+      text-align: center;
+      margin: 0 10px;
+      float: left;
+      overflow: hidden;
+      border-radius: 50%;
+    }
+    
+    .card-block .card-course-info figure img {
+    height: 50px;
+    width: 50px;
+   
+    }
+    
+    .card-block .card-course-info span {
+      display: block;
+      font-size: 0.9em;
+      text-align: left;
+    }
+    
+    .card-block .card-course-info span i {
+      padding-right: 10px;
+    }
+    
+    .icon {
+      display: inline-block;
+      width: 1.3em;
+      height: 1.3em;
+      stroke-width: 0;
+      stroke: currentColor;
+      fill: currentColor;
+      margin-right: 10px;
+    }
+    
+    .icon.icon-icon-heart {
+      height: 1em;
+    }
+    
+    .card-block.card-bottom {
+      padding: 0px;
+    }
+    
+    .card-block a.btn {
+      display: block;
+      width: 100%;
+      height: 80px;
+      background-color: #3ce4c5;
+      border-radius: 0px;
+      color: #FFF;
+      text-align: center;
+      line-height: 35px;
+      font-size: 20px;
+    }
+    
+    .icon-icon-play {
+      width: 2em;
+      height: 2em;
+    }
+    
+    
+    span.tutor-description {
+    font-size: 12px !important;
+    }
+    .price{
+        font-size: 25px;
+        text-align: center;
+        margin:10px 30px 15px 15px;
+        
+        
+    }
+    .tdchinh{
+        font-weight: 600;
+        font-size: 40px;
+        margin-top: 30px;
+        text-align: center;
+    }
+    .kobienmau{
+        color: #343436;
+        line-height: 40px;
+        padding-left: 10px;
+        color: #333333;
+    }
+    .panel-title
+    {
+      Box-shadow:0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+      height: 40px;
+      background-color: #f5f5f5;
+      display: block;
+    }
+    .list-group-item{
+      cursor: pointer;
+    }
+    .list-group-item:last-child{
+      margin-bottom: 15px;
+    }
+    .panel-group
+    {
+      position: relative;
+    }
+    .arrow{
+  float: right;
+  font-size: 30px;
+  line-height: 40px;
+  padding-right: 30px;
+  color: black;
+    }
+    .tdtopic{
+      color: black;
+      font-weight: bolder;
+    }
+    .row{
+      margin: 0;
+    }
+    .fa-check{
+      color: green;
+      padding-right: 10px;
+    }
+    .muctieu{
+      color: black;
+      line-height: 15px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+    .card-block
+    {
+      background-color: hsl(156, 100%, 97%);
+      
+    }
+    .card-block:last-child{
+      border-radius:0 0 30px 30px ;
+    }
+    .icon1{
+        font-size: 20px;
+        color: #c7c7c7;
+    }
+    .backto
+    {
+        color: #c3c3c3;
+        font-weight: 400;
+    }
+    
+
+
+
+
+
+
+
+
+    :host ::ng-deep .mat-tab-group {
+      flex-direction: row;
+    }
+    :host ::ng-deep .mat-tab-header {
+      border-bottom: none;
+    }
+    :host ::ng-deep .mat-tab-header-pagination {
+      display: none !important;
+    }
+    :host ::ng-deep .mat-tab-labels {
+      flex-direction: column;
+    }
+    :host ::ng-deep .mat-ink-bar {
+      height: 100%;
+      left: 98% !important;
+    }
+    :host ::ng-deep .mat-tab-body-wrapper {
+      flex: 1 1 auto;
+    }
+    #content {
+      box-sizing: content-box;
+      margin: 0 auto;
+      padding: 15px;
+      width: 1264px;
+      background-color: #fff;
+    }
+    #content {
+      max-width: 1100px;
+      width: 100%;
+      background-color: #fff;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+    #content::before, #main-content::before, #content::after, #main-content::after {
+      content: "";
+      display: table;
+    }
+    #content::after, #main-content::after {
+      clear: both;
+    }
+    .questionpoolwrap{
+      padding: 5px 20px;
+    }
+    .questionpoolwrapbackground{
+      width: 100%;
+      height: 100px;
+      background-color: #666;
+      padding: 10px 10px;
+      display: flex;
+      align-items: center;
+    }
+
+
+
+    table {
+      width: 100%;
+    }
+
+
+
+    a {
+      color: #03658c;
+      text-decoration: none;
+    }
+    
+    ul {
+     list-style-type: none;
+    }
+    
+    body {
+     font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
+     background: #dee1e3;
+    }
+    
+    /** ====================
+    * Lista de Comentarios
+    =======================*/
+    .comments-container {
+     margin: 60px auto 15px;
+     width: 768px;
+    }
+    
+    .comments-container h1 {
+     font-size: 36px;
+     color: #283035;
+     font-weight: 400;
+    }
+    
+    .comments-container h1 a {
+     font-size: 18px;
+     font-weight: 700;
+    }
+    
+    .comments-list {
+     margin-top: 30px;
+     position: relative;
+    }
+    
+    /**
+    * Lineas / Detalles
+    -----------------------*/
+    .comments-list:before {
+     content: '';
+     width: 2px;
+     height: 100%;
+     background: #c7cacb;
+     position: absolute;
+     left: 32px;
+     top: 0;
+    }
+    
+    .comments-list:after {
+     content: '';
+     position: absolute;
+     background: #c7cacb;
+     bottom: 0;
+     left: 27px;
+     width: 7px;
+     height: 7px;
+     border: 3px solid #dee1e3;
+     -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+     border-radius: 50%;
+    }
+    
+    .reply-list:before, .reply-list:after {display: none;}
+    .reply-list li:before {
+     content: '';
+     width: 60px;
+     height: 2px;
+     background: #c7cacb;
+     position: absolute;
+     top: 25px;
+     left: -55px;
+    }
+    
+    
+    .comments-list li {
+     margin-bottom: 15px;
+     display: block;
+     position: relative;
+    }
+    
+    .comments-list li:after {
+     content: '';
+     display: block;
+     clear: both;
+     height: 0;
+     width: 0;
+    }
+    
+    .reply-list {
+     padding-left: 88px;
+     clear: both;
+     margin-top: 15px;
+    }
+    /**
+    * Avatar
+    ---------------------------*/
+    .comments-list .comment-avatar {
+     width: 65px;
+     height: 65px;
+     position: relative;
+     /* z-index: 99; */
+     float: left;
+     border: 3px solid #FFF;
+     -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+     border-radius: 4px;
+     -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+     box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+     overflow: hidden;
+    }
+    
+    .comments-list .comment-avatar img {
+     width: 100%;
+     height: 100%;
+    }
+    
+    .reply-list .comment-avatar {
+     width: 50px;
+     height: 50px;
+    }
+    
+    .comment-main-level:after {
+     content: '';
+     width: 0;
+     height: 0;
+     display: block;
+     clear: both;
+    }
+    /**
+    * Caja del Comentario
+    ---------------------------*/
+    .comments-list .comment-box {
+     width: 680px;
+     float: right;
+     position: relative;
+     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+     -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+     box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    }
+    
+    .comments-list .comment-box:before, .comments-list .comment-box:after {
+     content: '';
+     height: 0;
+     width: 0;
+     position: absolute;
+     display: block;
+     border-width: 10px 12px 10px 0;
+     border-style: solid;
+     border-color: transparent #FCFCFC;
+     top: 8px;
+     left: -11px;
+    }
+    
+    .comments-list .comment-box:before {
+     border-width: 11px 13px 11px 0;
+     border-color: transparent rgba(0,0,0,0.05);
+     left: -12px;
+    }
+    
+    .reply-list .comment-box {
+     width: 610px;
+    }
+    .comment-box .comment-head {
+     background: #FCFCFC;
+     padding: 10px 12px;
+     border-bottom: 1px solid #E5E5E5;
+     overflow: hidden;
+     -webkit-border-radius: 4px 4px 0 0;
+     -moz-border-radius: 4px 4px 0 0;
+     border-radius: 4px 4px 0 0;
+    }
+    
+    .comment-box .comment-head i {
+     float: right;
+     margin-left: 14px;
+     position: relative;
+     top: 2px;
+     color: #A6A6A6;
+     cursor: pointer;
+     -webkit-transition: color 0.3s ease;
+     -o-transition: color 0.3s ease;
+     transition: color 0.3s ease;
+    }
+    
+    .comment-box .comment-head i:hover {
+     color: #03658c;
+    }
+    
+    .comment-box .comment-name {
+     color: #283035;
+     font-size: 14px;
+     font-weight: 700;
+     float: left;
+     margin-right: 10px;
+    }
+    
+    .comment-box .comment-name a {
+     color: #283035;
+    }
+    
+    .comment-box .comment-head span {
+     float: left;
+     color: #999;
+     font-size: 13px;
+     position: relative;
+     top: 1px;
+    }
+    
+    .comment-box .comment-content {
+     background: #FFF;
+     padding: 12px;
+     font-size: 15px;
+     color: #595959;
+     -webkit-border-radius: 0 0 4px 4px;
+     -moz-border-radius: 0 0 4px 4px;
+     border-radius: 0 0 4px 4px;
+    }
+    
+    .comment-box .comment-name.by-author, .comment-box .comment-name.by-author a {color: #03658c;}
+    .comment-box .comment-name.by-author:after {
+     content: 'autor';
+     background: #03658c;
+     color: #FFF;
+     font-size: 12px;
+     padding: 3px 5px;
+     font-weight: 700;
+     margin-left: 10px;
+     -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+     border-radius: 3px;
+    }
+    
+    /** =====================
+    * Responsive
+    ========================*/
+    @media only screen and (max-width: 766px) {
+     .comments-container {
+       width: 480px;
+     }
+    
+     .comments-list .comment-box {
+       width: 390px;
+     }
+    
+     .reply-list .comment-box {
+       width: 320px;
+     }
+    }
+    
+    
+    fieldset, label { margin: 0; padding: 0; }
+    body{ margin: 20px; }
+    h1 { font-size: 1.5em; margin: 10px; }
+    
+    /****** Style Star Rating Widget *****/
+    
+    .rating { 
+      border: none;
+      float: left;
+    }
+    
+    .rating > input { display: none; } 
+    .rating > label:before { 
+      margin: 5px;
+      font-size: 1.25em;
+      font-family: FontAwesome;
+      display: inline-block;
+      content: "\f005";
+    }
+    
+    .rating > .half:before { 
+      content: "\f089";
+      position: absolute;
+    }
+    
+    .rating > label { 
+      color: #ddd; 
+     float: right; 
+    }
+    
+    /***** CSS Magic to Highlight Stars on Hover *****/
+    
+    .rating > input:checked ~ label, /* show gold star when clicked */
+    .rating:not(:checked) > label:hover, /* hover current star */
+    .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+    
+    .rating > input:checked + label:hover, /* hover current star when changing rating */
+    .rating > input:checked ~ label:hover,
+    .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+    .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 

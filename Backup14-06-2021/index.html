@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+    <head>
+        <script>
+            function myFunc(){
+                document.getElementById('demo').style.cssText ='color: #ccc;font-weight:800;font-size: 50px;text-align: center;';
+            }
+        </script>
+        <style>
+            .text{
+                --test:15px;
+                font-size: calc(45px - var(--test)*2);
+            }
+        </style>
+    </head>
+    <body>
+        <p id="demo">This is test</p>
+        <p class="text">Test variable</p>
+        <img id="image1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" alt="Image">
+        <button onClick="document.getElementById('demo').style.fontSize = '35px'">Click</button>
+        <button onClick="document.getElementById('demo').innerHTML = 'Change text'">Click 1</button>
+        <button onclick="document.getElementById('image1').src ='https://www.w3schools.com/w3css/img_lights.jpg'">Click 2</button>
+        <button onclick="myFunc()">Click 3</button>
+    </body>
+</html>
