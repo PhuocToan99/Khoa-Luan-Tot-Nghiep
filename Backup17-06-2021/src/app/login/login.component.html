@@ -1,0 +1,29 @@
+<main class="login-body" data-vide-bg="assets/img/login-bg">
+  <!-- Login Admin -->
+  <form class="font-login" (ngSubmit)="login()" #loginForm="ngForm">
+    <video class="videoipin" playsinline="playsinline" autoplay="autoplay" muted="true" loop="loop">
+        <source  src=".../../assets/img/login-bg.mp4" type="video/mp4">
+      </video>
+      <div class="login-form">
+          <!-- logo-login -->
+          <div class="logo-login">
+              <a routerLink=""><img src="../../assets/img/logo/loder.png" alt=""></a>
+          </div>
+          <h2>Login Here</h2>
+          <div class="form-input">
+              <label for="name">Username</label>
+              <input  type="email" name="email" placeholder="Username"[(ngModel)]="username" [ngModelOptions]="{ standalone: true }" required>
+          </div>
+          <div class="form-input">
+              <label for="name">Password</label>
+              <input type="password" name="password" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{ standalone: true }" (keyup.enter)="login()">
+          </div>
+          <div class="form-input pt-30">
+              <input type="submit" name="submit" value="login" aria-expanded="false" data-toggle="collapse" data-target="#unauthenrized">
+          </div>
+          <a routerLink="../register" class="registration">Registration</a>
+          <a routerLink="../" class="registration">Back Home</a>
+      </div>
+  </form>
+  <!-- /end login form -->
+</main>

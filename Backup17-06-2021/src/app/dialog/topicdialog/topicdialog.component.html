@@ -1,0 +1,21 @@
+<ng-container>
+<h1 mat-dialog-title style="float: left;margin-right: 5px;">{{mess}}</h1>
+<label class="switch" *ngIf="data.isLocked == true">
+  <input type="checkbox" checked=true (click)="checkCheckBoxvalue($event,data)">
+  <span class="slider round"></span>
+</label>
+<label class="switch" *ngIf="data.isLocked == false">
+  <input type="checkbox" (click)="checkCheckBoxvalue($event,data)">
+  <span class="slider round"></span>
+</label>
+</ng-container>
+<div mat-dialog-content>
+  <mat-form-field style="width: 100%;">
+    <mat-label>Topic Title</mat-label>
+    <input matInput [(ngModel)]="data.topicTitle">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button class="button button-success" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+  <!-- <button mat-button mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button> -->
+</div>
