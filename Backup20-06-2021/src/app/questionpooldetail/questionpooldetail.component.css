@@ -1,0 +1,146 @@
+.quizzwrap{
+    margin: 10px 10px;
+    height: auto;
+    width: calc(100% - 20px);
+    border: 1px solid #333;
+}
+.quizzheader{
+    background-color: rgba(247,246,246,255);
+    height: 50px;
+    width: 100%;
+    display: flex;
+    /* justify-content: space-between; */
+    /* width: calc(100% - 20px); */
+}
+.quizicon{
+    border-radius: 4px;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    margin: 10px 30px;
+    height: 30px;
+    width: 140px;
+    display: block;
+}
+.fa-question{
+    font-size: 12px;
+}
+h5{
+    padding: 0;
+    margin: 0;
+    float: right;
+    color: #333;
+    font-size: 15px;
+}
+.quizztime{
+    border-radius: 4px;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    margin: 10px 0px;
+    height: 30px;
+    width: 70px;
+}
+h2{
+    margin: 5px 30px;
+    color: #333;
+}
+hr {
+    border-bottom: 1.5px solid #333;
+    border-top: 0 none;
+    margin: 5px 30px;
+    padding: 0;
+}
+.fa-circle{
+    color: #333;
+    font-size: 20px;
+}
+.answerstring{
+    margin: 20px 30px;
+    width: calc(50% - 60px);
+    display: block;
+}
+.answertext{
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+.true{
+    color: green;
+}
+
+
+
+
+
+.header{
+    height: auto;
+    width: 100%;
+    padding: 20px 20px;
+}
+.quetstionpoollist{
+  height: auto;
+  width: 100%;
+  padding: 20px 20px;
+}
+.createquiz{
+    padding: 6px 20px;
+    background-color: #66fa03;
+    color: #fff !important;
+    font-size: 18px !important;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  .createquiz i{
+    padding-right: 5px;
+  }
+
+  .backpage{
+    padding: 6px 20px;
+    background-color: #bf2424;
+    color: #fff !important;
+    font-size: 18px !important;
+    float: right;
+    cursor: pointer;
+  }
+  .backpage i{
+    padding-left: 5px;
+    float: right;
+  }  
+  hr {
+    border-bottom: 1.5px solid #333;
+    border-top: 0 none;
+    padding: 0;
+  }
+  .questionpoolwrap{
+    padding:10px 10px;
+    border: #333 1px;
+    background-color: #666;
+    /* color: #fff; */
+    width: auto;
+    height: auto;
+  }
+  .questionpoolname{
+    padding: 5px 10px;
+    display: block;
+    width: auto;
+    float: left;
+    color: #fff;
+    background-color: #666;
+    cursor: pointer;
+  }
+
+
+  label {
+    cursor: pointer;
+    /* Style as you please, it will become the visible UI component. */
+    padding: 6px 20px;
+    background-color: #c6a16e;
+    color: #fff !important;
+    font-size: 18px !important;
+    margin-left: 5px;
+ }
+ 
+ #upload-filequiz{
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+ }
