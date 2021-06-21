@@ -1,0 +1,317 @@
+
+  <div class="main-content" *ngIf="!isInstructor">
+    <!-- Top navbar -->
+
+    <!-- Header -->
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+      <!-- Mask -->
+      <span class="mask bg-gradient-default opacity-8"></span>
+      <!-- Header container -->
+      <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+          <div class="col-lg-12 col-md-10">
+            <h1 class="display-2">Hello {{user.firstName}}  {{user.lastName}}</h1>
+            <p class="mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+          <div class="card card-profile shadow">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a href="#" *ngIf="user.avatarPath == null || user.avatarPath == undefined">
+                    <img src="assets/img/userplaceholder.png" class="rounded-circle">
+                  </a>
+                  <a href="#" *ngIf="user.avatarPath != null && user.avatarPath != undefined">
+                     <img [src]="loadimage(user.avatarPath)" class="rounded-circle">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+              <div class="d-flex justify-content-between">
+                <a href="#" class="profile-btn profile-btn-sm profile-btn-info mr-4">Connect</a>
+                <a href="#" class="profile-btn profile-btn-sm profile-btn-default float-right">Message</a>
+              </div>
+            </div>
+            <div class="card-body pt-0 pt-md-4">
+              <div class="row">
+                <div class="col">
+                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                    <div>
+                      <span class="heading">{{CoursePublishCount}}</span>
+                      <span class="description">Publish Courses</span>
+                    </div>
+                    <div>
+                      <span class="heading">{{CourseBuyCount}}</span>
+                      <span class="description">Courses Buy</span>
+                    </div>
+                    <div>
+                      <span class="heading">{{QuizAttempCount}}</span>
+                      <span class="description">Quizs Attemp</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <h3>
+                  {{user.firstName}}  {{user.lastName}}<span class="font-weight-light"></span>
+                </h3>
+                <div class="h5 font-weight-300">
+                  <i class="ni location_pin mr-2"></i>Ho Chi Minh, Viet Nam
+                </div>
+                <div class="h3 font-weight-300"  *ngIf="currentAccount.role == 'instructor'">
+                  <i class="ni location_pin mr-2"></i>Banlace: ${{user.balance}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">My account</h3>
+                </div>
+                <div class="col-4 text-right">
+                  <a class="profile-btn profile-btn-sm profile-btn-primary" (click)="update()">Save change</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <form>
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-username">Username</label>
+                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="{{currentAccount.username}}" value="{{currentAccount.username}}" readonly>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Email address</label>
+                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="{{user.email}}" value="{{user.email}}" [(ngModel)]="Email" [ngModelOptions]="{standalone: true}" (change)="checkEmail()">
+                        <p class ="warning" *ngIf ="emailInvalid == false">*Invalid email</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-first-name">First name</label>
+                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="{{user.firstName}}" value="{{user.firstName}}" [(ngModel)]="FirstName" [ngModelOptions]="{standalone: true}" (change)="checkFirstName()">
+                        <p class ="warning" *ngIf ="firstNameInvalid == false">*Firstname invalid. Name does not contain special character and number</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-last-name">Last name</label>
+                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="{{user.lastName}}" value="{{user.lastName}}" [(ngModel)]="LastName" [ngModelOptions]="{standalone: true}" (change)="checkLastName()">
+                        <p class ="warning" *ngIf ="lastNameInvalid == false">*Lastname invalid. Name does not contain special character and number</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4">
+                <!-- Address -->
+                <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-address">Phone number</label>
+                        <input id="input-address" class="form-control form-control-alternative" placeholder="{{user.phoneNumber}}" value="{{user.phoneNumber}}" type="text"  [(ngModel)]="PhoneNumber" [ngModelOptions]="{standalone: true}" (change)="checkPhonenumber()">
+                        <p class ="warning" *ngIf ="phoneInvalid == false">*Invalid phonenumber</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4">
+                <!-- Description -->
+                <h6 class="heading-small text-muted mb-4">About me</h6>
+                <div class="pl-lg-4">
+                  <!-- <div class="form-group focused">
+                    <label>About Me</label>
+                    <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ..." readonly></textarea>
+                  </div> -->
+                  <div class="form-group focused">
+                    <label>About Me</label>
+                    <textarea rows="4" class="form-control form-control-alternative" placeholder={{placeholder}} [(ngModel)]="description" [ngModelOptions]="{standalone: true}"></textarea>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="main-content" *ngIf="isInstructor">
+    <!-- Top navbar -->
+
+    <!-- Header -->
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+      <!-- Mask -->
+      <span class="mask bg-gradient-default opacity-8"></span>
+      <!-- Header container -->
+      <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+          <div class="col-lg-12 col-md-10">
+            <h2 class="display-2">INSTRUCTOR</h2>
+            <h1 class="display-2">{{instructorInfo.instructorName}}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+          <div class="card card-profile shadow">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a href="#" *ngIf="instructorInfo.avatarPath == null || instructorInfo.avatarPath == undefined">
+                    <img src="assets/img/userplaceholder.png" class="rounded-circle">
+                  </a>
+                  <a href="#" *ngIf="instructorInfo.avatarPath != null && instructorInfo.avatarPath != undefined">
+                     <img [src]="instructorImage" class="rounded-circle">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-0 pt-md-4">
+              <div class="row">
+                <div class="col">
+                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                    <div>
+                      <span class="heading">{{instructorInfo.review}}</span>
+                      <span class="description">Course Rating</span>
+                    </div>
+                    <div>
+                      <span class="heading">{{instructorInfo.course}}</span>
+                      <span class="description">Courses</span>
+                    </div>
+                    <div>
+                      <span class="heading">{{instructorInfo.student}}</span>
+                      <span class="description">Students</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <h3>
+                  {{instructorInfo.instructorName}}<span class="font-weight-light"></span>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Instructor</h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="heading-small text-muted mb-4">Instructor information</h5>
+              <p class="mb-4" style = "color: #8898aa">Total courses:{{instructorInfo.course}} Total students:{{instructorInfo.student}} Reviews:{{instructorInfo.review}}</p>
+              <form>
+                <!-- Address -->
+                <h6 class="heading-small text-muted mb-4" *ngIf="instructorInfo.description">About Me</h6>
+                <div class="pl-lg-4" *ngIf="instructorInfo.description">
+                    <div class="col-md-12">
+                        <p style = "color: #8898aa">{{instructorInfo.description}}</p>
+                  </div>
+                </div>
+                <hr class="my-4">
+                <!-- Description -->
+                <h6 class="heading-small text-muted mb-4" *ngIf="courseDataSet.length > 0">Instructor Feature Course</h6>
+                <div class="row">
+                  <div class="col-lg-4"
+                      *ngFor="let course of courseDataSet | paginate: { itemsPerPage: 9, currentPage: p };index as i">
+                      <div class="properties properties2 mb-30">
+                          <div class="properties__card">
+                              <div class="properties__img overlay1" *ngIf="!course.course.thumbnailImage">
+                                  <a (click)="viewdetail(course.course.courseId,course.course)"
+                                      style="cursor: pointer;"><img src="assets/img/productplaceholder.jpg" alt=""></a>
+                              </div>
+                              <div class="properties__img overlay1" *ngIf="course.course.thumbnailImage">
+                                  <a (click)="viewdetail(course.course.courseId,course.course)"
+                                      style="cursor: pointer;"><img [src]="loadimage(course.course.thumbnailImage)"
+                                          alt=""></a>
+                              </div>
+                              <div class="properties__caption">
+                                  <p>{{course.course.hastag}}</p>
+                                  <h3><a (click)="viewdetail(course.course.courseId,course.course)"
+                                          style="cursor: pointer;">{{course.course.courseName}}</a></h3>
+                                  <p class="description">{{course.course.description}}
+                                      <a *ngIf="isContentToggled[i]" style="cursor: pointer;"
+                                          (click)="toggleContent(i);isContentToggled[i] = !isContentToggled[i]" i18n>Read
+                                          More</a>
+                                      <a *ngIf="!isContentToggled[i]" style="cursor: pointer;"
+                                          (click)="toggleContent(i);isContentToggled[i] = !isContentToggled[i]" i18n>Read
+                                          Less</a>
+                                  </p>
+                                  <div class="properties__footer d-flex justify-content-between align-items-center">
+                                      <div class="restaurant-name" *ngIf="course.course.rating > 0 && !course.check">
+                                          <div class="rating">
+                                              <i class="fas fa-star"
+                                                  *ngFor="let item of [].constructor(course.rating)"></i>
+                                              <i class="far fa-star"
+                                                  *ngFor="let item of [].constructor(5-course.rating)"></i>
+                                          </div>
+                                          <p><span>({{course.course.rating}})</span> based on
+                                              {{course.course.numberOfVoters}}</p>
+                                      </div>
+                                      <div class="restaurant-name" *ngIf="course.course.rating > 0 && course.check">
+                                          <div class="rating">
+                                              <i class="fas fa-star"
+                                                  *ngFor="let item of [].constructor(course.rating)"></i>
+                                              <i class="fas fa-star-half-alt" *ngIf="course.check"></i>
+                                              <i class="far fa-star"
+                                                  *ngFor="let item of [].constructor(5 - course.rating - 1)"></i>
+                                          </div>
+                                          <p><span>({{course.course.rating}})</span> based on
+                                              {{course.course.numberOfVoters}}</p>
+                                      </div>
+                                      <div class="restaurant-name" *ngIf="course.course.rating == 0">
+                                          <div class="rating">
+                                              <i class="far fa-star"></i>
+                                              <i class="far fa-star"></i>
+                                              <i class="far fa-star"></i>
+                                              <i class="far fa-star"></i>
+                                              <i class="far fa-star"></i>
+                                          </div>
+                                          <p><span>({{course.course.rating}})</span> based on
+                                              {{course.course.numberOfVoters}}</p>
+                                      </div>
+                                      <div class="price">
+                                          <span>${{course.course.price}}</span>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,52 @@
+<div class="container ">
+    <video class="videoipin" playsinline="playsinline" autoplay="autoplay" muted="true" loop="loop">
+      <source  src=".../../assets/img/login-bg.mp4" type="video/mp4">
+    </video>
+  <form id="signup">
+    <ul id="section-tabs">
+      <li class="current active"><span></span>User</li>
+      <li><span></span>Account</li>
+     
+    </ul>
+  <div id="fieldsets">
+  <fieldset class="current textcolor">
+    <label for="fname">First name:</label>
+    <input name="fname" type="text" [(ngModel)]="FirstName" [ngModelOptions]="{standalone: true}" (change)="checkFirstName()"/>
+    <p class ="warning" *ngIf ="firstNameInvalid == false">*Firstname invalid. Name  can not be empty does not contain special character and number</p>
+    <label name="lname" for="password">Last name:</label>
+    <input type="text" [(ngModel)]="LastName" [ngModelOptions]="{standalone: true}" (change)="checkLastName()">
+    <p class ="warning" *ngIf ="lastNameInvalid == false">*Lastname invalid. Name can not be empty and does not contain special character and number</p>
+    <label name="gender" for="gender" style="padding-right: 5px;">Gender</label>
+    <select [(ngModel)] ="UserGender" [ngModelOptions]="{standalone: true}" class="selectGender">
+      <option *ngFor = "let gender of genders" [value] = "gender">
+          {{gender}}
+      </option>
+    </select>
+    <label class="col-12" name="file" for="file">Avatar</label>
+    <input type="file" id="file" accept="image/*" (change)="handleFileInput($event.target.files)">
+    <label class="col-12" for="email">Email:</label>
+    <input name="email" type="email" class="required email" [(ngModel)]="Email" [ngModelOptions]="{standalone: true}" (change)="checkEmail()"/>
+    <p class ="warning" *ngIf ="emailInvalid == false">*Invalid email.Email can not be empty and end with @gmail.com</p>
+    <label for="phone">PhoneNumber:</label>
+    <input type="text" name="phone" [(ngModel)]="PhoneNumber" [ngModelOptions]="{standalone: true}" (change)="checkPhonenumber()">
+    <p class ="warning" *ngIf ="phoneInvalid == false">*Invalid phonenumber. Phonenumber can not be empty or contain alphabet</p>
+    <label class="backtohome"><a routerLink="../">Back to home page</a></label>
+    <a class="btn" id="next" style="margin-top:500px;" (click)='createNewUser()'>Next Section ▷</a>
+  </fieldset>
+  <fieldset class="next textcolor">
+    <label for="username">Username:</label>
+    <input name="username" type="text" [(ngModel)]="Username" [ngModelOptions]="{standalone: true}" required>
+    <label name="password" for="password">Password:</label>
+    <input type="password" minlength="8" class="required" [(ngModel)]="Password" [ngModelOptions]="{standalone: true}" required>
+    <label name="password" for="password">Retype Password:</label>
+    <input type="password" minlength="8" class="required" [(ngModel)]="checkPassword"  (change)="checkPasswordRetype()" [ngModelOptions]="{standalone: true}" required>
+    <p class ="warning" *ngIf ="passWordRetypeValid == false">*Your password is not match</p>
+    <button type="submit" class="btn-register" (click)='createNewAccount()'>Register</button>
+  </fieldset>
+  
+  </div>
+  <div>
+  
+  </div>
+  </form>
+  </div>
