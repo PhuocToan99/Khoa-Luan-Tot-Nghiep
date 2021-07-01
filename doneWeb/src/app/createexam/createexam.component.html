@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="header">
+        <a class="createquiz" (click)="openExamQuizDialog()"><i class="fa fa-list"></i>Create Exam</a>
+        <mat-form-field appearance="fill">
+            <mat-label>Select Questionpool</mat-label>
+            <select matNativeControl required [(ngModel)]="selectedQuestionpoolId" (change)="filter(selectedQuestionpoolId)"> 
+              <option *ngFor="let questionpool of questionpoolList" [value]="questionpool.questionpoolId">
+                {{questionpool.questionpoolName}}
+              </option>
+            </select>
+        </mat-form-field>
+        <a class="backpage" (click)="back()"><i class="fa fa-arrow-circle-left"></i>Back to Questionpool Management</a>
+        <hr>
+    </div>
+</div>
+<div class="container">
+<div class="quizzwrap" *ngFor="let quiz of quizlist, let i=index">
+    <div class="quizzheader">
+        <div class="quizicon">
+        <span><i class="fa fa-question"></i></span>
+        <h5>Question {{i+1}}</h5>
+        </div>
+        <mat-checkbox class="example-margin"
+        #checkbox (change)='showOptions(checkbox.checked,quiz)' style="padding-top: 17px;padding-left: 15px;" [(ngModel)]="quiz.isInExamQuiz">
+        </mat-checkbox>
+    </div>
+    <h2>{{quiz.question}}</h2>
+    <hr>
+    <div class="answer">
+        <div class="row">
+            <ng-container *ngFor ="let choice of quiz.choices">
+            <div class="col-lg-6" *ngIf="choice.answer != null">
+                <div class="answerstring" > 
+                    <span  *ngIf="choice.isCorrect == false"><i class="fa fa-circle"></i><p class="answertext"> {{choice.answer}}</p></span>
+                    <span *ngIf="choice.isCorrect == true"><i class="fa fa-circle true"></i><p class="answertext"> {{choice.answer}}</p></span>
+                </div>
+            </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+</div>

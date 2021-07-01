@@ -1,0 +1,66 @@
+<h1 mat-dialog-title>Update CourseInfo</h1>
+<div mat-dialog-content>
+  <mat-dialog-content class="mat-typography" style="width: 100%; margin: 0; padding: 0;">
+    <div class="fileInputProfileWrap">
+        <input type="file" (change)="fileChangeEvent($event)" accept="image/*" class="fileInputProfile" *ngIf="!isImageSaved" />
+        <!-- <div class="img-space"> -->
+            <ng-container *ngIf="isImageSaved; else elseTemplate">
+                <!-- <img [src]="cardImageBase64" *ngIf="cardImageBase64.length > 0"/> -->
+                <label for="upload-photo" class="img-space"><img [src]="cardImageBase64" *ngIf="cardImageBase64.length > 0"/></label>
+                <input type="file" id="upload-photo" (change)="fileChangeEvent($event)" accept="image/*" class="fileInputProfile" />
+            </ng-container>
+            <ng-template #elseTemplate>
+                <img src="../../assets/img/addimageplaceholder.png" class="img-responsive" *ngIf="!isImageSaved">
+            </ng-template>
+        <!-- </div> -->
+    </div>
+  </mat-dialog-content>
+  <mat-form-field style="width: 100%;">
+    <mat-label>Course ID</mat-label>
+    <input matInput [(ngModel)]="data.courseId" readonly>
+  </mat-form-field>
+  <mat-form-field style="width: 100%;">
+    <mat-label>Course Name</mat-label>
+    <input matInput [(ngModel)]="data.courseName" [ngModelOptions]="{standalone: true}">
+  </mat-form-field>
+  <mat-form-field style="width: 100%;">
+    <mat-label>Course Duration</mat-label>
+    <input matInput [(ngModel)]="data.courseDuration" [ngModelOptions]="{standalone: true}">
+  </mat-form-field>
+  <mat-form-field style="width: 100%;">
+    <mat-label>Description</mat-label>
+    <input matInput [(ngModel)]="data.description" [ngModelOptions]="{standalone: true}">
+  </mat-form-field>
+<br>
+<mat-form-field appearance="fill">
+  <mat-label>Select your course hastag (required)</mat-label>
+  <mat-select matNativeControl required [formControl]="hastagFormControl" [(ngModel)]="data.hastag">
+    <mat-option *ngFor="let hastag of coursehastags" [value]="hastag">
+      {{hastag}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="hastagFormControl.hasError('required')">Please choose an hastag</mat-error>
+</mat-form-field>
+<br>
+<mat-form-field appearance="fill">
+  <mat-label>Select your course level (required)</mat-label>
+  <mat-select matNativeControl required [formControl]="levelFormControl" [(ngModel)]="data.level">
+    <mat-option *ngFor="let level of courselevels" [value]="level">
+      {{level}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="hastagFormControl.hasError('required')">Please choose course level</mat-error>
+</mat-form-field>
+
+  <!-- <div class="form-group">
+    <mat-label>Course ThumbnailImage</mat-label>
+    <input type="file" id="file" accept="image/*" (change)="handleFileInput($event.target.files)">
+  </div> -->
+  <mat-form-field style="width: 100%;">
+  <mat-label>Price</mat-label>
+    <input matInput [(ngModel)]="data.price" [ngModelOptions]="{standalone: true}">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button class="button button-success" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+</div>

@@ -1,0 +1,93 @@
+.header{
+    height: auto;
+    width: 100%;
+    padding: 20px 20px;
+}
+.quetstionpoollist{
+  height: auto;
+  width: 100%;
+  padding: 20px 20px;
+}
+.createquiz{
+    padding: 6px 20px;
+    background-color: #66fa03;
+    color: #fff !important;
+    font-size: 18px !important;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  .createquiz i{
+    padding-right: 5px;
+  }
+
+  .backpage{
+    padding: 6px 20px;
+    background-color: #bf2424;
+    color: #fff !important;
+    font-size: 18px !important;
+    float: right;
+    cursor: pointer;
+  }
+  .backpage i{
+    padding-left: 5px;
+    float: right;
+  }  
+  hr {
+    border-bottom: 1.5px solid #333;
+    border-top: 0 none;
+    padding: 0;
+  }
+  .questionpoolwrap{
+    padding:10px 10px;
+    border: #333 1px;
+    background-color: #666;
+    /* color: #fff; */
+    width: auto;
+    height: auto;
+  }
+  .questionpoolname{
+    padding: 5px 10px;
+    display: block;
+    width: auto;
+    float: left;
+    color: #fff;
+    background-color: #666;
+    cursor: pointer;
+  }
+  .input-group
+{
+	height: 50px;
+}
+.input-group input
+{
+  margin-top: 4px;
+	height: 46px;
+}
+
+.input-group-text
+{
+	height:40px;
+	width: 40px;
+	cursor: pointer;
+}
+.example-section {
+  /* margin: 12px 0; */
+  display: block;
+  float: left;
+}
+
+.example-margin {
+  margin: 0 12px;
+}
+.createquiz-1{
+  padding: 15px 20px;
+  background-color: #66fa03;
+  color: #fff !important;
+  font-size: 18px !important;
+  margin-left: 5px;
+  cursor: pointer;
+  height: 54px;
+}
+.createquiz-1 i{
+  padding-right: 5px;
+}
