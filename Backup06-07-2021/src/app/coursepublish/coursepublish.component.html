@@ -1,0 +1,58 @@
+<main class="login-body" data-vide-bg="assets/img/login-bg">
+    <form class="font-login">
+        <video class="videoipin" playsinline="playsinline" autoplay="autoplay" muted="true" loop="loop">
+            <source src=".../../assets/img/login-bg.mp4" type="video/mp4">
+        </video>
+        <div class="login-form loginform-Custom">
+            <div class="logo-login">
+                <a routerLink=""><img src="/assets/img/logo/loder.png" alt=""></a>
+            </div>
+            <h2>Course Infomation</h2>
+            <form (ngSubmit)="createCourse()" #f="ngForm">
+                <div class="form-input-CreateCourse form-input">
+                    <label for="name">CourseName</label>
+                    <input [(ngModel)]="CourseName" [ngModelOptions]="{standalone: true}" type="text" name="name"
+                        placeholder="Course Name">
+                </div>
+                <div class="form-input form-input">
+                    <label for="name">Price</label>
+                    <input [(ngModel)]="Price" [ngModelOptions]="{standalone: true}" type="number" name="text"
+                        placeholder="Price">
+                </div>
+                <div class="form-input-CreateCourse form-input">
+                    <label for="name">Thumbnail Image</label>
+                    <input type="file" id="file" accept="image/*" (change)="handleFileInput($event.target.files)">
+                </div>
+                <div class="form-input-CreateCourse form-input">
+                    <label for="name" class="label">Hastag</label>
+                    <select [(ngModel)]="CourseHastag" [ngModelOptions]="{standalone: true}">
+                        <option *ngFor="let hastag of hastags" [value]="hastag">
+                            {{hastag}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-input-CreateCourse form-input">
+                    <label for="name" class="label">Level</label>
+                    <select [(ngModel)]="CourseLevel" [ngModelOptions]="{standalone: true}">
+                        <option *ngFor="let level of levels" [value]="level">
+                            {{level}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-input-CreateCourse form-input">
+                    <label for="name">Course Duration</label>
+                    <input [(ngModel)]="CourseDuration" [ngModelOptions]="{standalone: true}" type="text" name="text"
+                        placeholder="Course Duration">
+                </div>
+                <div class="form-input-CreateCourse form-input">
+                    <label for="description">Course Description</label>
+                    <input [(ngModel)]="Description" [ngModelOptions]="{standalone: true}" type="text"
+                        name="description" placeholder="Course Description">
+                </div>
+                <div class="form-input-CreateCourse pt-20 form-input">
+                    <input type="submit" name="submit" value="Register Course">
+                </div>
+            </form>
+        </div>
+    </form>
+</main>

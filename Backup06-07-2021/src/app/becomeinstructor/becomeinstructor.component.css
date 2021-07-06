@@ -1,0 +1,141 @@
+/* General Styles */
+.btn {
+    padding: 0.75rem 2rem;
+    background-color: red;
+}
+.btn:hover{
+    background-color: sandybrown;
+}
+
+.btn1.btn-with-icon {
+    margin: 0 0.2rem;
+    padding: 0.5rem;
+    width: 40px;
+}
+
+/* Navbar */
+.navbar-container {
+    background-color: #292c47;
+}
+
+.navbar {
+    border: none !important;
+}
+.txt1{
+    color: #fff;
+    font-size: 40px;
+    
+}
+.txt2{
+    color: #000;
+    font-size: 40px;
+    
+}
+.navbar-brand img {
+    height: 20px;
+}
+.lead
+{
+    color: #fff;
+    font-size: 30px;
+    padding: 20px 0px;
+}
+.lead1
+{
+    color: #000;
+    font-size: 30px;
+    padding: 20px 0px;
+    line-height: 40px;
+}
+.navbar-toggler {
+    background-color: #dc3545;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #bbb;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+/* Header */
+.img1 {
+    background-image: url('../../assets/img/becomeinstructorbanner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    padding-top: 10rem;
+}
+.img2 {
+    background-image: url('../../assets/img/becomeinstructorbanner(1).jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 300px;
+    
+}
+
+/* Projects */
+.project-container {
+    overflow: hidden;
+}
+
+.project {
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    min-height: 300px;
+    transition: transform 0.4s ease-in-out;
+}
+
+.project:hover {
+    transform: scale(1.2);
+}
+
+.project .overlay {
+    align-items: center;
+    background-color: #dc3545;
+    color: white;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    transition: opacity 0.4s ease-in-out;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.project:hover .overlay {
+    opacity: 0.9;
+}
+
+.pre-footer {
+    background-color: #333659;
+}
+
+footer {
+    background-color: #2b2e4a;
+}
+
+footer .text-muted,
+.pre-footer .text-muted {
+    color: #bbb !important;
+}
+
+footer p,
+.pre-footer p {
+    margin: 0;
+}
