@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="header">
+        <a class="createquiz" (click)="openQuestionpoolDialog()"><i class="fa fa-plus-circle"></i>Create Questionpool</a>
+        <a class="createquiz" (click)="goToExamPage()"><i class="fa fa-list"></i>Create Exam</a>
+        <a class="backpage" (click)="back()"><i class="fa fa-arrow-circle-left"></i>Back to Coursepreview</a>
+        <hr>
+    </div>
+    <div class="row">
+    <div class="col-lg-12 mb-20" style="padding-left: 20px;">
+        <div class="input-group">                                                                       
+            <input [(ngModel)]="namesearch" name= "search" class="form-control" placeholder="Questionpool Name" type="text" style="font-size: 20px;color: #666;" (ngModelChange)="onChange($event,'name')">
+            <mat-form-field appearance="fill" style="margin-left: 10px;">
+                <mat-label>Select hastag</mat-label>
+                <mat-select [(ngModel)]="hastag" (ngModelChange)="onChange($event,'hastag')">
+                  <mat-option value="">None</mat-option>
+                  <mat-option *ngFor = "let hastags of questionpoolhastags" [value]="hastags">{{hastags}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="fill" style="margin-left: 10px;">
+                <mat-label>Date Sort</mat-label>
+                <mat-select [(ngModel)]="dateSort" (ngModelChange)="onChange($event,'date')">
+                  <mat-option value="2">Date Increasement</mat-option>
+                  <mat-option value="1">Date Descreasement</mat-option>
+                  <mat-option value="2">None</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="createquiz-1">
+              <a  (click)="filter()"><i class="fa fa-search"></i>Filter Questionpool</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="quetstionpoollist" *ngIf="questionpoolList.length > 0">
+        <div *ngFor="let questionpool of questionpoolList" >
+            <p *ngIf="questionpool.isActive" style ="margin:10px !important;" class="questionpoolname" (click)="goToQuestionpooldetail(questionpool.questionpoolId)" [matTooltip]="questionpool.hastag">
+                <span><i class="fa fa-folder-open" style="color: #fff;"></i></span> {{questionpool.questionpoolName}}
+            </p>  
+            <p *ngIf="!questionpool.isActive" style ="margin:10px !important;" class="questionpoolname" (click)="deactiveQuestionpool(questionpool)">
+                <span><i *ngIf="!questionpool.isActive" class="fa fa-ban" style="color: #fff;"></i>
+                </span> {{questionpool.questionpoolName}}
+            </p>      
+        </div>
+    </div>
+</div>

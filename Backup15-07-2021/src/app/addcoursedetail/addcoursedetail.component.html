@@ -1,0 +1,176 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-2">
+      <div class="button button-primary" (click)="openTopicDialog()">Add topic</div>
+    </div>
+    <div class="col-lg-2">
+      <div class="button button-primary" (click)="openSubtopicDialog()">Add subtopic</div>
+    </div>
+    <div class="col-lg-2">
+      <div class="button button-primary" (click)="openLessonDialog()">Add lesson</div>
+    </div>
+    <div class="col-lg-2">
+      <div class="button button-primary" (click)="publish()">publish</div>
+    </div>
+    <div class="col-lg-2">
+      <div class="button button-primary" (click)="cancel()">Cancel</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h2 class="tdtopic">Preview Course Detail (Before Recharge)</h2>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="container">
+      <h2 class="tdchinh">{{CourseName}} <a class="createquiz" (click)="createQuestionpool()"><i class="fa fa-plus-circle"></i>Create Questionpool</a><i class="fa fa-edit edit" style="cursor: pointer;" (click)="openDialog()"></i></h2>
+      </div>
+      <h2 class="tdtopic">Start Date: {{StartDate}}</h2>
+      <h2 class="tdtopic">Main Topic</h2>
+      <div id="accordion" class="panel panel-group" role="tablist" *ngFor="let topic of topicdataset; let i = index">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="collapseListGroupHeading{{topic.topicId}}">
+            <h4 class="panel-title">
+              <a class="topictittle" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseListGroup{{i}}" aria-expanded="true" aria-controls="collapseListGroup{{i}}"
+                (click)="getsubtopics(topic.topicId)" ng-repeat-start="topic in topicdataset | unique:'description'">
+                Topic {{i+1}} : {{topic.topicTitle}}</a>
+              <i class="fa fa-lock edittopic" *ngIf="topic.isLocked == true" (click)="changeLockedState(topic,i)"></i>
+              <i class="fa fa-unlock-alt edittopic" *ngIf="topic.isLocked == false" (click)="changeLockedState(topic,i)"></i>
+              <i class="fa fa-edit edittopic" (click)="openTopicDialog1(topic)"></i>
+              <i class="fa fa-trash deletetopic" (click)="deleteTopic(topic.topicId)"></i>
+            </h4>
+          </div>
+          <div id="collapseListGroup{{i}}" class="panel-collapse collapse" role="tabpanel"
+            aria-labelledby="collapseListGroupHeading{{topic.topicId}}" aria-expanded="true" ng-repeat-end>
+            <ul class="list-group" *ngFor="let subtopic of subtopicdataset; let k = index">
+              <li class="list-group-item" ng-repeat="topic in topicdataset" *ngIf="subtopic.topicId == topic.topicId">
+                Subtopic {{k+1}}: {{subtopic.subTopicTitle}}
+                <i class="fa fa-edit edittopic" (click)="openSubtopicDialog1(subtopic)"></i>
+                <i class="fa fa-trash deletetopic" (click)="deleteSubtopic(subtopic.subTopicId)"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="row">
+          <i class="fa fa-check"></i>
+          <h4 class="muctieu">
+            Internet-connected computer (Windows, Ubuntu or MacOS)</h4>
+        </div>
+        <div class="row">
+          <i class="fa fa-check"></i>
+          <h4 class="muctieu">
+            High sense of self-study, high responsibility, persistence, not afraid of difficulties</h4>
+        </div>
+        <div class="row">
+          <i class="fa fa-check"></i>
+          <h4 class="muctieu">
+            Do not rush, calmly study, do homework after each lesson</h4>
+        </div>
+        <div class="row">
+          <i class="fa fa-check"></i>
+          <h4 class="muctieu">
+            You don't need to know anything more, in the course I'll show you what you need to know</h4>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <img class="card-img-top"
+          src="https://images.unsplash.com/photo-1445452916036-9022dfd33aa8?auto=format&fit=crop&w=1053&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D">
+        <p class="card-top-text">{{CourseName}}</p>
+        <div class="card-block">
+          <p class="card-text">{{Description}}</p>
+        </div>
+        <div class="card-block course-info">
+          <div class="card-course-info">
+            <figure *ngIf="!avatarPath">
+              <img src="assets/img/userplaceholder.png">
+            </figure>
+            <figure *ngIf="avatarPath">
+              <img [src]="loadimage(avatarPath)" style="width:50px;height:50px;">
+            </figure>
+            <p class="card-text tutor-name">{{InstructorName}}</p>
+            <span class="tutor-description">INSTRUCTOR</span>
+          </div>
+          <div class="card-course-info">
+            <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{CourseDuration}}</span>
+            <span><i class="fa fa-book" aria-hidden="true"></i>
+              {{count}} lessons</span>
+          </div>
+        </div>
+        <div class="card-block">
+          <div class="price"><i class="fa fa-money"></i><span
+              style="padding-left: 15px;padding-right: 5px;">{{Price}}</span>USD</div>
+        </div>
+        <div class="card-bottom card-block">
+          <a class="btn" style="border-radius: 30px;">Enroll</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container" *ngIf="lessondataset.length > 0">
+  <h2 class="tdtopic">Preview Lesson Detail (After Recharge)</h2>
+  <div class="row">
+    <div class="col-md-4 mb-20">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+          *ngFor="let topic of topicdataset; let i = index" [style.background]="topic.isLocked ? '#666' : null">
+          <mat-expansion-panel-header *ngIf="topic.isLocked">
+            <mat-panel-title [style.color]="topic.isLocked ? '#333' : null">
+              Topic {{i+1}}: {{topic.topicTitle}} 
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="getsubtopics(topic.topicId)" *ngIf="!topic.isLocked">
+            <mat-panel-title [style.color]="topic.isLocked ? '#333' : null">
+              Topic {{i+1}}: {{topic.topicTitle}} 
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p *ngFor="let subtopic of subtopicdataset,let i = index" [ngStyle]="{'background':topic.isLocked ? '#666' : null,'color':topic.isLocked ? '#333' : null}" (click)="showdetail(subtopic.subTopicId)">Subtopic {{i+1}}: {{subtopic.subTopicTitle}}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-md-8">
+      <div class="container-fluid" *ngIf="show">
+        <div class="resize-container" #container *ngFor="let video of videoUrls,let i=index">
+          <ngx-y2-player #video [videoUrl]="video" [playerOptions]="playerOptions" [container]="container">
+          </ngx-y2-player>
+          <i class="fa fa-edit edittopic" (click)="openLessonDialog1(lessondataset[i])"></i>
+          <i class="fa fa-trash deletetopic" (click)="deleteLesson(lessondataset[i].lessonId)"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="quizCodeList.length > 0">
+  <div id="content">
+    <div id="main-content">
+      <mat-tab-group>
+        <mat-tab *ngFor="let quizCode of quizCodeList,let i = index" label="{{quizName[i]}}">
+          <div class="questionpoolwrap">
+              <div class="questionpoolwrapbackground">
+                  <div class="questionpoolboder">
+                      <p style="color: #fff;"><span><i class="fa fa-list" style="float: left;padding-right: 5px ;color: #fff;"></i></span> {{quizCodeNumber[i]}} Question</p>
+                      <span><i class="fa fa-edit" style="float: left;padding: 10px 10px ;color: #fff;cursor: pointer;" (click)="goToExamManagement(quizCodeList[i])"></i></span>
+                      <span><i class="fa fa-lock" *ngIf="quizIsActive[i]" style="float: left;padding: 10px 10px ;color: #fff;cursor: pointer;" (click)="blockStateChange(quizCodeList[i]);quizIsActive[i] = !quizIsActive[i]"></i>
+                      <i class="fa fa-unlock-alt" *ngIf="!quizIsActive[i]" style="float: left;padding: 10px 10px ;color: #fff;cursor: pointer;" (click)="blockStateChange(quizCodeList[i]);quizIsActive[i] = !quizIsActive[i]"></i>
+                      </span>
+                  </div>
+              </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,44 @@
+<div class="pop-cart-item" *ngFor="let cart of cartList;let i = index">
+    <div class="pop-cart-item-image-wrapper">
+        <a class="pop-cart-item-image" title={{cart.course.courseName}}>
+        <img *ngIf="cart.course.thumbnailImage != null" [src]="loadimage(cart.course.thumbnailImage)" class="title-image" style="width:50px;height:50px;">
+        <img *ngIf="cart.course.thumbnailImage == null" src="assets/img/productplaceholder.jpg" class="title-image" style="width:50px;height:50px;">
+        </a>
+    </div>
+    <div class="pop-cart-item-details">
+        <h1 class="pop-cart-item-title">
+            <a href="">{{cart.course.courseName}}</a>
+        </h1>
+        <span class="pop-cart-item-brand">
+            {{cart.course.level}}
+        </span>
+        <span class="pop-cart-item-price">
+            {{cart.course.price | currency :'USD':true }}
+        </span>
+    </div>
+    <div class="pop-cart-remove-wrapper">
+        <span (click)="removeFromCart(i)" class="cart-remove">X</span>
+    </div>
+</div>
+
+<div *ngIf="cartList.length > 0">
+    <div class="cart-total">
+        <div class="cart-total-item">
+        <span class="cart-total-label">
+            Total
+        </span>
+        <span class="cart-total-value">
+            {{totalPrice | currency :'USD':true }}
+        </span>
+        </div>
+    </div>
+    <footer class="quick-cart-footer">
+        <div class="quick-cart-footer-cell">
+            <div class="button button-secondary button-wide button-large" routerLink="cart" (click)="cartService.toggleCart()">View Cart</div>
+        </div>
+    </footer>
+</div>
+<div *ngIf="cartList.length == 0">
+    <strong class="cart-empty">Your cart is empty</strong>
+</div>
+
