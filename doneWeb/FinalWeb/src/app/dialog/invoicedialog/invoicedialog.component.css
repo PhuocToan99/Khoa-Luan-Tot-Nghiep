@@ -1,0 +1,103 @@
+#invoice{
+    position: relative;
+    /* top: -290px; */
+    margin: 0 auto;
+    width: 700px;
+    background: #FFF;
+  }
+  
+  [id*='invoice-']{ /* Targets all id with 'col-' */
+    /* border-bottom: 1px solid #EEE; */
+    padding: 30px;
+  }
+  
+  #invoice-top{min-height: 120px;}
+  #invoice-mid{min-height: 120px;}
+  #invoice-bot{ min-height: 250px;}
+  
+  .logo{
+    float: left;
+     height: 60px;
+     width: 60px;
+     /* background: url(http://michaeltruong.ca/images/logo1.png) no-repeat; */
+     background-size: 60px 60px;
+     position: unset;
+     margin: 0px 0px;
+     border-radius: 50px;
+  }
+  .info{
+    display: block;
+    float:left;
+    margin-left: 10px !important;
+  }
+  .title{
+    float: right;
+  }
+  .title p{text-align: right;}
+  #project{margin-left: 52%;}
+  table{
+    width: 100%;
+    border-collapse: collapse;
+  }
+  td{
+    padding: 5px 0 5px 15px;
+    border: 1px solid #EEE
+  }
+  .tabletitle{
+    padding: 5px;
+    background: #EEE;
+  }
+  .service{border: 1px solid #EEE;}
+  .item{width: 50%;}
+  .itemtext{font-size: .9em;}
+  
+  #legalcopy{
+    margin-top: 30px;
+  }
+  form{
+    float:right;
+    margin-top: 30px;
+    text-align: right;
+  }
+  
+  
+  .effect2
+  {
+    position: relative;
+  }
+  .effect2:before, .effect2:after
+  {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width:300px;
+    background: #777;
+    -webkit-box-shadow: 0 15px 10px #777;
+    -moz-box-shadow: 0 15px 10px #777;
+    box-shadow: 0 15px 10px #777;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    transform: rotate(-3deg);
+  }
+  .effect2:after
+  {
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    transform: rotate(3deg);
+    right: 10px;
+    left: auto;
+  }
+  
+  
+  
+  .legal{
+    width:70%;
+  }

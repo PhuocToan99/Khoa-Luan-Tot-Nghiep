@@ -1,0 +1,30 @@
+<mat-dialog-content class="mat-typography">
+<div class="fileInputProfileWrap">
+    <input type="file" (change)="fileChangeEvent($event)" accept="image/*" class="fileInputProfile" *ngIf="data.imageURL.length == 0 && !isImageSaved" />
+    <div class="img-space">
+        <ng-container *ngIf="data.imageURL.length > 0">
+            <img [src]="data.imageURL" (error)="updateUrl($event)"/>
+        </ng-container>
+        <ng-container *ngIf="isImageSaved; else elseTemplate">
+            <img [src]="cardImageBase64" *ngIf="cardImageBase64.length > 0"/>
+            <img [src]="data.imageOption" *ngIf="(data.imageOption != null || data.imageOption != undefined) && cardImageBase64.length == 0"/>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <img src="../../assets/img/addimageplaceholder.png" class="img-responsive" *ngIf="data.imageURL.length == 0">
+        </ng-template>
+    </div>
+</div>
+</mat-dialog-content>
+<div mat-dialog-content *ngIf="isShow == true && data.imageURL.length == 0">
+    <p class="text"> or </p>
+    <mat-form-field appearance="fill">
+            <mat-label>Image URL</mat-label>
+            <input matInput [(ngModel)]="data.imageURL" />
+            <mat-icon matSuffix> insert_link</mat-icon>
+            <mat-hint *ngIf="errorImage == true">Invalid image URL</mat-hint>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button class="button button-success" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+    <button class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved || data.imageURL.length > 0">Remove <mat-icon matSuffix>delete</mat-icon></button>
+</div>
