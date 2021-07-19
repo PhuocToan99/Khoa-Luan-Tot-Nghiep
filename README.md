@@ -17,6 +17,6 @@
  - [Visual Studio](https://visualstudio.microsoft.com/downloads/)
  - [MS SQLServer](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
  - [Android Studio](https://developer.android.com/studio)
- - [Code Editor(Visual Studio Code,Notepad++,Sublime Text,etc)]
+ - [Code Editor(Visual Studio Code,Notepad++,Sublime Text,etc)](https://codelearn.io/sharing/top-10-code-editor-chat-cho-coder-nam-2020)
  
  
