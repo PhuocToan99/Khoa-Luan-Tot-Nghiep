@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Filter Search</h1>
+<div mat-dialog-content>
+    <mat-form-field style="width: 100%;">
+        <input type="text" [(ngModel)]="data.namesearch" placeholder="Course Name" matInput [formControl]="myControl">
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Select hastag</mat-label>
+        <mat-select [(ngModel)]="data.hastag" (ngModelChange)="onChange($event,'hastag')">
+            <mat-option value="">None</mat-option>
+            <mat-option *ngFor="let hastags of coursehastags" [value]="hastags">{{hastags}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Select Level</mat-label>
+        <mat-select [(ngModel)]="data.level" (ngModelChange)="onChange($event,'level')">
+            <mat-option value="">None</mat-option>
+            <mat-option *ngFor="let levels of courselevels" [value]="levels">{{levels}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+        <mat-label>Price Range</mat-label>
+        <mat-slider class="form-control" thumbLabel [(ngModel)]="data.price" [displayWith]="formatLabel" tickInterval="5" step="5" min="0"
+            max="300" aria-label="units" (ngModelChange)="onChange($event,'price')"></mat-slider>
+</div>
+<div mat-dialog-actions>
+    <button class="button button-search"  [mat-dialog-close]="data" cdkFocusInitial (click)="onSearch()">Search</button>
+    <button class="button button-cancel"  [mat-dialog-close]="data" cdkFocusInitial>Cancel</button>
+</div>
+

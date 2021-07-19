@@ -1,0 +1,70 @@
+<main class="page">
+  <section class="shopping-cart dark">
+    <div class="container">
+         <div class="block-heading">
+           <h2 class="card-title">Cart detail 
+          </h2>
+         </div>
+         <div class="content">
+        <div class="row">
+          
+          <div *ngIf="cartList.length > 0" class="col-md-12 col-lg-8">
+            <div class="row" >
+              <i class="icon1 fa fa-angle-double-left mr-1 mt-2"></i>
+              <a routerLink="/category"><p class="backto">Back to category</p></a>
+            </div>
+            <div *ngFor="let cart of cartList;let i = index" class="items">
+              <div class="product">
+                <div class="row">
+                  <div class="col-md-3">
+                    <img class="img-fluid mx-auto d-block image" *ngIf="cart.course.thumbnailImage != null" [src]="loadimage(cart.course.thumbnailImage)">
+                    <img class="img-fluid mx-auto d-block image" *ngIf="cart.course.thumbnailImage == null" src="assets/img/productplaceholder.jpg">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="info">
+                      <div class="row">
+                        <div class="col-md-5 product-name">
+                          
+                          <div class="product-name">
+                            <div class="product-info">
+                              <div>Tên khóa học: <span class="value">{{cart.course.courseName}}</span></div>
+                              <div>Tag: <span class="value">{{cart.course.hastag}}</span></div>
+                              <div>Level: <span class="value">{{cart.course.level}}</span></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4 quantity">
+                          <label for="quantity">Số lượng</label>
+                          <input id="quantity" type="number" value ="1" class="form-control quantity-input" min="1" readonly>
+                        </div>
+                        <div class="col-md-2 price">
+                          <span>{{cart.quantity*cart.course.price | currency :'USD':true }}</span>
+                        </div>
+                        <div class="col-md-1 ">
+                          <i class="fa fa-close iconx" (click)="removeFromCart(i)"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-12 col-lg-8" *ngIf="cartList.length == 0">
+              <h4>Your cart is empty.</h4>
+              <a routerLink="/category"><p>Go shopping</p></a>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <div class="summary">
+              <h3>THANH TOÁN</h3>
+              <div class="summary-item clearfix"><span class="text">Số lượng : </span><span class="price1">{{cartList.length}}</span></div>
+              <div class="summary-item clearfix"><span class="text">Tổng tiền : </span><span class="price1">${{totalPrice}}</span></div>
+              <div class="button button-success"  (click)="balancepayment()">Pay By Account Balance</div>
+              <div #paypal></div>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+ </section>
+</main>

@@ -1,0 +1,99 @@
+  <mat-grid-list cols="2" rowHeight="100%">
+    <mat-grid-tile>
+      <div mat-dialog-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Write your question here</mat-label>
+        <textarea matInput [(ngModel)]="data.question"></textarea>
+      </mat-form-field>   
+      <label for="upload-photo" (click)="openImageUploadDialog(0)"><span><i class ="fa fa-picture-o"></i></span></label>
+      <mat-form-field appearance="fill" *ngIf="data.imageURLOption1.length == 0 && data.imageOption1 == undefined">
+        <mat-label>Answer option 1</mat-label>
+        <span *ngIf="data.isCorrect == 1" class="correct"><i class ="fa fa-check-square-o"></i></span>
+        <input class ="input-true" matInput [(ngModel)]="data.option1">
+      </mat-form-field>
+      <ng-container *ngIf="data.imageURLOption1.length > 0 || (data.imageOption1 != undefined && loadFileImage(data.imageOption1,1) != undefined)">
+        <img *ngIf="data.imageURLOption1.length > 0" [src]="data.imageURLOption1" style="width:25px;height:25px; display: block;">
+        <img *ngIf="data.imageOption1 != undefined && loadFileImage(data.imageOption1,1) != undefined" [src]="cardImageBase64Image1" style="width:25px;height:25px; display: block;">
+      </ng-container>
+      <label for="upload-photo" (click)="openImageUploadDialog(1)"><span><i class ="fa fa-picture-o"></i></span></label>
+
+      <mat-form-field appearance="fill" *ngIf="data.imageURLOption2.length == 0 && data.imageOption2 == undefined">
+        <mat-label>Answer option 2</mat-label>
+        <span *ngIf="data.isCorrect == 2" class="correct"><i class ="fa fa-check-square-o"></i></span>
+        <input class ="input-true" matInput [(ngModel)]="data.option2">
+      </mat-form-field>
+      <mat-form-field appearance="fill" *ngIf="data.imageURLOption2.length > 0 || (data.imageOption2 != undefined && loadFileImage(data.imageOption2,2) != undefined)">
+        <mat-label>Answer option 2</mat-label>
+        <img *ngIf="data.imageURLOption2.length > 0" [src]="data.imageURLOption2" style="width:25px;height:25px; display: block;">
+        <img *ngIf="data.imageOption2 != undefined && loadFileImage(data.imageOption2,2) != undefined" [src]="cardImageBase64Image2" style="width:25px;height:25px; display: block;">
+      </mat-form-field>
+      <label for="upload-photo" (click)="openImageUploadDialog(2)"><span><i class ="fa fa-picture-o"></i></span></label>
+      <mat-form-field appearance="fill">
+        <mat-label>Answer option 3</mat-label>
+        <span *ngIf="data.isCorrect == 3" class="correct"><i class ="fa fa-check-square-o"></i></span>
+        <input matInput [(ngModel)]="data.option3">
+      </mat-form-field>
+      <label for="upload-photo" (click)="openImageUploadDialog(3)"><span><i class ="fa fa-picture-o"></i></span></label>
+      <mat-form-field appearance="fill">
+        <mat-label>Answer option 4</mat-label>
+        <span *ngIf="data.isCorrect == 4" class="correct"><i class ="fa fa-check-square-o"></i></span>
+        <input matInput [(ngModel)]="data.option4">
+      </mat-form-field>
+      <label for="upload-photo" (click)="openImageUploadDialog(4)"><span><i class ="fa fa-picture-o"></i></span></label>
+      <mat-form-field>
+        <mat-label>Select correct answer</mat-label>
+        <mat-select [(ngModel)]="data.isCorrect">
+          <mat-option value="1">Answer 1</mat-option>
+          <mat-option value="2">Answer 2</mat-option>
+          <mat-option value="3">Answer 3</mat-option>
+          <mat-option value="4">Answer 4</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div mat-dialog-actions>
+        <button class="button button-success" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+        <button class="button button-cancel" mat-button (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class = "container" *ngIf="check() == false">
+        <img *ngIf="data.imageURLQuestion.length > 0" [src]="data.imageURLQuestion" style="width:200px;height:150px; margin: 3px auto; display: block;">
+        <img *ngIf="data.imageQuestion != undefined && loadFileImage(data.imageQuestion,0) != undefined" [src]="cardImageBase64ImageQuestion" style="width:200px;height:150px; margin: 3px auto; display: block;">
+        <img *ngIf="cardImageBase64ImageQuestion != undefined && data.imageQuestionBase64 != undefined" [src]="cardImageBase64ImageQuestion" style="width:200px;height:150px; margin: 3px auto; display: block;">
+        <p class="showquestion" *ngIf ="checkQuestionImage() == false">{{data.question}}</p>
+        <p class="showquestionPicture" *ngIf ="checkQuestionImage() == true">{{data.question}}</p>
+        <div class="question1"><p class="showanswer" *ngIf ="data.option1.length > 0">{{data.option1}}</p></div>
+        <div class="question2"><p class="showanswer" *ngIf ="data.option2.length > 0">{{data.option2}}</p></div>
+        <div class="question3"><p class="showanswer" *ngIf ="data.option3.length > 0">{{data.option3}}</p></div>
+        <div class="question4"><p class="showanswer" *ngIf ="data.option4.length > 0">{{data.option4}}</p></div>
+      </div>
+      <div class = "container" *ngIf="check() == true">
+        <img *ngIf="data.imageURLQuestion.length > 0" [src]="data.imageURLQuestion" style="width:200px;height:150px; margin: 3px auto; display: block;">
+        <img *ngIf="data.imageQuestion != undefined && loadFileImage(data.imageQuestion,0) != undefined" [src]="cardImageBase64ImageQuestion" style="width:200px;height:150px; margin: 3px auto; display: block;">
+        <p class="showquestion" *ngIf ="checkQuestionImage() == false">{{data.question}}</p>
+        <p class="showquestionPicture" *ngIf ="checkQuestionImage() == true">{{data.question}}</p>
+        <div class="question1Picture">
+          <p class="showanswer" *ngIf ="data.option1.length > 0 && data.imageOption1 == undefined && data.imageURLOption1.length == 0">{{data.option1}}</p>
+          <img *ngIf="data.imageURLOption1.length > 0" [src]="data.imageURLOption1" style="width:100%;height:100%; display: block;">
+          <img *ngIf="data.imageOption1 != undefined && loadFileImage(data.imageOption1,1) != undefined" [src]="cardImageBase64Image1" style="width:100%;height:100%; display: block;">
+        </div>
+        <div class="question2Picture">
+          <p class="showanswerPicture" *ngIf ="data.option2.length > 0 && data.imageOption2 == undefined && data.imageURLOption2.length == 0">{{data.option2}}</p>
+          <img *ngIf="data.imageURLOption2.length > 0" [src]="data.imageURLOption2" style="width:100%;height:100%; display: block;">
+          <img *ngIf="data.imageOption2 != undefined && loadFileImage(data.imageOption2,2) != undefined" [src]="cardImageBase64Image2" style="width:100%;height:100%; display: block;">
+        </div>
+        <div class="question3Picture">
+          <p class="showanswer" *ngIf ="data.option3.length > 0 && data.imageOption3 == undefined && data.imageURLOption3.length == 0">{{data.option3}}</p>
+          <img *ngIf="data.imageURLOption3.length > 0" [src]="data.imageURLOption3" style="width:100%;height:100%; display: block;">
+          <img *ngIf="data.imageOption3 != undefined && loadFileImage(data.imageOption3,3) != undefined" [src]="cardImageBase64Image3" style="width:100%;height:100%; display: block;">
+        </div>
+        <div class="question4Picture">
+          <p class="showanswer" *ngIf ="data.option4.length > 0 && data.imageOption4 == undefined && data.imageURLOption4.length == 0">{{data.option4}}</p>
+          <img *ngIf="data.imageURLOption4.length > 0" [src]="data.imageURLOption4" style="width:100%;height:100%; display: block;">
+          <img *ngIf="data.imageOption4 != undefined && loadFileImage(data.imageOption4,4) != undefined" [src]="cardImageBase64Image4" style="width:100%;height:100%; display: block;">
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+ 
