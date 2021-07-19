@@ -1,4 +1,4 @@
-## Khoa Luan Tot Nghiep
+## Khóa Luận Tốt Nghiệp
 # Đề tài: Xây dựng Website và ứng dụng Mobile dạy học trực tuyến
 ### Sinh viên thực hiện:
  - Trần Ngọc Hùng - 17110157
@@ -13,6 +13,10 @@
  - [NodeJS](https://nodejs.org/en/)
  - [React Native CLI](https://reactnative.dev/docs/environment-setup)
  - [Nodemon](https://nodemon.io/)
-
+### Ứng dụng cần cài đặt
+ - [Visual Studio](https://visualstudio.microsoft.com/downloads/)
+ - [MS SQLServer](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+ - [Android Studio](https://developer.android.com/studio)
+ - [Code Editor(Visual Studio Code,Notepad++,Sublime Text,etc)]
  
  
