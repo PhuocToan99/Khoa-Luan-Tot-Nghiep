@@ -26,6 +26,6 @@
   }```
  - với Server là tên Server name tại SSMS, thực hiện lệnh ```EntityFrameworkCore\Add-Migration``` và ```EntityFrameworkCore\Update-Database``` để cập nhật cơ sở dữ liệu.
  - Trong quá trình cài đặt Angular CLI nếu gặp vấn đề tương tự như sau:
- - <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F47670693%2Fnot-able-to-install-angular-cli-using-npm&psig=AOvVaw1bhckdS4qt7uk2OXsj3w1c&ust=1628049315884000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKjh7Lv6k_ICFQAAAAAdAAAAABAP" with=250 height=250>
+ - <img src="https://i.stack.imgur.com/XE4VY.png" with=250 height=250>
  - có thể tham khảo link [Stackoverflow](https://stackoverflow.com/questions/47670693/not-able-to-install-angular-cli-using-npm) để khắc phục
  
