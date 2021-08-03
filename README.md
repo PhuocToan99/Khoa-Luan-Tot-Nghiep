@@ -18,5 +18,15 @@
  - [MS SQLServer](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
  - [Android Studio](https://developer.android.com/studio)
  - [Code Editor(Visual Studio Code,Notepad++,Sublime Text,etc)](https://codelearn.io/sharing/top-10-code-editor-chat-cho-coder-nam-2020)
- 
+### Lưu ý cài đặt
+ - Cần cài đặt **Nodejs** và **npm** đầu tiên để install các package cho project, kiểm tra lần lượt các dịch vụ này thông qua các lệnh ```node -v```, ```npm -v``` tại cửa sổ command prompt (hoặc PowerShell)
+ - Với các project Angular và React Native khi mở lần đầu tiên cần sử dụng lệnh ```npm install``` để đảm bảo cài đặt đầy đủ dependencies, kiểm tra xem file nodemodule đã tồn tại hay chưa
+ - Backend cần chú ý thay đổi tại file **appsettings.json**:
+  ```"ConnectionStrings": {
+    "DatabaseConnection": "Server=DESKTOP-G5131V0\\TOANCHP;Database=CourseDB3;Trusted_Connection=True;MultipleActiveResultSets=True;"
+  }```
+ - với Server là tên Server name tại SSMS, thực hiện lệnh ```EntityFrameworkCore\Add-Migration``` và ```EntityFrameworkCore\Update-Database``` để cập nhật cơ sở dữ liệu.
+ - Trong quá trình cài đặt Angular CLI nếu gặp vấn đề tương tự như sau:
+ - <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F47670693%2Fnot-able-to-install-angular-cli-using-npm&psig=AOvVaw1bhckdS4qt7uk2OXsj3w1c&ust=1628049315884000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKjh7Lv6k_ICFQAAAAAdAAAAABAP" with=250 height=250>
+ - có thể tham khảo link [Stackoverflow](https://stackoverflow.com/questions/47670693/not-able-to-install-angular-cli-using-npm) để khắc phục
  
