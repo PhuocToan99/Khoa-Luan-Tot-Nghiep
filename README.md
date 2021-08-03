@@ -21,9 +21,8 @@
 ### Lưu ý cài đặt
  - Cần cài đặt **Nodejs** và **npm** đầu tiên để install các package cho project, kiểm tra lần lượt các dịch vụ này thông qua các lệnh ```node -v```, ```npm -v``` tại cửa sổ command prompt (hoặc PowerShell)
  - Với các project Angular và React Native khi mở lần đầu tiên cần sử dụng lệnh ```npm install``` để đảm bảo cài đặt đầy đủ dependencies, kiểm tra xem file nodemodule đã tồn tại hay chưa
- - Backend cần chú ý thay đổi tại file **appsettings.json**:
-  ```"ConnectionStrings": {
-    "DatabaseConnection": "Server=DESKTOP-G5131V0\\TOANCHP;Database=CourseDB3;Trusted_Connection=True;MultipleActiveResultSets=True;"
+ - Backend cần chú ý thay đổi tại file **appsettings.json**: ```"ConnectionStrings": {
+    "DatabaseConnection": "Server=(localhost);Database=CourseDB3;Trusted_Connection=True;MultipleActiveResultSets=True;"
   }```
  - với Server là tên Server name tại SSMS, thực hiện lệnh ```EntityFrameworkCore\Add-Migration``` và ```EntityFrameworkCore\Update-Database``` để cập nhật cơ sở dữ liệu.
  - Trong quá trình cài đặt Angular CLI nếu gặp vấn đề tương tự như sau:
