@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="header">
+        <a class="createquiz" (click)="openQuizDialog()"><i class="fa fa-check-square-o"></i>Create Question</a>
+        <label for="upload-filequiz"><i class="fa fa-folder-open"></i> Import From File</label>
+        <input id="upload-filequiz" type="file" (change)="onFileChangeQuiz($event)" accept=".xlsx" multiple="false" />
+        <a class="createquiz" style="background-color: #FF9F67;" (click)="openQuestionpoolDialog()"><i class="fa fa-edit"></i>Edit Questionpool</a>
+        <a class="backpage" (click)="back()"><i class="fa fa-arrow-circle-left"></i>Back to Questionpool Management</a>
+        <hr>
+        <h2 style="text-align: center;margin: 0px;font-size: 40px;">{{questionpool.questionpoolName}} 
+            <i *ngIf="questionpool.isActive" (click)="deactiveQuestionpool(questionpool.isActive);questionpool.isActive = !questionpool.isActive" class="fa fa-trash-o" style="color: red;float: right;cursor: pointer;"></i>
+            <i *ngIf="!questionpool.isActive" (click)="deactiveQuestionpool(questionpool.isActive);questionpool.isActive = !questionpool.isActive" class="fa fa-ban" style="color: red;float: right;cursor: pointer;"></i>
+        </h2>
+    </div>
+</div>
+<div class="container">
+<div class="quizzwrap" *ngFor="let quiz of quizlist, let i=index">
+    <div class="quizzheader">
+        <div class="quizicon">
+        <span><i class="fa fa-question"></i></span>
+        <h5>Question {{i+1}}</h5>
+        </div>
+        <span><i class="fa fa-edit" style="font-size: 20px; padding: 15px 15px;color: #66fa03;cursor: pointer;" (click)="editQuiz(quiz)"></i></span>
+        <i class="fa fa-trash" style="font-size: 20px; float: left; padding: 15px 15px;color: red;cursor: pointer;" (click)="deleteQuiz(quiz.quizId)"></i>
+    </div>
+    <h2>{{quiz.question}}</h2>
+    <hr>
+    <div class="answer">
+        <div class="row">
+            <ng-container *ngFor ="let choice of quiz.choices">
+            <div class="col-lg-6" *ngIf="choice.answer != null">
+                <div class="answerstring" > 
+                    <span  *ngIf="choice.isCorrect == false"><i class="fa fa-circle"></i><p class="answertext"> {{choice.answer}}</p></span>
+                    <span *ngIf="choice.isCorrect == true"><i class="fa fa-circle true"></i><p class="answertext"> {{choice.answer}}</p></span>
+                </div>
+            </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+</div>

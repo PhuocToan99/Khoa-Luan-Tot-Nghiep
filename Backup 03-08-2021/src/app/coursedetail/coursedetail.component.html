@@ -1,0 +1,57 @@
+<section class="slider-area slider-area2">
+  <div class="slider-active">
+    <!-- Single Slider -->
+    <div class="single-slider slider-height2">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-8 col-lg-11 col-md-12">
+            <div class="hero__caption hero__caption2">
+              <h1 data-animation="bounceIn" data-delay="0.2s">{{course.courseName}}</h1>
+              <!-- breadcrumb Start-->
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+                <li class="breadcrumb-item"><a routerLink="/coursedetail/{{id}}">Course detail</a></li>
+              </ol>
+              <!-- breadcrumb End -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+          *ngFor="let topic of topicdataset; let i = index" [style.background]="(topic.isLocked && !instructorFlag && !bought) ? '#666' : null">
+          <mat-expansion-panel-header (click)="buyalert()" *ngIf="topic.isLocked && !instructorFlag && !bought">
+            <mat-panel-title [style.color]="topic.isLocked ? '#fff' : null">
+              Topic {{i+1}}: {{topic.topicTitle}} 
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="getsubtopics(topic.topicId)" *ngIf="!topic.isLocked || instructorFlag || bought">
+            <mat-panel-title>
+              Topic {{i+1}}: {{topic.topicTitle}} 
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+            <ng-container *ngIf="!topic.isLocked || instructorFlag || bought">
+            <p *ngFor="let subtopic of subtopicdataset" (click)="showdetail(subtopic.subTopicId)" style="padding: 3px 20px;">
+            {{subtopic.subTopicTitle}}</p>
+            </ng-container>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-md-8" *ngIf="videoUrls.length > 0">
+      <div class="container-fluid">
+        <ng-container *ngFor="let video of videoUrls;let i = index">
+        <div class="resize-container" #container>
+          <ngx-y2-player #video [videoUrl]="video" [playerOptions]="playerOptions" [container]="container" (stateChange)="onStateChange($event,i)">
+          </ngx-y2-player>
+        </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+<section class="slider-area slider-area2">
+    <div class="slider-active">
+        <!-- Single Slider -->
+        <div class="single-slider slider-height2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-11 col-md-12">
+                        <div class="hero__caption hero__caption2">
+                            <h1 data-animation="bounceIn" data-delay="0.2s">Category</h1>
+                            <!-- breadcrumb Start-->
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+                                    <li class="breadcrumb-item"><a routerLink="/category">Category</a></li>
+                                </ol>
+                            <!-- breadcrumb End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  <div class="courses-area section-padding40 fix">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-8">
+                <div class="section-tittle text-center mb-55">
+                    <h2>Our featured courses</h2>
+                </div>
+            </div>
+            <div class="col-lg-8 mb-20 ">
+                <div class="input-group">                                                                       
+                    <form style="width: 100%;">
+                        <mat-form-field style="width: 70%;">
+                          <input type="text" [(ngModel)]="namesearch" placeholder="Search" matInput [formControl]="myControl" (keyup.enter)="onSearch('normal')">
+                        </mat-form-field>
+                        <a class="createquiz-1" (click)="updateState()"><i class="fa fa-search"></i>Advance Search</a>
+                      </form>
+                </div>
+            </div>
+        </div>
+        <h1 *ngIf="courseDataSet.length == 0" style="text-align: center;">No Result Found</h1>
+        <div class="row" *ngIf="courseDataSet.length > 0">
+            <div class="col-lg-4" *ngFor="let course of courseDataSet | paginate: { itemsPerPage: 9, currentPage: p };index as i">
+                <div class="properties properties2 mb-30">
+                    <div class="properties__card">
+                        <div class="properties__img overlay1" *ngIf="!course.course.thumbnailImage">
+                            <a href="#"><img src="assets/img/productplaceholder.jpg" alt=""></a>
+                        </div>
+                        <div class="properties__img overlay1" *ngIf="course.course.thumbnailImage">
+                            <a href="#"><img [src]="loadimage(course.course.thumbnailImage)" alt=""></a>
+                        </div>
+                        <div class="properties__caption">
+                            <p>{{course.course.hastag}}</p>
+                            <h3><a href="#">{{course.course.courseName}}</a></h3>
+                            <p class="description">{{course.course.description}}
+                                <a *ngIf="isContentToggled[i]" style="cursor: pointer;" (click)="toggleContent(i);isContentToggled[i] = !isContentToggled[i]" i18n>Read More</a>
+                                <a *ngIf="!isContentToggled[i]" style="cursor: pointer;" (click)="toggleContent(i);isContentToggled[i] = !isContentToggled[i]" i18n>Read Less</a>
+                            </p>
+                            <div class="properties__footer d-flex justify-content-between align-items-center">
+                                <div class="restaurant-name" *ngIf="course.course.rating > 0 && !course.check">
+                                    <div class="rating">
+                                        <i class="fas fa-star" *ngFor="let item of [].constructor(course.rating)"></i>
+                                        <i class="far fa-star" *ngFor="let item of [].constructor(5-course.rating)"></i>
+                                    </div>
+                                    <p><span>({{course.course.rating}})</span> based on {{course.course.numberOfVoters}}</p>
+                                </div>
+                                <div class="restaurant-name" *ngIf="course.course.rating > 0 && course.check">
+                                    <div class="rating">
+                                        <i class="fas fa-star" *ngFor="let item of [].constructor(course.rating)" ></i>
+                                        <i class="fas fa-star-half-alt" *ngIf="course.check"></i>
+                                        <i class="far fa-star" *ngFor="let item of [].constructor(5 - course.rating - 1)"></i>
+                                    </div>
+                                    <p><span>({{course.course.rating}})</span> based on {{course.course.numberOfVoters}}</p>
+                                </div>
+                                <div class="restaurant-name" *ngIf="course.course.rating == 0">
+                                    <div class="rating">
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <p><span>({{course.course.rating}})</span> based on {{course.course.numberOfVoters}}</p>
+                                </div>
+                                <div class="price">
+                                    <span>${{course.course.price}}</span>
+                                </div>
+                            </div>
+                            <a class="button button-success" (click)="viewdetail(course.course.courseId,course.course)">Find out more</a>
+                            <div class="button button-primary" (click)="addToCart(course.course)" *ngIf="login && coursealreadybought(course.course.courseId)">Add To Cart</div>
+                            <div class="button button-primary" routerLink="/login" *ngIf="!login">Add To Cart</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="center" >
+        <pagination-controls (click)="gotoTop()" (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

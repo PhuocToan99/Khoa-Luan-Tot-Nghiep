@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-lg-4"></div>
+  <div class="col-lg-4">
+    <h2 style="font-size: 35px; text-align: center;color: green;">COMPLETE</h2>
+    <div class="card-image" style="display: flex;justify-content: center;">
+      <img src="./assets/img/trophy.png" style="width: 250px;height : 250px;">
+    </div>
+    <div class="card-stacked">
+      <div class="card-content">
+        <h4 style="text-align: center; font-size: 25px;">{{username}}</h4>
+        <h3 style="text-align: center;">{{examQuizService.correctAnswerCount}}/{{totalQuiz}}</h3>
+        <span><p style="text-align: center;">Time Elapsed : {{examQuizService.displayTimeElapsed()}}</p></span>
+      </div>
+      
+    </div>
+    <button class="btn" class="btn-floating halfway-fab waves-effect waves-light red" (click)="restart()">
+      <i class="material-icons">replay</i>
+    </button>
+    <div class="card-action">
+      <button class="btn" (click)="OnSubmit()" style="width:100%;margin-bottom: 10px;">Submit</button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s8 offset-s2">
+  <div class="container" style="padding: 5px 5px;">
+    
+  </div>
+    <!-- Qn with correct answer -->
+    <div class="container-width">
+      <h2 style="font-size: 30px;">Questions with correct answer</h2>
+    </div>
+    <ng-container *ngFor="let qn of examQuizService.qns;let i=index">
+      <div class="container-width">
+        <div class="quizzwrap">
+          <div class="quizzheader">
+            <div class="quizicon">
+              <span><i class="fa fa-question"></i></span>
+              <h5>Question {{i+1}}</h5>
+            </div>
+          </div>
+          <h2>{{qn.examQuestion}}</h2>
+          <hr>
+          <div class="answer">
+            <div class="row">
+              <ng-container>
+                <div class="col-lg-6" *ngIf="qn.examOption1 != null">
+                  <div class="answerstring">
+                    <p class="answertext"> {{qn.examOption1}} <span
+                        *ngIf="qn.answer == 1 && qn.answer != qn.examIsCorrect" class="badge">Incorrect</span><span
+                        class="badge" *ngIf="qn.answer == 1 && qn.answer == qn.examIsCorrect"> <i
+                          class="material-icons green-text">check_circle</i></span></p>
+                  </div>
+                </div>
+                <div class="col-lg-6" *ngIf="qn.examOption2 != null">
+                  <div class="answerstring">
+                    <p class="answertext"> {{qn.examOption2}} <span
+                        *ngIf="qn.answer == 2 && qn.answer != qn.examIsCorrect" class="badge">Incorrect</span><span
+                        class="badge" *ngIf="qn.answer == 2 && qn.answer == qn.examIsCorrect"> <i
+                          class="material-icons green-text">check_circle</i></span></p>
+                  </div>
+                </div>
+                <div class="col-lg-6" *ngIf="qn.examOption3 != null">
+                  <div class="answerstring">
+                    <p class="answertext"> {{qn.examOption3}} <span
+                        *ngIf="qn.answer == 3 && qn.answer != qn.examIsCorrect" class="badge">Incorrect</span><span
+                        class="badge" *ngIf="qn.answer == 3 && qn.answer == qn.examIsCorrect"> <i
+                          class="material-icons green-text">check_circle</i></span></p>
+                  </div>
+                </div>
+                <div class="col-lg-6" *ngIf="qn.examOption4 != null">
+                  <div class="answerstring">
+                    <p class="answertext"> {{qn.examOption4}} <span
+                        *ngIf="qn.answer == 4 && qn.answer != qn.examIsCorrect" class="badge">Incorrect</span><span
+                        class="badge" *ngIf="qn.answer == 4 && qn.answer == qn.examIsCorrect"> <i
+                          class="material-icons green-text">check_circle</i></span></p>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

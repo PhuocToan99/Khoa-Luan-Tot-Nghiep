@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Practice Quiz</h2>
+<mat-dialog-content class="mat-typography">
+    <p class="question"> {{data.question}} </p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6"> 
+                <div class="answerwrap" (click)="getAnswer(data.answer1)">
+                    <p class="answerString" style="background-color: #2f6dae;">{{data.answer1}}
+                        <i class="fa fa-close" *ngIf="userAnswer && answer == data.answer1 && data.isCorrect != data.answer1"></i>
+                        <i class="fa fa-check" *ngIf="userAnswer && answer == data.answer1 && data.isCorrect == data.answer1"></i>
+                        <i class="fa fa-check" *ngIf="userAnswer && answer != data.answer1 && data.isCorrect == data.answer1"></i>
+                    <p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="answerwrap" (click)="getAnswer(data.answer2)">
+                    <p class="answerString" style="background-color: #2c9ca6;">{{data.answer2}}
+                        <i class="fa fa-close" *ngIf="userAnswer && answer == data.answer2 && data.isCorrect != data.answer2"></i>
+                        <i class="fa fa-check" *ngIf="userAnswer && answer == data.answer2 && data.isCorrect == data.answer2"></i>
+                        <i class="fa fa-check" *ngIf="userAnswer && answer != data.answer2 && data.isCorrect == data.answer2"></i>
+                    <p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="answerwrap" (click)="getAnswer(data.answer3)">
+                    <p class="answerString" style="background-color: #eca82c;">{{data.answer3}}
+                        <i class="fa fa-close" *ngIf="userAnswer && answer == data.answer3 && data.isCorrect != data.answer3"></i>
+                        <i class="fa fa-check" *ngIf="userAnswer && answer == data.answer3 && data.isCorrect == data.answer3"></i>
+                        <i class="fa fa-check" *ngIf="userAnswer && answer != data.answer3 && data.isCorrect == data.answer3"></i>
+                    <p>
+                </div>
+            </div>
+            <div class="col-md-6" (click)="getAnswer(data.answer4)">
+                <div class="answerwrap">
+                    <p class="answerString" style="background-color: #d4546a;">{{data.answer4}}
+                        <i class="fa fa-close" *ngIf="userAnswer && answer == data.answer4 && data.isCorrect != data.answer4"></i>
+                        <i class="fa fa-check" *ngIf="userAnswer && answer == data.answer4 && data.isCorrect == data.answer4"></i>
+                        <i class="fa fa-check" *ngIf="userAnswer && answer != data.answer4 && data.isCorrect == data.answer4"></i>
+                    <p>
+                </div>
+            </div>      
+        </div>
+    </div>
+</mat-dialog-content>
