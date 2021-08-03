@@ -24,7 +24,7 @@
  - Backend cần chú ý thay đổi tại file **appsettings.json**: ```"ConnectionStrings": {
     "DatabaseConnection": "Server=(localhost);Database=CourseDB3;Trusted_Connection=True;MultipleActiveResultSets=True;"
   }```
- với Server là tên Server name tại SSMS, thực hiện lệnh ```EntityFrameworkCore\Add-Migration``` và ```EntityFrameworkCore\Update-Database``` để cập nhật cơ sở dữ liệu.
+ với Server là tên Server name tại SSMS, thực hiện lệnh ```EntityFrameworkCore\Add-Migration``` và ```EntityFrameworkCore\Update-Database``` tại cửa sổ Package Manager Console để cập nhật cơ sở dữ liệu.
  - Trong quá trình cài đặt Angular CLI nếu gặp vấn đề tương tự như sau:
   <img src="https://i.stack.imgur.com/WE29s.png" with=250 height=250>
  có thể tham khảo link [Stackoverflow](https://stackoverflow.com/questions/47670693/not-able-to-install-angular-cli-using-npm) để khắc phục
