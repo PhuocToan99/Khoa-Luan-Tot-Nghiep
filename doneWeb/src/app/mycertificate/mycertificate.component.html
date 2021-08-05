@@ -1,0 +1,127 @@
+
+<main>
+    <!--? slider Area Start-->
+    <section class="slider-area slider-area2">
+        <div class="slider-active">
+            <!-- Single Slider -->
+            <div class="single-slider slider-height2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-11 col-md-12">
+                            <div class="hero__caption hero__caption2">
+                                <h1 data-animation="bounceIn" data-delay="0.2s" style="text-align: start;">My Certificate</h1>
+                                <!-- breadcrumb Start-->
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+                                        <li class="breadcrumb-item"><a routerLink="/blog">My Certificate</a></li>
+                                    </ol>
+                                <!-- breadcrumb End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--? Blog Area Start-->
+    <section class="blog_area section-padding" *ngIf="certificate.length > 0" style="padding: 50px 0px;">
+        <div class="container-fluid" *ngFor="let item of certificate; let i = index" style="margin-top: 10px;">
+            <div class = "row">
+                <div class="col-md-8">
+                    <div class="container">
+                        <img src="assets/img/certificate.jpg" alt="certification" border="0">  
+                        <div class="centered">
+                        <span style="font-weight:bold;font-size: 25px;">Certificate of Completion</span><br>
+                        <span><i>This is to certify that</i></span>
+                        <br>
+                        <span style="font-weight:bold">{{item.userName}}</span><br>
+                        <span><i>has successfully completed the course</i></span><br>
+                        <span style="font-weight:bold">{{item.course.courseName}}</span>
+                        <span><i> online course on {{item.getDate}}</i></span>
+                        <br>
+                        <img style="height: 20px;width: 20px;" src="assets/img/logo/loder.png">
+                        <p id="cdate"></p>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <p>This certificate above verifies that <span style="color: #5624d0;text-decoration: none;cursor: pointer;" (click)="toInfoPage()">{{item.userName}}</span> successfully completed the course <span style="color: #5624d0;text-decoration: none;cursor: pointer;" (click)="viewdetail(item.course.courseId,item.course)">{{item.course.courseName}}</span> 
+                            on {{item.getDate}} as taught by {{instructor[i].firstName}} {{instructor[i].lastName}} on our system. The certificate indicates the entire course was completed as validated by the student. 
+                            The course duration represents the total video hours of the course at time of most recent completion.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h2>Certificate Recipient</h2>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <figure *ngIf="item.avatarPath == null && item.avatarPath == undefined" (click)="toInfoPage()" style="cursor: pointer;">
+                                <img src="assets/img/userplaceholder.png" style="width:80px;height:80px;border-radius: 60px;" alt="User Avatar">
+                              </figure>
+                              <figure *ngIf="item.avatarPath != null && item.avatarPath != undefined" (click)="toInfoPage()" style="cursor: pointer;">
+                                <img [src]="loadimage(item.avatarPath)" style="width:80px;height:80px;border-radius: 60px;" alt="User Avatar">
+                              </figure>
+                        </div>
+                        <div class="col-md-9"> 
+                            <p style="line-height: 80px;font-size: 20px;font-weight: bold;color: #000;">{{item.userName}}</p>
+                        </div>
+                    </div>
+                    <h2>About the course:</h2>
+                    <div *ngIf="!item.course.thumbnailImage" style="width: 100%;">
+                        <a (click)="viewdetail(item.course.courseId,item.course)"
+                            style="cursor: pointer;"><img src="assets/img/productplaceholder.jpg" alt="Course Image" style="height: 100px; width: 100px;"></a>
+                    </div>
+                    <div *ngIf="item.course.thumbnailImage" style="width: 100%;">
+                        <a (click)="viewdetail(item.course.courseId,item.course)"
+                            style="cursor: pointer;"><img [src]="loadimage(item.course.thumbnailImage)"
+                                alt="Course Image" style="height: 200px; width: 200px;"></a>
+                    </div>
+                    <p style="font-size: 20px;font-weight: bold;color: #000; margin: 10px 0px;">{{item.course.courseName}}</p>
+                    <p>{{item.course.hastag}}</p>
+                    <div class="restaurant-name" *ngIf="item.course.rating > 0 && !check">
+                        <div class="rating">
+                            <i class="fas fa-star"
+                                *ngFor="let item of [].constructor(item.course.rating)"></i>
+                            <i class="far fa-star"
+                                *ngFor="let item of [].constructor(5-item.course.rating)"></i>
+                        </div>
+                        <p><span>({{item.course.rating}})</span> based on
+                            {{item.course.numberOfVoters}}</p>
+                    </div>
+                    <div class="restaurant-name" *ngIf="item.course.rating > 0 && check">
+                        <div class="rating">
+                            <i class="fas fa-star"
+                                *ngFor="let item of [].constructor(item.course.rating)"></i>
+                            <i class="fas fa-star-half-alt" *ngIf="check"></i>
+                            <i class="far fa-star"
+                                *ngFor="let item of [].constructor(5 - item.course.rating - 1)"></i>
+                        </div>
+                        <p><span>({{item.course.rating}})</span> based on
+                            {{item.course.numberOfVoters}}</p>
+                    </div>
+                    <div class="restaurant-name" *ngIf="item.course.rating == 0">
+                        <div class="rating">
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <p><span>({{item.course.rating}})</span> based on
+                            {{item.course.numberOfVoters}}</p>
+                    </div>
+                    <div class="price">
+                        <span>${{item.course.price}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="line" *ngIf="i != (certificate.length - 1)"></div>
+        </div>
+    </section>
+    <!-- Blog Area End -->
+    <section class="blog_area section-padding" *ngIf="certificate.length == 0" style="padding: 50px 0px;">
+        <div class="container-fluid" style="margin-top: 10px; text-align:center" (click)="goToCategory()">
+            <img src="assets/img/nocertificate.jpg" style="width:300px;height:300px;margin: 5px auto;">
+            <h2 style="text-align: center;color: #333;cursor: pointer;">You have not completed the certificate on our system. Try your hand at a course and enjoy the results for yourself!</h2>
+        </div>
+    </section>
+  </main>
+  

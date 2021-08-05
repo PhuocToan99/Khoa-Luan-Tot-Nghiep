@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Router} from "@angular/router";
 import { Params } from '@angular/router';
-// import { Exam } from '../model/quiz';
-// import { QuizService } from '../services/quiz.service';
 import { ImageloadService } from '../services/imageload.service';
 import { ExamQuiz } from '../model/examquiz';
 import { ExamquizserviceService } from '../services/examquizservice.service';
@@ -13,7 +11,6 @@ import { ExamquizserviceService } from '../services/examquizservice.service';
 })
 export class ExamComponent implements OnInit {
   id:any;
-  // quizlist: Exam[] = [];
   quiztime: number;
   totalQuiz: number = 0;
   errorString = "null";
@@ -54,12 +51,9 @@ export class ExamComponent implements OnInit {
         this.startTimer();
     }
     else {
-      // this.quizService.seconds = 0;
       this.examQuizService.qnProgress = 0;
-      // await this.getQuizList(this.id);
       await this.getQuizList();
       this.examQuizService.qns = this.examQuizList;
-      // this.quizService.qns = this.quizlist;
       console.log(this.examQuizService.qns);
       this.startTimer();
     }
@@ -91,6 +85,8 @@ export class ExamComponent implements OnInit {
     this.examQuizList = await this.examQuizService.getExamByExamCode(this.quizCode) as ExamQuiz[];
     this.totalQuiz = this.examQuizList.length;
     localStorage.setItem('totalQuiz', this.totalQuiz.toString());
+    let isFinal = this.examQuizList[0].isFinalQuiz ? "true" : "false"; 
+    localStorage.setItem('isFinalQuiz', isFinal);
   }
   async loadFileImage(file : any,option : number){
     switch(option){

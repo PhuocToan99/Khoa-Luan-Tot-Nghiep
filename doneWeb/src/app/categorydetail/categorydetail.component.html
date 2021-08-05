@@ -25,19 +25,18 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      <h2 class="tdtopic">Created Date: {{StartDate}}  
-    </h2>
+      <h2 class="tdtopic">Created Date: {{StartDate}}</h2>
       <h2 class="tdtopic">Main Topic</h2>
       <mat-accordion *ngIf="!bought">
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
           *ngFor="let topic of topicdataset; let i = index" [style.background]="topic.isLocked ? '#666' : null">
           <mat-expansion-panel-header (click)="buyalert()" *ngIf="topic.isLocked">
-            <mat-panel-title [style.color]="topic.isLocked ? '#333' : null">
+            <mat-panel-title [style.color]="topic.isLocked ? '#fff' : null">
               Topic {{i+1}}: {{topic.topicTitle}} 
             </mat-panel-title>
           </mat-expansion-panel-header>
           <mat-expansion-panel-header (click)="getsubtopics(topic.topicId)" *ngIf="!topic.isLocked">
-            <mat-panel-title [style.color]="topic.isLocked ? '#333' : null">
+            <mat-panel-title [style.color]="topic.isLocked ? '#fff' : null">
               Topic {{i+1}}: {{topic.topicTitle}} 
             </mat-panel-title>
           </mat-expansion-panel-header>
@@ -112,6 +111,9 @@
         <div class="card-bottom card-block" *ngIf="islogin">
           <a routerLink="../../coursedetail/{{id}}" class="btn" style="border-radius: 30px; margin-top: 10px;">Study Now</a>
         </div>
+        <div class="card-bottom card-block" style="margin-top: 10px;">
+          <a class="btn" style="border-radius: 30px;" (click)="goToCertificate(course.courseId)">View Certificate</a>
+        </div>
       </div>
     </div>
   </div>
@@ -119,13 +121,14 @@
     <div id="content">
       <div id="main-content">
         <mat-tab-group>
-          <mat-tab *ngFor="let quizCode of quizCodeList,let i = index" label="Exam {{i+1}}">
+          <mat-tab *ngFor="let quizCode of quizCodeList,let i = index" label="{{quizName[i]}}">
             <div class="questionpoolwrap">
                 <div class="questionpoolwrapbackground">
                     <div class="questionpoolboder">
-                      <p style="color: #fff;" *ngIf="quizName[i] == ''">Exam {{i+1}}</p>
-                      <p style="color: #fff;" *ngIf="quizName[i] !=''">{{quizName[i]}}</p>
-                        <p style="color: #fff;"><span><i class="fa fa-list" style="float: left;padding-right: 5px ; color: #fff;padding-bottom: 0px;"></i></span> {{quizCodeNumber[i]}} Question</p>
+                        <p style="color: #fff"><span><i class="fa fa-list" style="float: left;padding-right: 5px ; color: #fff;padding-top: 5px;"></i></span> {{quizCodeNumber[i]}} Question</p>
+                        <p style="color: #fff;" *ngIf="quizIsFinalQuiz[i]">
+                          <span><i class="fa fa-bookmark" style="float: left;padding-right: 5px ;color: #fff;padding-top: 5px;"></i></span> Final Quiz (Get certificate)
+                        </p>
                         <span *ngIf="!quizIsActive[i] || bought"><i class="fa fa-play-circle" style="float: left;padding: 10px 10px ;color: #fff;cursor: pointer;" (click)="goToExam(quizCodeList[i])"></i></span>
                         <span *ngIf="!quizIsActive[i] || bought"><i class="fa fa-history" style="float: left;padding: 10px 10px ;color: #fff;cursor: pointer;" (click)="showHistory(quizCodeList[i])"></i></span> 
                     </div>

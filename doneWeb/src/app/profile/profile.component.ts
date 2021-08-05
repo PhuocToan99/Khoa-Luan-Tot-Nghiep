@@ -14,6 +14,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { ImageloadService } from '../services/imageload.service';
 import { UpdateuserimagedialogComponent } from './updateuserimagedialog/updateuserimagedialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import { Certificate } from '../model/certificate';
+import { CertificateService } from '../services/certificate.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -53,9 +55,13 @@ export class ProfileComponent implements OnInit {
   nonEditedContent: string;
   public limit: number = 20;
   public completeWords: true;
+  getDate = "";
+  certificate:Certificate[] = [];
+  courseCertificate:Course = new Course();
   constructor(private service: UserService, private accService: AuthenticationService, private chRef: ChangeDetectorRef,private datePipe: DatePipe, private router: Router,
     private imageLoadService:ImageloadService,private accountInCourseService:AccountincourseService,
-    private courseService:CourseService,private examQuizService:ExamquizserviceService, private route: ActivatedRoute, public dialog: MatDialog) {
+    private courseService:CourseService,private examQuizService:ExamquizserviceService, private route: ActivatedRoute, public dialog: MatDialog,
+    private certificateService:CertificateService) {
     this.accService.currentAccount.subscribe(x => this.currentAccount = x);
     if( this.currentAccount == null ) this.router.navigate(['/login']);
    }
@@ -72,6 +78,9 @@ export class ProfileComponent implements OnInit {
     this.isInstructor = (this.id == this.currentAccount.accountId || !this.id) ? false : true; 
     console.log(this.isInstructor);
     await this.getuser();
+    this.certificate = await  this.certificateService.getLastestCertificateByAccountId(this.currentAccount.accountId) as Certificate[];
+    this.getDate = (this.certificate[0].getDate !="") ? this.datePipe.transform(this.certificate[0].getDate, 'dd/MM/yyyy') : this.datePipe.transform(Date.now(), 'dd/MM/yyyy');
+    this.courseCertificate = await this.courseService.getcourse(this.certificate[0].courseId) as Course;
     this.chRef.detectChanges();
   }
   public getuser = async () => {

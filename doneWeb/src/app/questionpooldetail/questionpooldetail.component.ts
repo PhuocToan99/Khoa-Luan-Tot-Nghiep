@@ -97,6 +97,7 @@ export class QuestionpooldetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if(result != null){
+        result.questionType="Multiple Choice";
         this.addQuiz(result);
       }
       this.getQuizList(this.id);

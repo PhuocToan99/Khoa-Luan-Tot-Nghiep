@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6"><h2 mat-dialog-title>Add Video Quiz</h2></div>
+    <div class="col-md-6 text-right"><i class="fa fa-plus headericon" (click)="addQuiz()"></i></div>
+  </div>
+</div>
+<h2 mat-dialog-title style="margin-left: 15px;">Total video duration {{data.videoDuration}} (s)</h2>
+<mat-dialog-content class="mat-typography">
+    <form #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
+        <div class="row">
+            <section class="container border mb-4 p-3" *ngFor="let videoquiz of listVideoQuizDialogTime; let i = index;">
+              <div class="row">
+                <div class="col-md-6">
+                    <h4>Quiz {{i + 1}}</h4>
+                </div>
+                <div class="col-md-6 text-right">
+                  <i class="fa fa-trash deleteicon" (click)="removeQuiz(i)"></i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Appear Time </label> <label *ngIf="haveData[i]">(Last {{listTime[i]}}s)</label>
+                        <input type="number" class="form-control" (input)="onSearchChange($event.target.value,videoquiz.id)" name="time_{{videoquiz.id}}" placeholder="Enter Time" style="width: 95%;" required/>
+                        <p class="alertMessage" *ngIf="!validTime[videoquiz.id]">*Please choose time</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                      <label>Select Quiz </label><label *ngIf="haveData[i]">(Last Quiz{{listQuizId[i]}})</label>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="row">
+                            <i class="fa fa-list icondialog" [(ngModel)]="listQuizId[videoquiz.id]" name="openlist_{{videoquiz.id}}" (click)="openSelectQuiz(videoquiz.id)"></i>
+                            <p class="labelQuizId" *ngIf="listQuizId[videoquiz.id] != ''">Quiz {{listQuizId[videoquiz.id]}}</p>
+                          </div>
+                        </div>
+                        <div class="col-md-6"> <i class="fa fa-save icondialog" name="save_{{videoquiz.id}}" (click)="saveInfo(videoquiz.id)"></i></div>
+                        <p class="alertMessage" *ngIf="!validQuizId[videoquiz.id]">*Please choose quiz</p>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+        </div>
+      </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="data">Close</button>
+</mat-dialog-actions>

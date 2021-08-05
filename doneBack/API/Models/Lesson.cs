@@ -16,6 +16,8 @@ namespace API.Models
     public SubTopic SubTopic { get; set; }
     [Required]
     public int SubTopicId { get; set; }
+    public string VideoQuizTime { get; set; }
+    public string QuizId { get; set; }
     public ICollection<Comment> Comments { get; set; }
     public ICollection<AccountinLesson> UserinLesson { get; set; }
   }

@@ -2,11 +2,6 @@
     padding: 10px 50px;
 }
 .quizzwrap{
-    /* margin: 10px 10px;
-    height: auto;
-    width: calc(80% - 20px);
-    border: 1px solid #333;
-    display: flex; */
     border: 1px solid #333;
 }
 .quizzheader{
@@ -15,7 +10,6 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    /* width: calc(100% - 20px); */
 }
 .quizicon{
     border-radius: 4px;

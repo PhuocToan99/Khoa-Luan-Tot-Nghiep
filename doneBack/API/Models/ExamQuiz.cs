@@ -37,5 +37,6 @@ namespace API.Models
     public int ExamTime { get; set; } 
     public string QuizId { get; set; }
     public Boolean IsBlocked { get; set; }
+    public Boolean IsFinalQuiz { get; set; }
   }
 }

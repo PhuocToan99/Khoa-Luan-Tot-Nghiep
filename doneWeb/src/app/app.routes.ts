@@ -30,6 +30,8 @@ import { ExamresultComponent } from './examresult/examresult.component';
 import { QuestionpoolmanagepageComponent } from './questionpoolmanagepage/questionpoolmanagepage.component';
 import { CreateexamComponent } from './createexam/createexam.component';
 import { InvoicehistoryComponent } from './invoicehistory/invoicehistory.component';
+import { CertificateComponent } from './certificate/certificate.component';
+import { MycertificateComponent } from './mycertificate/mycertificate.component';
 export const routing: Routes =[
   {
     path: '',
@@ -46,7 +48,9 @@ export const routing: Routes =[
   {path: 'managepublishcourse',component: ManagepublishcourseComponent, canActivate: [CustomguardGuard],data: {role: 'instructor'}},
   { path: 'search',component: SearchComponent },
   { path: 'becomeinstructor',component: BecomeinstructorComponent, canActivate: [CustomguardGuard],data: {role: 'user'}},
-  { path: 'invoicehistory',component: InvoicehistoryComponent, canActivate: [CustomguardGuard],data: {role: 'user',role2:'instructor'}}
+  { path: 'invoicehistory',component: InvoicehistoryComponent, canActivate: [CustomguardGuard],data: {role: 'user',role2:'instructor'}},
+  {path: 'certificate/:id',component: CertificateComponent, canActivate: [CustomguardGuard],data: {role: 'user',role2:'instructor'}},
+  {path: 'mycertificate',component: MycertificateComponent, canActivate: [CustomguardGuard],data: {role: 'user',role2:'instructor'}}
   ]
   },
   { path:'cart',component: ShoppingcartComponent},

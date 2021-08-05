@@ -63,6 +63,25 @@
               </div>
             </div>
           </div>
+
+          
+            <div *ngIf ="certificate.length > 0" class="certificate-container" style="margin-top: 10px;">
+              <img src="assets/img/certificate.jpg" alt="certification" border="0" width="480"> 
+              <div class="centered">
+              <span style="font-weight:bold;font-size: 25px;">Certificate of Completion</span><br>
+              <span><i>This is to certify that</i></span>
+              <br>
+              <span style="font-weight:bold">{{user.firstName}} {{user.lastName}}</span><br>
+              <span><i>has successfully completed the course</i></span><br>
+              <span style="font-weight:bold">{{courseCertificate.courseName}}</span>
+              <span><i> online course on {{getDate}}</i></span>
+              <br>
+              <p id="cdate"></p>
+              </div>
+            </div>
+          
+
+
         </div>
         <div class="col-xl-8 order-xl-1">
           <div class="card bg-secondary shadow">
@@ -130,10 +149,6 @@
                 <!-- Description -->
                 <h6 class="heading-small text-muted mb-4">About me</h6>
                 <div class="pl-lg-4">
-                  <!-- <div class="form-group focused">
-                    <label>About Me</label>
-                    <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ..." readonly></textarea>
-                  </div> -->
                   <div class="form-group focused">
                     <label>About Me</label>
                     <textarea rows="4" class="form-control form-control-alternative" placeholder={{placeholder}} [(ngModel)]="description" [ngModelOptions]="{standalone: true}"></textarea>

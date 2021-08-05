@@ -162,6 +162,7 @@ quizCodeList: string[] = [];
 quizCodeNumber:string[] = [];
 quizIsActive:boolean[] = [];
 quizName:string[] = [];
+quizIsFinalQuiz:boolean[] = [];
 async getExamList(){
   var quizcode = "";
   var quizcount = 0;
@@ -174,9 +175,11 @@ async getExamList(){
   if(this.examQuiz != null && this.examQuiz != undefined){
     quizcode = this.examQuiz[0].examQuizCode;
     this.quizCodeList.push(quizcode);
-    var name = (this.examQuiz[0].examQuizName == "") ? "" : this.examQuiz[0].examQuizName;
+    var name = (this.examQuiz[0].examQuizName == null) ? "Exam" : this.examQuiz[0].examQuizName;
     this.quizName.push(name);
     quizcount++;
+    let isFinalQuiz = this.examQuiz[0].isFinalQuiz ? true : false;
+    this.quizIsFinalQuiz.push(isFinalQuiz);
     for(var i = 1;i< this.examQuiz.length ;i++){
       quizcount++;
       if(this.examQuiz[i].examQuizCode != quizcode){
@@ -185,8 +188,10 @@ async getExamList(){
         quizcount ++;
         quizcode = this.examQuiz[i].examQuizCode;
         this.quizCodeList.push(quizcode);
-        name = (this.examQuiz[i].examQuizName == "") ? "" : this.examQuiz[i].examQuizName;
+        name = (this.examQuiz[0].examQuizName == null) ? "Exam" : this.examQuiz[i].examQuizName;
         this.quizName.push(name);
+        isFinalQuiz = this.examQuiz[i].isFinalQuiz ? true : false;
+        this.quizIsFinalQuiz.push(isFinalQuiz);
       }
     }
   }
@@ -199,9 +204,11 @@ async getExamList(){
       this.quizIsActive.push(isActive);
       quizcode = this.examQuiz[0].examQuizCode;
       this.quizCodeList.push(quizcode);
-      var name = (this.examQuiz[0].examQuizName == "") ? "" : this.examQuiz[0].examQuizName;
+      var name = (this.examQuiz[0].examQuizName == null) ? "Exam" : this.examQuiz[0].examQuizName;
       this.quizName.push(name);
       quizcount++;
+      let isFinalQuiz = this.examQuiz[0].isFinalQuiz ? true : false;
+      this.quizIsFinalQuiz.push(isFinalQuiz);
       for(var i = 1;i< this.examQuiz.length ;i++){
         quizcount++;
         if(this.examQuiz[i].examQuizCode != quizcode){
@@ -211,9 +218,11 @@ async getExamList(){
           quizcode = this.examQuiz[i].examQuizCode;
           this.quizCodeList.push(quizcode);
           isActive =  isActive = this.examQuiz[i].isBlocked ? true : false;
-          name = (this.examQuiz[i].examQuizName == "") ? "" : this.examQuiz[i].examQuizName;
+          name = (this.examQuiz[i].examQuizName == null) ? "Exam" : this.examQuiz[i].examQuizName;
           this.quizName.push(name);
           this.quizIsActive.push(isActive);
+          isFinalQuiz = this.examQuiz[i].isFinalQuiz ? true : false;
+          this.quizIsFinalQuiz.push(isFinalQuiz);
         }
       }
     }
@@ -230,6 +239,7 @@ async showHistory(quizCode){
   this.historyshow = !this.historyshow;
   this.dataSource = [];
   this.dataSource = await this.examQuizService.getExamQuizHistory(quizCode) as ExamQuizHistory[];
+  console.log(this.dataSource);
   this.dataSource.forEach(e => {
     e.accountinLesson.lastTaken = this.datePipe.transform(e.accountinLesson.lastTaken, 'hh:mm:ss dd-MM-yyyy');
     e.passedResult = (e.accountinLesson.isCompleted) ? "Passed" :"Failed";
@@ -401,5 +411,8 @@ async buyFreeCourse(){
 }
 toInstructorPage(id){
   this.router.navigate(['/profile'], {queryParams: {id: id,isInstructor : true}});
+}
+goToCertificate(id){
+  this.router.navigate(['/certificate', id], { relativeTo: this.route });
 }
 }

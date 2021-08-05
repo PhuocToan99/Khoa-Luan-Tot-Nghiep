@@ -12,7 +12,7 @@ export class MeetComponent implements OnInit {
   ngOnInit(): void {
     const domain = 'meet.jit.si';
     const options = {
-     roomName: 'Class 1',
+    roomName: 'Khoa luan tot nghiep 2021',
     width: 1200,
     height: 700,
     parentNode: document.querySelector('#meet')

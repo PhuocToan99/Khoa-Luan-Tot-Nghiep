@@ -20,23 +20,27 @@
     </div>
   </div>
 </section>
-<div class="container" *ngIf="!bought">
+<div class="container">
   <div class="row">
     <div class="col-md-4">
+      <div class="row">
+        <i class="icon1 fa fa-angle-double-left mr-1 mt-2"></i>
+        <a (click) = "backToCourse()"><p class="backto">Back to course</p></a>
+      </div>
       <mat-accordion>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-          *ngFor="let topic of topicdataset; let i = index" [style.background]="(topic.isLocked && !instructorFlag) ? '#666' : null">
-          <mat-expansion-panel-header (click)="buyalert()" *ngIf="topic.isLocked && !instructorFlag">
-            <mat-panel-title [style.color]="topic.isLocked ? '#333' : null">
+          *ngFor="let topic of topicdataset; let i = index" [style.background]="(topic.isLocked && !instructorFlag && !bought) ? '#666' : null">
+          <mat-expansion-panel-header (click)="buyalert()" *ngIf="topic.isLocked && !instructorFlag && !bought">
+            <mat-panel-title [style.color]="topic.isLocked ? '#fff' : null">
               Topic {{i+1}}: {{topic.topicTitle}} 
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <mat-expansion-panel-header (click)="getsubtopics(topic.topicId)" *ngIf="!topic.isLocked || instructorFlag">
+          <mat-expansion-panel-header (click)="getsubtopics(topic.topicId)" *ngIf="!topic.isLocked || instructorFlag || bought">
             <mat-panel-title>
               Topic {{i+1}}: {{topic.topicTitle}} 
             </mat-panel-title>
           </mat-expansion-panel-header>
-            <ng-container *ngIf="!topic.isLocked || instructorFlag">
+            <ng-container *ngIf="!topic.isLocked || instructorFlag || bought">
             <p *ngFor="let subtopic of subtopicdataset" (click)="showdetail(subtopic.subTopicId)" style="padding: 3px 20px;">
             {{subtopic.subTopicTitle}}</p>
             </ng-container>
@@ -45,41 +49,11 @@
     </div>
     <div class="col-md-8" *ngIf="videoUrls.length > 0">
       <div class="container-fluid">
-        <ng-container *ngFor="let video of videoUrls">
+        <ng-container *ngFor="let video of videoUrls;let i = index">
         <div class="resize-container" #container>
-          <ngx-y2-player #video [videoUrl]="video" [playerOptions]="playerOptions" [container]="container">
+          <ngx-y2-player #video [videoUrl]="video" [playerOptions]="playerOptions" [container]="container" (stateChange)="onStateChange($event,i)">
           </ngx-y2-player>
         </div>
-        </ng-container>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container" *ngIf="bought">
-  <div class="row">
-    <div class="col-md-4">
-      <mat-accordion>
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-          *ngFor="let topic of topicdataset; let i = index">
-          <mat-expansion-panel-header (click)="getsubtopics(topic.topicId)">
-            <mat-panel-title>
-              Topic{{i+1}}: {{topic.topicTitle}}
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <ng-container *ngIf="subtopicdataset.length > 0">
-          <p *ngFor="let subtopic of subtopicdataset" (click)="showdetail(subtopic.subTopicId)">
-            {{subtopic.subTopicTitle}}</p>
-          </ng-container>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
-    <div class="col-md-8" *ngIf="videoUrls.length > 0">
-      <div class="container-fluid">
-        <ng-container *ngFor="let video of videoUrls">
-          <div class="resize-container" #container>
-            <ngx-y2-player #video [videoUrl]="video" [playerOptions]="playerOptions" [container]="container">
-            </ngx-y2-player>
-          </div>
         </ng-container>
       </div>
     </div>

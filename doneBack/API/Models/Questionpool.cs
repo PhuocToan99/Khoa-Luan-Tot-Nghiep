@@ -11,9 +11,6 @@ namespace API.Models
     [Key]
     public int QuestionpoolId { get; set; }
     public string QuestionpoolName { get; set; }
-    //public string Question { get; set; }
-    //public int Point { get; set; }
-    //public int Time { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime LastEdited { get; set; }
     public string Hastag { get; set; }

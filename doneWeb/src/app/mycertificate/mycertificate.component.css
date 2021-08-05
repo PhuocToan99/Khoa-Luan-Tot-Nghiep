@@ -1,0 +1,20 @@
+.container{
+    position:relative;
+    text-align:center;
+}
+
+.centered {
+    position: absolute;
+    width:400px;
+    top: 34%;
+    left: 30%;
+    font-size: 16px;
+    /*transform: translate(-30%, -50%); */
+}
+.line{
+    height: 2px; 
+    width: 100%; 
+    background-color: #cccc; 
+    margin: 15px 0px;
+}
+

@@ -7,6 +7,10 @@ import { AccountinlessonService } from '../services/accountinlesson.service';
 import { ExamquizserviceService } from '../services/examquizservice.service';
 import { DatePipe } from '@angular/common';
 import { NotificationService } from '../services/notification.service';
+import { Certificate } from '../model/certificate';
+import { CertificateService } from '../services/certificate.service';
+import { Course } from '../model/course';
+import { CourseService } from '../services/course.service';
 @Component({
   selector: 'app-examresult',
   templateUrl: './examresult.component.html',
@@ -25,8 +29,10 @@ export class ExamresultComponent implements OnInit {
   cardImageBase64Image4: any;
   errorString = "null";
   currentAccount;
+  course:Course = new Course();
   constructor(public quizService: QuizService,private router: Router,public imageService: ImageloadService, public accountinlessonService:AccountinlessonService,
-    public examQuizService: ExamquizserviceService,private datePipe: DatePipe,private notificationService: NotificationService) { 
+    public examQuizService: ExamquizserviceService,private datePipe: DatePipe,private notificationService: NotificationService,
+    private certificateService:CertificateService,private courseService:CourseService) { 
     this.user = JSON.parse(localStorage.getItem('currentAccount'));
     this.username = this.user.username;
     this.accountId = this.user.accountId;
@@ -65,14 +71,29 @@ export class ExamresultComponent implements OnInit {
       var isComplete = (this.examQuizService.correctAnswerCount > this.examQuizService.qns.length*0.8) ? true : false;
       result.isCompleted = isComplete;
       await this.accountinlessonService.postaccountincourse(result);
+      let isFinal = localStorage.getItem("isFinalQuiz");
+      let id = localStorage.getItem("courseId");
+      this.course = await this.courseService.getcourse(id) as Course;
+      if(isComplete && isFinal =="true" && this.course.accountId.toString() != result.accountId){
+        let certificate = new Certificate();
+        certificate.accountId = localStorage.getItem("accountId");
+        certificate.courseId = localStorage.getItem("courseId");
+        certificate.getDate = this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm:ss');
+        var addCertificateResult = await this.certificateService.postcertificate(certificate);
+      }
       localStorage.removeItem('qnProgress');
       localStorage.removeItem('qns');
       localStorage.removeItem('seconds');
       localStorage.removeItem('quizid');
       localStorage.removeItem('quizCode');
-      let id = localStorage.getItem("courseId");
-      localStorage.removeItem('courseId');
-      this.notificationService.showNotification("Your result have been save","Exam Complete",1500);
+      localStorage.removeItem('isFinalQuiz');
+      if(isComplete && isFinal =="true" && addCertificateResult != undefined && addCertificateResult != null && this.course.accountId.toString() != result.accountId){
+        this.notificationService.showNotification("Congratulations, you have successfully get your certificate for this course.You can view your certificates in 'My Certificates' page","Certificate Exam Complete",1500);
+        alert("You have been successfully get certificate for this course");
+      }
+      else{
+        this.notificationService.showNotification("Your result have been save","Exam Complete",1500);
+      }
       this.router.navigate(['category/'+id]);
   }
 
@@ -86,11 +107,28 @@ export class ExamresultComponent implements OnInit {
     var isComplete = (this.examQuizService.correctAnswerCount > this.examQuizService.qns.length*0.8) ? true : false;
     result.isCompleted = isComplete;
     await this.accountinlessonService.postaccountincourse(result);
+    let isFinal = localStorage.getItem("isFinalQuiz");
+    if(isComplete && isFinal =="true"){
+      let certificate = new Certificate();
+      certificate.accountId = localStorage.getItem("accountId");
+      certificate.courseId = localStorage.getItem("courseId");
+      certificate.getDate = this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm:ss');
+      var addCertificateResult = await this.certificateService.postcertificate(certificate);
+    }
     localStorage.setItem('qnProgress', "0");
     localStorage.setItem('qns', "");
     localStorage.setItem('seconds', "0");
     localStorage.setItem('quizid', "");
-    this.notificationService.showNotification("Your result have been save","Exam Complete",1500);
+    // this.notificationService.showNotification("Your result have been save","Exam Complete",1500);
+    let id = localStorage.getItem("courseId");
+    this.course = await this.courseService.getcourse(id) as Course;
+    if(isComplete && isFinal =="true" && addCertificateResult != undefined && addCertificateResult != null && this.course.accountId.toString() != result.accountId){
+      this.notificationService.showNotification("Congratulations, you have successfully get your certificate for this course.You can view your certificates in 'My Certificates' page","Certificate Exam Complete",1500);
+      alert("You have been successfully get certificate for this course");
+    }
+    else{
+      this.notificationService.showNotification("Your result have been save","Exam Complete",1500);
+    }
     this.router.navigate(['/exam/'+this.quizid]);
   }
   async loadFileImage(file : any,option : number){

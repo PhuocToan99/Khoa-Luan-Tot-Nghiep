@@ -1,0 +1,30 @@
+.mat-dialog-container {
+    background: rgba(0,0,0,0.4) !important;
+    box-shadow: 0 15px 20px rgb(0 0 0 / 20%);
+    border-radius: 5px;
+    opacity: 0.4;
+}
+.mat-dialog-title{
+    color: #333;
+    text-align: center;
+}
+.question{
+    margin:15px 5px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold; 
+    color: #333;
+}
+.answerwrap{
+    width: calc(100% - 10px);
+    margin: 5px;
+    cursor: pointer;
+}
+.answerString{
+    margin:0;
+    color: white;
+    padding: 10px 5px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}

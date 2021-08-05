@@ -178,3 +178,13 @@ color: black;
   .card-block:last-child{
     border-radius:0 0 30px 30px ;
   }
+  .icon1{
+    font-size: 20px;
+    color: rgb(128, 126, 126);
+}
+.backto
+{
+    color: rgb(128, 126, 126);
+    font-weight: 400;
+    cursor: pointer;
+}

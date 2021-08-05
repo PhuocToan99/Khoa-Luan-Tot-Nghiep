@@ -1,18 +1,35 @@
-<h2 mat-dialog-title style="text-align: center;float: left;">My Quiz</h2>
-
-    <label class="switch" *ngIf="isLocked == true">
-        <input type="checkbox" checked=true (click)="checkCheckBoxvalue($event)">
-        <span class="slider round"></span>
-      </label>
-      <label class="switch" *ngIf="isLocked == false">
-        <input type="checkbox" (click)="checkCheckBoxvalue($event)">
-        <span class="slider round"></span>
-      </label>
-
-<mat-form-field style="width: 100%; padding: 0px 15px;" *ngIf="data.examQuizList.length > 0">
-    <input  matInput [(ngModel)]="examQuizName" *ngIf="examQuizName == undefined" placeholder="Quizname"> 
-    <input  matInput [(ngModel)]="examQuizName" *ngIf="examQuizName != undefined" value="examQuizName"> 
-</mat-form-field>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 mat-dialog-title style="text-align: center;float: left;margin-left: 10px;font-size: 30px;">{{examQuizName}}</h2>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="switch" *ngIf="isLocked == true">
+                        <input type="checkbox" checked=true (click)="checkCheckBoxvalue($event)">
+                        <span class="slider round"></span>
+                    </label>
+                    <label class="switch" *ngIf="isLocked == false">
+                        <input type="checkbox" (click)="checkCheckBoxvalue($event)">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <mat-checkbox 
+                    #checkbox (change)='showOptions(checkbox.checked)' style="margin-top: 17px;padding-left: 15px;" [(ngModel)]="isFinalQuiz">
+                    Is Final Quiz
+                    </mat-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin: 10px 0px;" *ngIf="data.examQuizList.length > 0">
+        <mat-form-field style="width: 100%; padding: 0px 15px;">
+            <input  matInput [(ngModel)]="examQuizName" placeholder="Entet Quiz Name"> 
+        </mat-form-field>
+    </div>
+</div>
 <mat-dialog-content class="mat-typography" *ngIf="data.examQuizList.length > 0">
     <div class="container">
         <div class="quizzwrap" *ngFor="let examQuiz of data.examQuizList, let i=index">

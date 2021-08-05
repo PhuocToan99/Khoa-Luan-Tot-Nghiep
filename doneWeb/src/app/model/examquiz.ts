@@ -27,4 +27,5 @@ export class ExamQuiz {
     examTime: number;
     quizId :string;
     isBlocked:boolean;
+    isFinalQuiz:boolean;
 }

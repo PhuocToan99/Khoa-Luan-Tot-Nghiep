@@ -97,4 +97,12 @@ export class ExamquizserviceService {
       console.log(e);
     }
   }
+  async getFinalExamQuizList(examCode,courseId){
+    try {
+      return await this.http.get(this.urlAPI+"GetFinalExamQuizList?examCode="+examCode+"&courseId="+courseId).toPromise();
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
 }

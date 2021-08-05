@@ -1,0 +1,32 @@
+.inputTime{
+    width: 90%;
+}
+.icondialog{
+    font-size: 16px;
+    text-align: center;
+    color: #66fa03; 
+    cursor: pointer;
+    margin-top:5px
+}
+.headericon{
+    font-size: 20px;
+    text-align: center;
+    color: #66fa03; 
+    cursor: pointer;
+}
+.deleteicon{
+    font-size: 16px;
+    text-align: center;
+    color: red; 
+    cursor: pointer;
+}
+.alertMessage{
+    font-size: small;
+    color: red;
+}
+.labelQuizId{
+    font-size: smaller;
+    margin-left: 4px;
+    margin-top: 0;
+    padding: 0;
+}

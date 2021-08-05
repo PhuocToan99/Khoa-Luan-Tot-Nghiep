@@ -97,7 +97,7 @@ namespace API.Controllers
     [Route("AddQuestionpool")]
     public async Task<ActionResult<Questionpool>> PostQuestionpool([FromForm] Questionpool questionpool)
     {
-      if (!QuestionpoolExists(questionpool.QuestionpoolName, questionpool.AccountId))
+      if (!QuestionpoolExists(questionpool.QuestionpoolName,questionpool.AccountId))
       {
         if (HttpContext.Request.Form.Files.Count > 0)
         {

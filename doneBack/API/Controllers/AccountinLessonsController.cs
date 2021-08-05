@@ -134,15 +134,19 @@ namespace API.Controllers
     public async Task<ActionResult<IEnumerable<ExamHistory>>> GetExamQuizHistory(string quizCode)
     {
       var result = await _context.AccountinLessons.Where(a => a.ExamQuizCode == quizCode).ToListAsync();
+      result.ForEach(e =>
+      {
+        Console.WriteLine(e.AccountId);
+      });
       var accountResult = await _context.Accounts.ToListAsync();
       List<ExamHistory> examHistories = new List<ExamHistory>();
-     
       result.ForEach(e =>
       {
         var examHistory = new ExamHistory();
         var account = new Account();
         examHistory.accountinLesson = e;
         account = accountResult.Find(acc => acc.AccountId.ToString() == e.AccountId);
+        Console.WriteLine(account.AccountId);
         examHistory.Username = account.Username;
         examHistories.Add(examHistory);
       });

@@ -142,6 +142,29 @@ namespace API.Migrations
                     b.ToTable("AccountinLessons");
                 });
 
+            modelBuilder.Entity("API.Models.Certificate", b =>
+                {
+                    b.Property<int>("CertificateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CourseId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("GetDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CertificateId");
+
+                    b.ToTable("Certificates");
+                });
+
             modelBuilder.Entity("API.Models.Choice", b =>
                 {
                     b.Property<int>("ChoiceId")
@@ -374,6 +397,9 @@ namespace API.Migrations
                     b.Property<bool>("IsBlocked")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsFinalQuiz")
+                        .HasColumnType("bit");
+
                     b.Property<string>("QuizId")
                         .HasColumnType("nvarchar(max)");
 
@@ -400,14 +426,46 @@ namespace API.Migrations
                     b.Property<string>("LessonTitle")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("QuizId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("SubTopicId")
                         .HasColumnType("int");
+
+                    b.Property<string>("VideoQuizTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("LessonId");
 
                     b.HasIndex("SubTopicId");
 
                     b.ToTable("Lessons");
+                });
+
+            modelBuilder.Entity("API.Models.LessonComplete", b =>
+                {
+                    b.Property<int>("LessonCompleteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CompleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CourseId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LessonId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LessonCompleteId");
+
+                    b.ToTable("LessonCompletes");
                 });
 
             modelBuilder.Entity("API.Models.Notification", b =>

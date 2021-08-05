@@ -114,4 +114,12 @@ export class QuizService {
       console.log(e);
     }
   }
+  getQuizsOfInstructor = async (id) => {
+    try {
+      return await this.http.get(this.urlAPI+"QuizOfInstructor?id="+id).toPromise();
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
 }

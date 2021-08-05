@@ -27,6 +27,10 @@ import { QuestionpoolService } from '../services/questionpool.service';
 import { NotificationService } from '../services/notification.service';
 import { ExamQuiz } from '../model/examquiz';
 import { ExamquizserviceService } from '../services/examquizservice.service';
+import { QuizInfoDialogDataAPI } from './shared/dialogData';
+import { QuizvideodialoginfoComponent } from './quizvideodialoginfo/quizvideodialoginfo.component';
+import { interval, Subscription} from 'rxjs';
+import { QuizvideodialogComponent } from '../dialog/quizvideodialog/quizvideodialog.component';
 @Component({
   selector: 'app-addcoursedetail',
   templateUrl: './addcoursedetail.component.html',
@@ -140,7 +144,6 @@ export class AddcoursedetailComponent implements OnInit {
       if (result) {
         console.log(result);
         if (!this.isEdit) this.createNewSubtopic(result);
-        // else this.updateExam(result);
       }
 
     });
@@ -197,9 +200,11 @@ export class AddcoursedetailComponent implements OnInit {
       console.log(result);
       this.notificationService.showNotification("Add new topic sucessfully","Create success",3000);
       this.loadpage();
+      this.chRef.detectChanges();
     }
     catch (e) {
       this.notificationService.showDeleteNotification("Your topic created fail. Please try again","Create fail",3000);
+      this.loadpage();
       this.chRef.detectChanges();
     }
   };
@@ -246,6 +251,8 @@ export class AddcoursedetailComponent implements OnInit {
     }
     catch (e) {
       this.notificationService.showDeleteNotification("Your subtopic created fail. Please try again","Create fail",3000);
+      this.loadpage();
+      this.chRef.detectChanges();
     }
   };
   public updateSubtopic = async (subtopic: Subtopic) => {
@@ -294,6 +301,8 @@ export class AddcoursedetailComponent implements OnInit {
     }
     catch (e) {
       this.notificationService.showDeleteNotification("Your subtopic created fail. Please try again","Create fail",3000);
+      this.loadpage();
+      this.chRef.detectChanges();
     }
   };
   public updateLesson = async (lesson: Lesson) => {
@@ -349,6 +358,7 @@ export class AddcoursedetailComponent implements OnInit {
        let result = await this.questionpoolService.getNumberOfQuizInQuestionpool(this.questionpoolList[i].questionpoolId) as number;
        this.quizcount.push(result);
      }
+     console.log(this.lessondataset);
     }
   }
   public getsubtopics = async (id) => {
@@ -402,6 +412,7 @@ export class AddcoursedetailComponent implements OnInit {
   public showdetail = async (id) => {
     this.show = !this.show;
     this.lessondataset = await this.lessonservice.getLessonsBySubtopicId(id) as Lesson[];
+    console.log(this.lessondataset);
     this.videoUrls = [];
     this.lessondataset.forEach(e =>{
       if(e.lessonContent != null || e.lessonContent != undefined){
@@ -450,6 +461,7 @@ export class AddcoursedetailComponent implements OnInit {
   quizCodeList: string[] = [];
   quizCodeNumber:string[] = [];
   quizIsActive:boolean[] = [];
+  quizIsFinalQuiz:boolean[] = [];
   quizName:string[] = [];
   async getExamList(){
     var quizcode = "";
@@ -466,6 +478,8 @@ export class AddcoursedetailComponent implements OnInit {
       tempname = "Exam "+k;
       var name = (this.examQuiz[0].examQuizName == null) ? tempname : this.examQuiz[0].examQuizName;
       this.quizName.push(name);
+      let isFinalQuiz = this.examQuiz[0].isFinalQuiz ? true : false;
+      this.quizIsFinalQuiz.push(isFinalQuiz);
       quizcount++;
       for(var i = 1;i< this.examQuiz.length ;i++){
         quizcount++;
@@ -476,9 +490,10 @@ export class AddcoursedetailComponent implements OnInit {
           k++;
           quizcode = this.examQuiz[i].examQuizCode;
           tempname = "Exam " + (k + 1);
-          // console.log(this.examQuiz[i].isBlocked);
           isActive =  isActive = this.examQuiz[i].isBlocked ? true : false;
           name = (this.examQuiz[i].examQuizName == null) ? tempname : this.examQuiz[i].examQuizName;
+          isFinalQuiz = this.examQuiz[i].isFinalQuiz ? true : false;
+          this.quizIsFinalQuiz.push(isFinalQuiz);
           this.quizName.push(name);
           this.quizIsActive.push(isActive);
           this.quizCodeList.push(quizcode);
@@ -486,10 +501,6 @@ export class AddcoursedetailComponent implements OnInit {
       }
     }
     this.quizCodeNumber.push(quizcount.toString());
-    console.log(this.quizName);
-    console.log(this.quizIsActive);
-    console.log(this.quizCodeList);
-    console.log(this.quizCodeNumber);
   }
   goToExamManagement(id){
     console.log(id);
@@ -512,5 +523,65 @@ export class AddcoursedetailComponent implements OnInit {
   }
   async blockStateChange(quizCode){
     await this.examQuizService.updateExamQuizState(quizCode);
+  }
+  quizList = [];
+  timeList = [];
+  updateLessonVideoQuiz(lesson:Lesson,id){
+    let time = "";
+    let quizId ="";
+    let videotime = this.videoDuration.find(e => e.id == id);
+    let result = videotime.videoTime;
+    const dialogRef = this.dialog.open(QuizvideodialoginfoComponent,{
+      data: {time:time,quizId:quizId,videoDuration:result,lessonId:lesson.lessonId},
+      width: "500px"
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      console.log(result);
+      if(result.quizId != "" && result.time != "" && result){
+        lesson.quizId = result.quizId;
+        lesson.videoQuizTime = result.time;
+        await this.lessonservice.updatelesson(lesson.lessonId,lesson);
+      }
+    });
+  }
+  videoDuration = [];
+  onMetadata(e,index) {
+    this.videoDuration.push({
+      id:index,
+      videoTime:e.target.getDuration()
+    });
+  }
+  mySubscription: Subscription;
+  async onStateChange(e,id){
+    if(e.data == 1){
+      var videoQuizData:QuizInfoDialogDataAPI[] = [];
+      videoQuizData = await this.lessonservice.getVideoQuizInfo(id) as QuizInfoDialogDataAPI[];
+      console.log(videoQuizData);
+      this.mySubscription= interval(1000).subscribe((x =>{
+        var stringTime = e.target.getCurrentTime().toString();
+          var time = parseInt(stringTime);
+          var result = videoQuizData.find(e => e.time == time);
+          if(result != undefined){
+            let question = result.question;
+            let answer1 = result.answer1;
+            let answer2 = result.answer2;
+            let answer3 = result.answer3;
+            let answer4 = result.answer4;
+            let isCorrect = result.isCorrect;
+            e.target.pauseVideo();
+            this.mySubscription.unsubscribe();
+            const dialogRef = this.dialog.open(QuizvideodialogComponent,{ width: '400px',
+            data: {question: question, answer1: answer1,answer2: answer2,answer3: answer3,answer4:answer4,isCorrect:isCorrect}});
+            dialogRef.afterClosed().subscribe(result => {
+              e.target.playVideo();
+            });
+          }      
+    }));
+    }
+    //Ended or Paused video
+    if(e.data == 0 || e.data == 2){
+      this.mySubscription.unsubscribe();
+    }
   }
 }

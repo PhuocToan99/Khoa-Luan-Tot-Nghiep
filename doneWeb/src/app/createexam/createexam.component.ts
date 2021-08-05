@@ -43,7 +43,6 @@ export class CreateexamComponent implements OnInit {
   checkState:[] =[];
   async loadpage(){
     this.questionpoolList = await this.questionpoolService.getActiveQuestionpool(this.AccountId) as Questionpool[];
-    // console.log(this.questionpoolList);
     this.selectedQuestionpoolId = this.questionpoolList[0].questionpoolId;
     if(this.quizCode != undefined){
       this.examQuizService.quizExam = await this.examQuizService.getExamByExamCode(this.quizCode) as ExamQuiz[];
@@ -75,7 +74,6 @@ export class CreateexamComponent implements OnInit {
       }); 
       if(this.examQuizService.quizExam.length > 0){
         for(var i =0;i<this.examQuizService.quizExam.length;i++){
-          // var result = this.quizlist.find(q => q.quizId.toString() == this.examQuizService.quizExam[i].quizId);
           this.quizlist.forEach(e => {if(e.quizId.toString() == this.examQuizService.quizExam[i].quizId)
           {
             e.isInExamQuiz = true;
@@ -97,19 +95,19 @@ export class CreateexamComponent implements OnInit {
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      if(this.examQuizService.quizExam.length > 0){
-        for(var i =0;i<this.examQuizService.quizExam.length;i++){
-          this.quizlist.forEach(e => {
-          var find = this.examQuizService.quizExam.find(exam => exam.examQuestion == e.question);
-          e.isInExamQuiz = (find) ? true : false;
-        })
+        if(this.examQuizService.quizExam.length > 0){
+          for(var i =0;i<this.examQuizService.quizExam.length;i++){
+            this.quizlist.forEach(e => {
+            var find = this.examQuizService.quizExam.find(exam => exam.examQuestion == e.question);
+            e.isInExamQuiz = (find) ? true : false;
+          })
+          }
         }
-      }
-      else{
-        this.quizlist.forEach(e => e.isInExamQuiz = false);
-      }
+        else{
+          this.quizlist.forEach(e => e.isInExamQuiz = false);
+        }
       this.chRef.detectChanges();
-      console.log(result);
+      console.log(this.quizlist);
       if(result != null && result == true){
         this.createExam();
         this.quizlist.forEach(e => e.isInExamQuiz = false);

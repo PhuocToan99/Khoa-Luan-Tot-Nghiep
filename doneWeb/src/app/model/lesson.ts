@@ -6,4 +6,6 @@ export class Lesson {
     lessonNo: number;
     subTopic : Subtopic;
     subTopicId: Int32Array;
+    videoQuizTime: string;
+    quizId:string;
 }

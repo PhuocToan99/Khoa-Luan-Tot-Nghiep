@@ -249,5 +249,11 @@ namespace API.Controllers
       }
       return examQuizInfoMobile;
     }
+    [HttpGet]
+    [Route("GetFinalExamQuizList")]
+    public async Task<ActionResult<IEnumerable<ExamQuiz>>> GetFinalExamQuizList(string examCode,string courseId)
+    {
+      return await _context.ExamQuizs.Where(e => e.ExamQuizCode != examCode && e.CourseId == courseId && e.IsFinalQuiz == true).ToListAsync();
     }
+  }
 }

@@ -15,10 +15,8 @@
     <Compile Remove="Migrations\20210525151759_1.Designer.cs" />
     <Compile Remove="Migrations\20210527030501_2.cs" />
     <Compile Remove="Migrations\20210527030501_2.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
+    <Compile Remove="Migrations\20210804074524_12.cs" />
+    <Compile Remove="Migrations\20210804074524_12.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

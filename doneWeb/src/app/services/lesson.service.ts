@@ -64,4 +64,12 @@ export class LessonService {
       console.log(e);
     }
   }
+  getVideoQuizInfo = async (id) => {
+    try {
+      return await this.http.get(this.urlAPI+"GetVideoQuizList?id="+id).toPromise();
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
 }

@@ -24,9 +24,13 @@
   <div class="row">
     <div class="col-md-8">
       <div class="container">
-      <h2 class="tdchinh">{{CourseName}} <a class="createquiz" (click)="createQuestionpool()"><i class="fa fa-plus-circle"></i>Create Questionpool</a><i class="fa fa-edit edit" style="cursor: pointer;" (click)="openDialog()"></i></h2>
+      <h2 class="tdchinh">{{CourseName}}</h2>
       </div>
-      <h2 class="tdtopic">Start Date: {{StartDate}}</h2>
+      <div class ="row">
+        <div class="col-md-4"> <h2 class="tdtopic">Start Date: {{StartDate}}</h2></div>
+        <div class="col-md-8"><a class="createquiz" (click)="createQuestionpool()"><i class="fa fa-plus-circle"></i>Create Questionpool</a><i class="fa fa-edit edit" style="cursor: pointer;font-size: 24px;" (click)="openDialog()"></i></div>
+      </div>
+     
       <h2 class="tdtopic">Main Topic</h2>
       <div id="accordion" class="panel panel-group" role="tablist" *ngFor="let topic of topicdataset; let i = index">
         <div class="panel panel-default">
@@ -108,9 +112,6 @@
           <div class="price"><i class="fa fa-money"></i><span
               style="padding-left: 15px;padding-right: 5px;">{{Price}}</span>USD</div>
         </div>
-        <div class="card-bottom card-block">
-          <a class="btn" style="border-radius: 30px;">Enroll</a>
-        </div>
       </div>
     </div>
   </div>
@@ -125,24 +126,25 @@
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
           *ngFor="let topic of topicdataset; let i = index" [style.background]="topic.isLocked ? '#666' : null">
           <mat-expansion-panel-header *ngIf="topic.isLocked">
-            <mat-panel-title [style.color]="topic.isLocked ? '#333' : null">
+            <mat-panel-title [style.color]="topic.isLocked ? '#fff' : null">
               Topic {{i+1}}: {{topic.topicTitle}} 
             </mat-panel-title>
           </mat-expansion-panel-header>
           <mat-expansion-panel-header (click)="getsubtopics(topic.topicId)" *ngIf="!topic.isLocked">
-            <mat-panel-title [style.color]="topic.isLocked ? '#333' : null">
+            <mat-panel-title [style.color]="topic.isLocked ? '#fff' : null">
               Topic {{i+1}}: {{topic.topicTitle}} 
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p *ngFor="let subtopic of subtopicdataset,let i = index" [ngStyle]="{'background':topic.isLocked ? '#666' : null,'color':topic.isLocked ? '#333' : null}" (click)="showdetail(subtopic.subTopicId)">Subtopic {{i+1}}: {{subtopic.subTopicTitle}}</p>
+          <p *ngFor="let subtopic of subtopicdataset,let i = index" [ngStyle]="{'background':topic.isLocked ? '#666' : null,'color':topic.isLocked ? '#fff' : null}" (click)="showdetail(subtopic.subTopicId)">Subtopic {{i+1}}: {{subtopic.subTopicTitle}}</p>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
     <div class="col-md-8">
       <div class="container-fluid" *ngIf="show">
         <div class="resize-container" #container *ngFor="let video of videoUrls,let i=index">
-          <ngx-y2-player #video [videoUrl]="video" [playerOptions]="playerOptions" [container]="container">
+          <ngx-y2-player #video [videoUrl]="video" [playerOptions]="playerOptions" [container]="container" (ready)="onMetadata($event,lessondataset[i].lessonId)" (stateChange)="onStateChange($event,lessondataset[i].lessonId)">
           </ngx-y2-player>
+          <i class="fas fa-file-import videoquiz" (click)="updateLessonVideoQuiz(lessondataset[i],lessondataset[i].lessonId)"></i>
           <i class="fa fa-edit edittopic" (click)="openLessonDialog1(lessondataset[i])"></i>
           <i class="fa fa-trash deletetopic" (click)="deleteLesson(lessondataset[i].lessonId)"></i>
         </div>
@@ -159,7 +161,12 @@
           <div class="questionpoolwrap">
               <div class="questionpoolwrapbackground">
                   <div class="questionpoolboder">
-                      <p style="color: #fff;"><span><i class="fa fa-list" style="float: left;padding-right: 5px ;color: #fff;"></i></span> {{quizCodeNumber[i]}} Question</p>
+                      <p style="color: #fff;">
+                        <span><i class="fa fa-list" style="float: left;padding-right: 5px ;color: #fff;padding-top: 5px;"></i></span> {{quizCodeNumber[i]}} Question
+                      </p>
+                      <p style="color: #fff;" *ngIf="quizIsFinalQuiz[i]">
+                        <span><i class="fa fa-bookmark" style="float: left;padding-right: 5px ;color: #fff;padding-top: 5px;"></i></span> Final Quiz (Get certificate)
+                      </p>
                       <span><i class="fa fa-edit" style="float: left;padding: 10px 10px ;color: #fff;cursor: pointer;" (click)="goToExamManagement(quizCodeList[i])"></i></span>
                       <span><i class="fa fa-lock" *ngIf="quizIsActive[i]" style="float: left;padding: 10px 10px ;color: #fff;cursor: pointer;" (click)="blockStateChange(quizCodeList[i]);quizIsActive[i] = !quizIsActive[i]"></i>
                       <i class="fa fa-unlock-alt" *ngIf="!quizIsActive[i]" style="float: left;padding: 10px 10px ;color: #fff;cursor: pointer;" (click)="blockStateChange(quizCodeList[i]);quizIsActive[i] = !quizIsActive[i]"></i>

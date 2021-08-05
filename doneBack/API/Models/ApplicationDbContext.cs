@@ -29,12 +29,13 @@ namespace API.Models
     public DbSet<AccountinLesson> AccountinLessons { get; set; }
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<ExamQuiz> ExamQuizs { get; set; }
+    public DbSet<Certificate> Certificates { get; set; }
+    public DbSet<LessonComplete> LessonCompletes { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       modelBuilder.Entity<Account>(entity =>
       {
         entity.Property(e => e.AccountId).UseIdentityColumn();
-        //entity.HasOne(a => a.User).WithOne(u => u.Account).HasForeignKey<User>(u => u.AccountId).OnDelete(DeleteBehavior.Cascade);
       });
       modelBuilder.Entity<AccountinCourse>(entity =>
       {
@@ -56,21 +57,11 @@ namespace API.Models
         entity.Property(e => e.ChoiceId).UseIdentityColumn();
         entity.HasOne(a => a.Quiz).WithMany(u => u.Choices).HasForeignKey(a => a.QuizId).OnDelete(DeleteBehavior.Restrict);
       });
-      //modelBuilder.Entity<Comment>(entity =>
-      //{
-      //  entity.Property(e => e.CommentId).UseIdentityColumn();
-      //  entity.HasOne(a => a.Account).WithMany(u => u.Comments).HasForeignKey(a => a.AccountId).OnDelete(DeleteBehavior.Restrict);
-      //  //entity.HasOne(a => a.Course).WithMany(u => u.Comments).HasForeignKey(a => a.CourseId).OnDelete(DeleteBehavior.Restrict);
-      //  entity.HasOne(a => a.Lesson).WithMany(u => u.Comments).HasForeignKey(a => a.LessonId).OnDelete(DeleteBehavior.Restrict);
-      //  entity.HasOne(e => e.ParentComment).WithMany(d => d.Comments).HasForeignKey(d => d.ParentCommentId).OnDelete(DeleteBehavior.Restrict);
-      //});
-
       modelBuilder.Entity<Comment>(entity =>
       {
         entity.Property(e => e.CommentId).UseIdentityColumn();
         entity.HasOne(e => e.User).WithMany(u => u.Comments).HasForeignKey(a => a.UserId).OnDelete(DeleteBehavior.Restrict);
         entity.HasOne(a => a.Course).WithMany(u => u.Comments).HasForeignKey(a => a.CourseId).OnDelete(DeleteBehavior.Restrict);
-        //entity.HasOne(a => a.Lesson).WithMany(u => u.Comments).HasForeignKey(a => a.LessonId).OnDelete(DeleteBehavior.Restrict);
       });
       modelBuilder.Entity<SubComment>(entity =>
       {
@@ -115,6 +106,14 @@ namespace API.Models
       modelBuilder.Entity<ExamQuiz>(entity =>
       {
         entity.Property(e => e.ExamQuizId).UseIdentityColumn();
+      });
+      modelBuilder.Entity<Certificate>(entity =>
+      {
+        entity.Property(e => e.CertificateId).UseIdentityColumn();
+      });
+      modelBuilder.Entity<LessonComplete>(entity =>
+      {
+        entity.Property(e => e.LessonCompleteId).UseIdentityColumn();
       });
     }
   }

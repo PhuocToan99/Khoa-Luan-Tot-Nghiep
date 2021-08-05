@@ -1,7 +1,7 @@
 <div class="container">
     <div class="header">
         <a class="createquiz" (click)="openQuizDialog()"><i class="fa fa-check-square-o"></i>Create Question</a>
-        <label for="upload-filequiz"><i class="fa fa-folder-open"></i>Import From File</label>
+        <label for="upload-filequiz"><i class="fa fa-folder-open"></i> Import From File</label>
         <input id="upload-filequiz" type="file" (change)="onFileChangeQuiz($event)" accept=".xlsx" multiple="false" />
         <a class="createquiz" style="background-color: #FF9F67;" (click)="openQuestionpoolDialog()"><i class="fa fa-edit"></i>Edit Questionpool</a>
         <a class="backpage" (click)="back()"><i class="fa fa-arrow-circle-left"></i>Back to Questionpool Management</a>

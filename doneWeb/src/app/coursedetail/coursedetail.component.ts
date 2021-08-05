@@ -19,6 +19,17 @@ import {MatDialog} from '@angular/material/dialog';
 import { InvoicedialogComponent } from '../dialog/invoicedialog/invoicedialog.component';
 import {CartService} from "../services/cart.service";
 import { DatePipe } from '@angular/common';
+import { interval, Subscription} from 'rxjs';
+import { QuizvideodialogComponent } from '../dialog/quizvideodialog/quizvideodialog.component';
+import { QuizInfoDialogDataAPI } from '../addcoursedetail/shared/dialogData';
+export class VideoQuiz{
+  question:string;
+  answer1:string;
+  answer2:string;
+  answer3:string;
+  answer4:string;
+  isCorrect:string;
+}
 @Component({
   selector: 'app-coursedetail',
   templateUrl: './coursedetail.component.html',
@@ -26,7 +37,7 @@ import { DatePipe } from '@angular/common';
 })
 export class CoursedetailComponent implements OnInit {
   currentAccount: Account;
-  public course:Course;
+  public course:Course = new Course;
   public topicdataset: Topic[] = [];
   public subtopicdataset: Subtopic[] = [];
   public id;
@@ -118,7 +129,6 @@ export class CoursedetailComponent implements OnInit {
   buyFreeCourse(){
     var invoiceCode = this.makeid(6);
     var accountInCourse: AccountInCourse = new AccountInCourse();
-    //console.log(this.currentAccount.accountId);
     accountInCourse.accountId = this.currentAccount.accountId;
     accountInCourse.courseId = this.course.courseId;
     accountInCourse.isBought = true;
@@ -147,4 +157,42 @@ export class CoursedetailComponent implements OnInit {
         this.buyFreeCourse();
       }
   };
+  mySubscription: Subscription;
+  async onStateChange(e,index){
+    var id = this.lessondataset[index].lessonId;
+    if(e.data == 1){
+      var videoQuizData:QuizInfoDialogDataAPI[] = [];
+      videoQuizData = await this.lessonservice.getVideoQuizInfo(id) as QuizInfoDialogDataAPI[];
+      console.log(videoQuizData);
+      this.mySubscription= interval(1000).subscribe((x =>{
+        var stringTime = e.target.getCurrentTime().toString();
+          var time = parseInt(stringTime);
+          var result = videoQuizData.find(e => e.time == time);
+          if(result != undefined){
+            let question = result.question;
+            let answer1 = result.answer1;
+            let answer2 = result.answer2;
+            let answer3 = result.answer3;
+            let answer4 = result.answer4;
+            let isCorrect = result.isCorrect;
+            e.target.pauseVideo();
+            this.mySubscription.unsubscribe();
+            const dialogRef = this.dialog.open(QuizvideodialogComponent,{ width: '400px',
+            data: {question: question, answer1: answer1,answer2: answer2,answer3: answer3,answer4:answer4,isCorrect:isCorrect}});
+            dialogRef.afterClosed().subscribe(result => {
+              e.target.playVideo();
+            });
+          }      
+    }));
+    }
+    //Ended or Paused video
+    if(e.data == 0 || e.data == 2){
+      this.mySubscription.unsubscribe();
+      this.mySubscription.remove(this.mySubscription);
+    }
+  }
+  async backToCourse(){
+    await this.courseService.updatecourseviewcount(this.id,this.course);
+    this.router.navigate(['/category', this.id], { relativeTo: this.route });
+  }
 }

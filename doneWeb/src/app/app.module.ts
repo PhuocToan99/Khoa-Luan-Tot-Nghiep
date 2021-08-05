@@ -44,7 +44,6 @@ import { CategorydetailComponent } from './categorydetail/categorydetail.compone
 import { MycourseComponent } from './mycourse/mycourse.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { InstructorbalanceComponent } from './modules/instructorbalance/instructorbalance.component';
-
 import {DataTablesModule} from 'angular-datatables';
 import { ChartsModule } from 'ng2-charts';
 
@@ -86,6 +85,11 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSliderModule} from '@angular/material/slider';
 import { FiltersearchComponent } from './dialog/filtersearch/filtersearch.component';
 import { UpdateuserimagedialogComponent } from './profile/updateuserimagedialog/updateuserimagedialog.component';
+import { QuizvideodialogComponent } from './dialog/quizvideodialog/quizvideodialog.component';
+import { QuizvideodialoginfoComponent } from './addcoursedetail/quizvideodialoginfo/quizvideodialoginfo.component';
+import { SelectQuizComponent } from './addcoursedetail/select-quiz/select-quiz.component';
+import { CertificateComponent } from './certificate/certificate.component';
+import { MycertificateComponent } from './mycertificate/mycertificate.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -131,7 +135,12 @@ import { UpdateuserimagedialogComponent } from './profile/updateuserimagedialog/
     RatingdialogComponent,
     AlertComponent,
     FiltersearchComponent,
-    UpdateuserimagedialogComponent
+    UpdateuserimagedialogComponent,
+    QuizvideodialogComponent,
+    QuizvideodialoginfoComponent,
+    SelectQuizComponent,
+    CertificateComponent,
+    MycertificateComponent
   ],
   imports: [
     BrowserModule,
@@ -173,6 +182,7 @@ import { UpdateuserimagedialogComponent } from './profile/updateuserimagedialog/
     CKEditorModule,
     MatAutocompleteModule,
     MatSliderModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot({
       preventDuplicates: true
     }) 

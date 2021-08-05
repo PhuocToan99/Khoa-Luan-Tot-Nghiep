@@ -1787,3 +1787,17 @@ p {
 .warning{
   color: red !important;
 }
+
+.certificate-container{
+  position:relative;
+  text-align:center;
+}
+
+.centered {
+  position: absolute;
+  width:350px;
+  top: 27%;
+  left: 14%;
+  font-size: 13px;
+  /*transform: translate(-30%, -50%); */
+}
